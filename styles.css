@@ -1,0 +1,73 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
+
+body {
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    min-width: 940px;
+} 
+
+header a {
+    margin: 0 auto;
+}
+
+.link {
+    margin: 0 122.4px;
+}
+
+.intro {
+    background-color: #FBDFDB;
+    border-radius: 30px;
+    width: 940px;
+    height: 366px;
+    margin: 0 auto;
+    margin-bottom: 98px;
+    display: flex;
+}
+
+.intro__image-container {
+    margin: 66px 100px 0 624px;
+    position: absolute;
+}
+
+.intro__content h1 {
+    margin: 117px 575px 10px 60px;
+    font-size: 32px;
+}
+
+.intro__content p {
+    margin: 0 564px 117px 60px;
+    font-size: 18px;
+    opacity: 70%;
+}
+
+.cards {
+    max-width: 940px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.card__image-container img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card__content {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    color: #111111;
+} 
+
+.card__author {
+    font-size: 14px;
+    color: #777777;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
