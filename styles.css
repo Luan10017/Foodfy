@@ -4,16 +4,27 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    min-width: 940px;
+    max-width: 940px;
 } 
 
-header a {
-    margin: 0 auto;
+header a img {
+    margin: 36.1px auto 30px;
 }
 
-.link {
-    margin: 0 122.4px;
+.links {
+    display: inline;
+    position: absolute;
+    margin: 38px 0 36px 122.4px ;
+    
 }
+
+.links a {
+    margin: 0 30px 0 0;
+    text-decoration: none;
+    color: #111111;
+    font: 16px 'Roboto', sans-serif;
+}
+
 
 .intro {
     background-color: #FBDFDB;
@@ -21,7 +32,6 @@ header a {
     width: 940px;
     height: 366px;
     margin: 0 auto;
-    margin-bottom: 98px;
     display: flex;
 }
 
@@ -49,6 +59,11 @@ header a {
     gap: 20px;
 }
 
+.title__cards {
+    width: 940px;
+    margin: 50px auto 20px;
+}
+
 .card__image-container img {
     width: 100%;
     border-radius: 15px;
@@ -59,15 +74,26 @@ header a {
     font-family: 'Roboto', sans-serif;
     color: #111111;
 } 
-
+.card__content h4 {
+    margin: 20px 0 5px;
+    font-weight: normal;
+}
 .card__author {
     font-size: 14px;
     color: #777777;
+    margin: 0;
 }
 
 footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 50px auto 0;
+    background-color: #EEEEEE;
+    color: #999999;
+}
+
+footer p {
+    padding: 23px;
+    margin: 0;
 }
