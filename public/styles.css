@@ -1,0 +1,192 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
+
+
+#content {
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    max-width: 940px; 
+    position: relative; /* testar isso - combinar relative com absolut */
+} 
+
+nav a img {
+    margin: 36.1px auto 30px;
+}
+
+div.links {
+    display: inline;
+    position: absolute;
+    margin: 38px 0 36px 122.4px ;
+    
+}
+
+div.links a {
+    margin: 0 30px 0 0;
+    text-decoration: none;
+    color: #111111;
+    font: 16px 'Roboto', sans-serif;
+}
+
+.intro {
+    background-color: #FBDFDB;
+    border-radius: 30px;
+    width: 940px;
+    height: 366px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.intro__image-container {
+    margin: 66px 100px 0 624px;
+    position: absolute;
+}
+
+.intro__content h1 {
+    margin: 117px 575px 10px 60px;
+    font-size: 32px;
+}
+
+.intro__content p {
+    margin: 0 564px 117px 60px;
+    font-size: 18px;
+    opacity: 70%;
+}
+
+.cards {
+    max-width: 940px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.title__cards {
+    width: 940px;
+    margin: 50px auto 20px;
+}
+
+.card__image-container img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card__content {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    color: #111111;
+} 
+.card__content h4 {
+    margin: 20px 0 5px;
+    font-weight: normal;
+}
+.card__author {
+    font-size: 14px;
+    color: #777777;
+    margin: 0;
+}
+
+footer {
+    display: block;
+    position: absolute;
+    margin: 50px auto 0;
+    background-color: #EEEEEE;
+    color: #999999;
+    width: 1400px;
+}
+
+footer p {
+    padding: 23px;
+    margin: 0;
+    text-align: center;
+}
+
+/* === SOBRE === */
+.links .headline{
+    font-weight: bold;
+}
+
+.about{
+    color: #111111;
+    font-family: 'Roboto', sans-serif;
+    max-width: 940px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 24px;
+    margin: 50px auto 20px;
+}
+
+.about h2 {
+    font-size: 20px;
+    margin: 30px auto 20px;
+}
+
+.about p{
+    text-align: left;
+    font-size: 18px;
+    color: #444444;
+}
+
+/*=== MODAL ===*/
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    background-color: #FFFFFF;
+    margin: auto; /* acertar para ficar no centro da pagina */
+    border-radius: 16px;
+    position: relative;
+    width: 660px;
+    text-align: center; /* vi no git */
+    padding: 30px;
+}
+
+.modal img {
+    width: 600px;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    line-height: 28px;
+    color: #111111;
+    margin-bottom: 5px;
+  }
+  
+  .modal-chef {
+    font-size: 18px;
+    line-height: 21px;
+    color: #777777;
+    margin-bottom: 60px;
+  }
+
+  .modal-close {
+    font-size: 16px;
+    line-height: 19px;
+    color: #999999;
+    cursor: pointer;
+  }
+
+/* ==== MODAL.ACTIVE === */
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
