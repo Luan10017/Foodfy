@@ -1,0 +1,23 @@
+{
+  "name": "foodfy",
+  "version": "1.0.0",
+  "description": "<h3 align=\"center\">\r   Desafio: Construindo Foodfy\r </h3>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luan10017/Foodfy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luan10017/Foodfy/issues"
+  },
+  "homepage": "https://github.com/Luan10017/Foodfy#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

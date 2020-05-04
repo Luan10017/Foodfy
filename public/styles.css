@@ -1,5 +1,10 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
 
+:root {
+    --color-author: #777777;
+    --color-text: #444444;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -56,6 +61,7 @@ div.links a {
     margin: 0 564px 117px 60px;
     font-size: 18px;
     opacity: 70%;
+    line-height: 28px;
 }
 
 .cards {
@@ -87,7 +93,7 @@ div.links a {
 }
 .card__author {
     font-size: 14px;
-    color: #777777;
+    color: var(--color-author);
     margin: 0;
 }
 
@@ -118,7 +124,7 @@ footer p {
     position: relative;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: left;
 }
 
 .about h1 {
@@ -134,7 +140,8 @@ footer p {
 .about p{
     text-align: left;
     font-size: 18px;
-    color: #444444;
+    line-height: 28px;
+    color: var(--color-text);
 }
 
 /*=== MODAL ===*/
@@ -180,7 +187,7 @@ footer p {
   .modal-chef {
     font-size: 18px;
     line-height: 21px;
-    color: #777777;
+    color: var(--color-author);
     margin-bottom: 60px;
   }
 
@@ -197,4 +204,42 @@ footer p {
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
+}
+
+/*=== DETALHES ===*/
+
+.detalhe__image-container img {
+    object-fit: cover;
+    width: 940px;
+    height: 280px;
+    border-radius: 15px;
+ }
+
+.title_detalhe {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.title_detalhe h1 {
+    font-size: 36px;
+    color: #111111;
+    bottom: 4px;
+}
+
+.title_detalhe p {
+    font-size: 20px;
+    color: var(--color-author);
+}
+
+.info {
+    font-size: 18px;
+    color: var(--color-text);
+    border-spacing: 0 28px;
+    line-height: 28px;
+}
+
+.info h1 {
+    font-size: 24px;
+    color: #111111;
+    margin: 39px auto 20px;
 }
