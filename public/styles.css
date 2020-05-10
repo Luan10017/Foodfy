@@ -80,6 +80,8 @@ div.links a {
 .card__image-container img {
     width: 100%;
     border-radius: 15px;
+    width: 300px;
+    height: 140px;
 }
 
 .card__content {
@@ -242,4 +244,10 @@ footer p {
     font-size: 24px;
     color: #111111;
     margin: 39px auto 20px;
+}
+
+/* Página de Erro */
+.erro {
+    text-align: center;
+    margin: 200px auto;
 }

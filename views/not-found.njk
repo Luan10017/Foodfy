@@ -1,31 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "layout.njk" %}
 
-<head>
-    <title>Foodfy</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
+{%block link%}
+    <a href="/about">Sobre</a>
+    <a href="/recipes">Receitas</a>
+{% endblock %}
 
-<body>
-    <div id="content">
-        <header>
-            <nav>
-                <a href="/">
-                    <img src="/logo.png" alt="Imagem da logomarca">
-                </a>
-                <div class="links">
-                    <a href="/about">Sobre</a>
-                    <a href="/recipes">Receitas</a>
-                </div>
-            </nav>
-        </header>
-      <div class="erro">
+{% block content %}
+    <div class="erro">
         <h1>Error 404 - Essa página não existe.</h1>
-      </div>
     </div>
-    <footer>
-        <p>Todos direitos reservados, receitas Foodfy.</p>
-    </footer>
-</body>
-
-</html>
+{% endblock %}

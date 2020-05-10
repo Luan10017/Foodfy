@@ -4,6 +4,8 @@ const nunjucks = require('nunjucks')
 const server = express()
 const content = require("./data")
 
+
+/* Configuração de acesso a pastas plúblicas */
 server.use(express.static('public'))
 server.use(express.static('public/assets'))
 
@@ -27,16 +29,25 @@ server.get('/about', function (req, res) {
 })
 
 server.get('/recipes', function (req, res) {
-    return res.render('recipes')
+    return res.render('recipes', { recipes: content })
 })
 
-server.get('/details_recipes', function (req, res) {
-    return res.render('details_recipes')
+server.get('/details_recipes/:id', function (req, res) {
+    const id = req.query.id
+    const recipe = content.find(function (recipe) {
+        return id == recipe.id
+    })
+
+    if (!recipe) {
+        return res.render('not-found')
+    }
+
+    return res.render('details_recipes', { recipes: recipe })
 })
 
 
 /* PÁGINA DE ERRO */
-server.use(function(req, res) {  
+server.use(function (req, res) {
     res.status(404).render('not-found')
 })
 
