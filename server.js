@@ -33,11 +33,10 @@ server.get('/recipes', function (req, res) {
 })
 
 server.get('/details_recipes/:id', function (req, res) {
-    const id = req.query.id
+    const id = req.params.id
     const recipe = content.find(function (recipe) {
         return id == recipe.id
     })
-
     if (!recipe) {
         return res.render('not-found')
     }
