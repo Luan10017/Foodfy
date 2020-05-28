@@ -35,17 +35,10 @@ server.get('/recipes', function (req, res) {
 server.get('/details_recipes/:index', function (req, res) {
     const index = req.params.index
     const recipe = content[index]
-    
-    
-    
-    /* const recipe = content.find(function (recipe) {
-        return id == recipe.id
-    }) */
     if (!recipe) {
         return res.render('not-found')
     }
-
-    return res.render('details_recipes', { recipes: recipe })
+    return res.render('details_recipes', { recipe })
 })
 
 

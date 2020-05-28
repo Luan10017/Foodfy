@@ -7,11 +7,11 @@
 
 {%block content%}
     <div class="detalhe__image-container">
-        <img src="{{recipes.image}}" alt="Foto de {{recipes.title}}">
+        <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
     </div>
     <div class="title_detalhe">
-        <h1>{{recipes.title}}</h1>
-        <p>por {{recipes.author}}</p>
+        <h1>{{recipe.title}}</h1>
+        <p>por {{recipe.author}}</p>
     </div>
 
     <!-- SECTION informações -->
@@ -26,19 +26,19 @@
         <div id="ingredientes" class="hide">
             <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
             
-            {% for ingredient in recipes.ingredients %}
+            {% for ingredient in recipe.ingredients %}
                 <li>{{ingredient}};</li>
             {% endfor %}
         </div>
         <div id="preparo">
             <h1>Modo de preparo</h1>
-            {% for preparation in recipes.preparation %}
+            {% for preparation in recipe.preparation %}
             <li>{{preparation}}.</li>
             {% endfor %}
         </div>
         <div id="adicionais">
             <h1>Informações adicionais</h1>
-            {{recipes.information}}
+            {{recipe.information}}
         </div>
     </section>
 {% endblock %}

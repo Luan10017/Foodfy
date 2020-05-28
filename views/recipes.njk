@@ -8,7 +8,7 @@
         <!-- SECTION CARDS -->
         <section class="cards">
             {%for recipe in recipes%}
-            <div class="card" id="{{recipe.id}}">
+            <div class="card" id="{{recipe.index}}">
                 <div class="card__image-container">
                     <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
                 </div>

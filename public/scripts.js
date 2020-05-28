@@ -1,16 +1,9 @@
 const cards = document.querySelectorAll('.card')
 
-for (let card of cards) {
-    card.addEventListener('click', function () {
-        const recipeId = card.getAttribute('id')
-        window.location.href = `/details_recipes/${recipeId}` 
+
+for (let i = 0;cards.length; i++){
+    cards[i].addEventListener('click', function () {
+        window.location.href = `/details_recipes/${i}` 
     })
 }
-
-
-/* 
-document.querySelector('.close-modal').addEventListener('click',function(){
-    modalOverlay.classList.remove('active')
-})
- */
 
