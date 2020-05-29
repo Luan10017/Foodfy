@@ -18,12 +18,11 @@
 
     <section class="info">
         <div class="sub-title-ing">
-            <h1>Ingredientes</h1>
-            <div id="hideIng" onclick="hideIng()">ESCONDER</div>
-            <div id="showIng" onclick="showIng()">MOSTRAR</div>
+            <h1>Ingredientes <a class="show_ing">Esconder</a></h1>
+            
         </div>
 
-        <div id="ingredientes" class="hide">
+        <div id="ingredientes">
             <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
             
             {% for ingredient in recipe.ingredients %}
@@ -41,4 +40,5 @@
             {{recipe.information}}
         </div>
     </section>
+    <script src='/scripts.js'></script>
 {% endblock %}

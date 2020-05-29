@@ -251,3 +251,11 @@ footer p {
     text-align: center;
     margin: 200px auto;
 }
+
+/* Esconde  MOstra */
+
+.ingredientes.active {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+ }
