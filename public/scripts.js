@@ -1,21 +1,27 @@
 const cards = document.querySelectorAll('.card')
+const buttons = document.querySelectorAll('.button') 
+const content = document.querySelectorAll('.content')
 
-
+/* REDIRECIONAMENTO CARDS PARA DETALHES*/
 for (let i = 0;cards.length; i++){
     cards[i].addEventListener('click', function () {
         window.location.href = `/details_recipes/${i}` 
     })
 }
 
-const ingrediente = document.querySelector('.ingredientes')
-const showIng = document.querySelector('.show_ing')
 
-showIng.addEventListener('click', function() {
-    if (showIng.innerHTML == 'Esconder') {
-        ingrediente.classList.add('active')
-        showIng.innerHTML = 'Mostrar'
-    }else {
-        ingrediente.classList.remove('active')
-        showIng.innerHTML = 'Esconder'
-    }
-})
+/* DETAILS RECIPE - MOSTRA / ESCONDE */
+for (let [i,button] of buttons.entries()) {
+    button.addEventListener("click", () => {
+        if(content[i].classList.contains("show")){
+            content[i].classList.remove('show')
+            content[i].classList.add('hide')
+            button.innerHTML= "Mostrar"
+            
+        } else {
+            content[i].classList.add('show')
+            content[i].classList.remove('hide')
+            button.innerHTML= "Esconder"
+        }
+    })  
+}
