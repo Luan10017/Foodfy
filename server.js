@@ -1,5 +1,6 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
+const routes = require('./routes')
 
 const server = express()
 const content = require("./data")
