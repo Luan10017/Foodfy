@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Foodfy</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div id="content-admin">
+        <header>
+            <nav>
+                <a href="/">
+                    <img src="/logoWhite.png" alt="Imagem da logomarca">
+                </a>
+                <div class="links">
+                    {% block link %}
+                    {% endblock %}
+                </div>
+            </nav>
+        </header>
+        {% block contentAdmin %}{% endblock %} 
+    </div>
+</body>
+
+</html>

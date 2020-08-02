@@ -280,3 +280,69 @@ li, ul {
     opacity: 0;
     display: none;
  }
+
+ /* === ADMIN === */
+
+ #content-admin header{
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%; 
+    position: relative; 
+    background: #111111;
+ }
+
+#content-admin nav a img {
+    margin-top: 27px;
+    margin-bottom: 26px;
+    margin-left: 231px;
+}
+
+.show-title{
+    max-width: 940px;
+    margin: 50px auto 30px;
+}
+
+
+
+
+
+.cards-admin {
+    max-width: 940px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card__image-admin img {
+    width: 100%;
+    border-radius: 8.57px;
+    width: 172px;
+    height: 80px;
+}
+
+.card__image-admin,  .card__content-admin{
+    display: inline-block;
+
+}
+
+.card__content-admin{
+    margin-left: 20px;
+    margin-top: 0;
+    position: absolute;
+}
+
+
+
+.card__content-admin h4{
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #111111;
+}
+
+.card__content-admin a{
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+}
