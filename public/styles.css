@@ -365,25 +365,22 @@ li, ul {
     position: relative; 
 }
 
-.presentation {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 20px;
+.presentation h1, a {
+    display: inline-block;
+    margin-bottom: 24px;
+    position: relative;
 }
 
-.edit-recipe {
-    background: var(--color-rocket);
-    width: 136px;
-    height: 37px;
+a.edit-recipe {
+    background-color: var(--color-rocket);
+    padding: 9px 20px;
     border-radius: 4px;
     color: white;
     font-weight: bold;
     text-align: center;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 9px;
 }
 
-.edit-recipe a {
-    text-align: center;
-    margin: 9px 20px;
-    line-height: 9px;
-    position: absolute;
-}
