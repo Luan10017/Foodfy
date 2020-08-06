@@ -1,1 +1,59 @@
-{% extends "layout.njk" %}
+{% extends "admin/layout.njk" %}
+
+{%block contentAdmin%}
+    <div class="admin-content"> 
+        <div class="presentation">
+            <h1>Criando receita</h1>
+            <a class="button-admin-recipe">Salvar receita</a>
+        </div>
+        <main>
+        <div class="item">
+            <div>Avatar URL</div>
+                <div>
+                    <input 
+                        type="url" 
+                        name="image_url" 
+                        placeholder="http://"
+                        {# value="{{}}" #}
+                    >
+                </div>
+        </div>  
+        <div class="item">
+            <div>Ingredientes</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="ingredientes" 
+                        placeholder="http://"
+                        {# value="{{}}" #}
+                    >
+                </div>
+                <a class="add-button">Adicionar novo ingrediente</a>
+        </div>  
+        <div class="item">
+            <div>Modo de preparo</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="Modo de preparo" 
+                        placeholder="http://"
+                        {# value="{{}}" #}
+                    >
+                </div>
+            <a class="add-button">Adicionar novo passo</a>
+        </div>  
+        <div class="item">
+            <div>informações adicionais</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="informações adicionais" 
+                        placeholder="http://"
+                        {# value="{{}}" #}
+                    >
+                </div>
+        </div>    
+
+        </main>
+    </div>
+{% endblock %}

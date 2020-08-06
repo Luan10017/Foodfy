@@ -32,8 +32,10 @@ routes.get('/admin/recipes', function (req, res) {
     return res.render('admin/index', {recipes: content})
 })
 
-//routes.get("/admin/recipes/create", recipes.create); // Mostrar formulário de nova receita
-
+routes.get("/admin/recipes/create", function (req, res) {
+    return res.render('admin/create')
+})
+//recipes.create); // Mostrar formulário de nova receita
 
 routes.get("/admin/recipes/:index", function (req, res) {
     const index = req.params.index
