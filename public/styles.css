@@ -234,7 +234,7 @@ li, ul {
 #content-admin nav a img {
     margin-top: 27px;
     margin-bottom: 26px;
-    margin-left: 231px;
+    margin-left: 204px;
 }
 
 .show-title{
@@ -297,6 +297,11 @@ li, ul {
     position: relative; 
 }
 
+.content-admin{
+    list-style-type: '-  ';
+}
+
+
 .presentation h1, a {
     display: inline-block;
     margin-bottom: 24px;
@@ -314,6 +319,11 @@ a.button-admin-recipe {
     right: 0;
     text-align: center;
     top: 9px;
+}
+
+a.button-admin-recipe.delete{
+    background-color: #DC4747;
+    margin-right: 149px;
 }
 
 .item {
@@ -335,6 +345,9 @@ a.button-admin-recipe {
     height: 49px;
 }
 
+.item:last-child input {
+    height: 257px;
+}
 
 .add-button {
     margin: 15px auto 0;

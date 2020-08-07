@@ -23,7 +23,7 @@
                 <div class="title-and-button">
                     <h1>Ingredientes</h1>
                 </div>
-                <ul class="content show">
+                <ul class="content-admin">
                     <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
                     
                     {% for ingredient in recipe.ingredients %}
@@ -37,7 +37,7 @@
                 <div class="title-and-button">
                     <h1>Modo de preparo</h1>
                 </div>
-                <ul class="content show">
+                <ul class="content-admin">
                     {% for preparation in recipe.preparation %}
                     <li>{{preparation}}.</li>
                     {% endfor %}
@@ -48,7 +48,7 @@
                 <div class="title-and-button">
                     <h1>Informações adicionais</h1>
                 </div>
-                <ul class="content show">
+                <ul class="content-admin">
                     {{ recipe.information | striptags(true) | escape | nl2br }}
                 </ul>
             </div>
