@@ -1,11 +1,28 @@
 {
-  "image_url": "https://ipca.pt/",
-  "ingredientes": [
-    "aefaef"
-  ],
-  "preparation": [
-    "fhbf",
-    "kk"
-  ],
-  "additional-Information": "dasdw"
+  "recipes": [
+    {
+      "image_url": "https://img.buzzfeed.com/buzzfeed-static/static/2018-08/3/9/campaign_images/buzzfeed-prod-web-06/quantos-voce-gosta-de-comida-de-verdade-2-31093-1533301940-0_dblbig.jpg",
+      "ingredientes": [
+        "arroz",
+        "feijão",
+        "ovos"
+      ],
+      "preparation": [
+        "Bata por 30 minutos",
+        "misture tudo"
+      ],
+      "additional-Information": "Cuidado para não passar do ponto"
+    },
+    {
+      "image_url": "https://vidasimples.co/wp-content/uploads/2019/08/vida-simples-comida-arte-culinaria-1160x523.png",
+      "ingredientes": [
+        "Tomares ",
+        "Creme de leite"
+      ],
+      "preparation": [
+        "misture tudo"
+      ],
+      "additional-Information": ""
+    }
+  ]
 }
