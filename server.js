@@ -7,10 +7,10 @@ const server = express()
 
 
 /* Configuração de acesso a pastas plúblicas */
+server.use(express.urlencoded({ extended: true }))
 server.use(express.static('public'))
 server.use(express.static('public/assets'))
 server.use(routes)
-server.use(express.urlencoded({ extended: true }))
 
 server.set('view engine', 'njk')
 

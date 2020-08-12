@@ -1,7 +1,7 @@
 {% extends "admin/layout.njk" %}
 
 {%block contentAdmin%}
-    <form class="admin-content" method="POST" action="/admin/recipes" > 
+    <form class="admin-content" method="post" action="/admin/recipes" > 
         <div class="presentation">
             <h1>Criando receita</h1>
             <button type="submit" class="button-admin-recipe">Salvar receita</button>
@@ -11,10 +11,9 @@
             <div>Avatar URL</div>
                 <div>
                     <input 
-                        type="url" 
+                        type="URL" 
                         name="image_url" 
-                        placeholder=""
-                        {# value="{{}}" #}
+                        
                     >
                 </div>
         </div>  
@@ -25,8 +24,7 @@
                         <input 
                             type="text" 
                             name="ingredientes[]" 
-                            placeholder=""
-                            value="" 
+                           
                         >
                     </div>
                 </div>
@@ -39,8 +37,7 @@
                         <input 
                             type="text" 
                             name="preparation[]" 
-                            placeholder=""
-                            value=""
+                            
                         >
                     </div>
                 </div>
@@ -51,13 +48,11 @@
                 <div>
                     <input 
                         type="text" 
-                        name="informações adicionais" 
-                        placeholder=""
-                        {# value="{{}}" #}
+                        name="additional-Information" 
+                        
                     >
                 </div>
         </div>    
-
         </main>
     </form>
     <script src='/scripts.js'></script>

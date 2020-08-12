@@ -1,8 +1,7 @@
 const express =  require('express')
 const routes = express.Router()
 const content = require("./data")
-/* const instructors = require('./controllers/instructors')
-const members = require('./controllers/members') */
+const recipes = require('./controllers/recipes')
 
 
 routes.get('/', function (req, res) {
@@ -55,10 +54,7 @@ routes.get("/admin/recipes/:id/edit", function (req, res) {
 /*routes.post("/admin/recipes", recipes.post); // Cadastrar nova receita*/
 
 
-routes.post("/admin/recipes", function (req, res) {
-    console.log(req.body.image_url)
-    return res.send(req.body)
-})
+routes.post("/admin/recipes", recipes.post)
 
 
 /*
