@@ -6,54 +6,7 @@
             <h1>Criando receita</h1>
             <button type="submit" class="button-admin-recipe">Salvar receita</button>
         </div>
-        <main>
-        <div class="item">
-            <div>Avatar URL</div>
-                <div>
-                    <input 
-                        type="URL" 
-                        name="image_url" 
-                        
-                    >
-                </div>
-        </div>  
-        <div class="item">
-            <div>Ingredientes</div>
-                <div id="ingredients">
-                    <div class="ingredient">
-                        <input 
-                            type="text" 
-                            name="ingredientes[]" 
-                           
-                        >
-                    </div>
-                </div>
-                <a class="add-button ingredients">Adicionar novo ingrediente</a>
-        </div>  
-        <div class="item">
-            <div>Modo de preparo</div>
-                <div id="steps">
-                    <div class="step">
-                        <input 
-                            type="text" 
-                            name="preparation[]" 
-                            
-                        >
-                    </div>
-                </div>
-            <a class="add-button steps">Adicionar novo passo</a>
-        </div>  
-        <div class="item">
-            <div>informações adicionais</div>
-                <div>
-                    <input 
-                        type="text" 
-                        name="additional-Information" 
-                        
-                    >
-                </div>
-        </div>    
-        </main>
+        {% include 'admin/fields.njk' %}
     </form>
     <script src='/scripts.js'></script>
 {% endblock %}
