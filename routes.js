@@ -1,6 +1,7 @@
 const express =  require('express')
 const routes = express.Router()
 const content = require("./data")
+const adminContent = require("./data.json")
 const recipes = require('./controllers/recipes')
 
 
@@ -42,11 +43,18 @@ routes.get("/admin/recipes/:index", function (req, res) {
         return res.render('not-found')
     }
     return res.render('admin/show', { recipe })
-
+    
 })
 
-routes.get("/admin/recipes/:id/edit", function (req, res) {
-    return res.render('admin/edit')
+routes.get("/admin/recipes/:index/edit", function (req, res) {
+    const index = req.params.index
+    const recipe = content[index]
+    console.log(index)
+    console.log(recipe)
+    if (!recipe) {
+        return res.render('not-found')
+    }
+    return res.render('admin/edit', { recipe })
 })
 
 /*recipes.edit); // Mostrar formulário de edição de receita*/
