@@ -8,15 +8,35 @@
         </div>
         <main>
         <div class="item">
-            <div>Avatar URL</div>
+            <div>Foto da receita</div>
                 <div>
                     <input 
                         type="URL" 
                         name="image" 
-                        value="{{recipe.image}}"
+                        placeholder="http://"
                     >
                 </div>
-        </div>  
+        </div> 
+        <div class="item">
+            <div>Título</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="title" 
+                        placeholder="Título da receita"
+                    >
+                </div>
+        </div>
+        <div class="item">
+            <div>Autor</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="author" 
+                        placeholder="Nome do autor"
+                    >
+                </div>
+        </div> 
         <div class="item">
             <div>Ingredientes</div>
                 <div id="ingredients">
@@ -24,7 +44,7 @@
                         <input 
                             type="text" 
                             name="ingredients[]" 
-                            value="{{ingrediente}}"
+                            placeholder="Ingredientes"
                         >
                     </div>
                 </div>

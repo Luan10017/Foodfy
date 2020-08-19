@@ -9,7 +9,7 @@
         </div>
         <main>
         <div class="item">
-            <div>Avatar URL</div>
+            <div>Foto da receita</div>
                 <div>
                     <input 
                         type="URL" 
@@ -18,6 +18,26 @@
                     >
                 </div>
         </div>  
+        <div class="item">
+            <div>Título</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="title" 
+                        value="{{recipe.title}}"
+                    >
+                </div>
+        </div>
+        <div class="item">
+            <div>Autor</div>
+                <div>
+                    <input 
+                        type="text" 
+                        name="author" 
+                        value="{{recipe.author}}"
+                    >
+                </div>
+        </div> 
         <div class="item">
             <div>Ingredientes</div>
                 <div id="ingredients">

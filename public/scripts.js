@@ -2,7 +2,9 @@ const cards = document.querySelectorAll('.card')
 const buttons = document.querySelectorAll('.button') 
 const content = document.querySelectorAll('.content')
 
+
 /* REDIRECIONAMENTO CARDS PARA DETALHES*/
+console.log(cards.length)
 for (let i = 0;cards.length; i++){
     cards[i].addEventListener('click', function () {
         window.location.href = `/details_recipes/${i}` 
@@ -66,3 +68,4 @@ function addStep() {
   
 const stepButton = document.querySelector(".add-button.steps")
 stepButton.addEventListener("click", addStep);
+
