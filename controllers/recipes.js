@@ -1,22 +1,22 @@
-const fs = require('fs')
-const data = require('../adminData.json')
+const content = require("../data") //Provavelmente vou adequar o nome da variável para data
 
-
-/* CREATE - POST */
-exports.post = function (req, res) {
-    
-    data.recipes.push(req.body)
-    
-    fs.writeFile("data.json", JSON.stringify(data,null,2), function(err){
-        if (err) return res.send("Write file error!")
-
-        return res.redirect("/admin/recipes")
-    })
+exports.home = function (req, res) {
+    return res.render('home', { recipes: content })
 }
 
-/* UPDATE - PUT */
-exports.put = function (req, res) {
-
+exports.about = function (req, res) {
+    return res.render('about')
 }
 
-/* DELETE  */
+exports.recipes = function (req, res) {
+    return res.render('recipes', { recipes: content })
+}
+
+exports.details = function (req, res) {
+    const index = req.params.index
+    const recipe = content[index]
+    if (!recipe) {
+        return res.render('not-found')
+    }
+    return res.render('details_recipes', { recipe })
+}

@@ -1,66 +1,24 @@
 const express =  require('express')
 const routes = express.Router()
-const content = require("./data")
-const adminContent = require("./adminData")
+const admin = require('./controllers/admin')
 const recipes = require('./controllers/recipes')
 
-console.log(`Os dados são ${content}`)
 
-routes.get('/', function (req, res) {
-    return res.render('home', { recipes: content })
-})
+/* ==== PRINCIPAL ==== */
 
+routes.get('/', recipes.home)
+routes.get('/about', recipes.about)
+routes.get('/recipes', recipes.recipes)
+routes.get('/details_recipes/:index', recipes.details)
 
+/*==== ADMIN =====*/
 
-
-routes.get('/about', function (req, res) {
-    return res.render('about')
-})
-routes.get('/recipes', function (req, res) {
-    return res.render('recipes', { recipes: content })
-})
-routes.get('/details_recipes/:index', function (req, res) {
-    const index = req.params.index
-    const recipe = content[index]
-    if (!recipe) {
-        return res.render('not-found')
-    }
-    return res.render('details_recipes', { recipe })
-})
-
-
-routes.get('/admin/recipes', function (req, res) {
-    return res.render('admin/index', {recipes: content})
-})
-
-routes.get("/admin/recipes/create", function (req, res) {
-    return res.render('admin/create')
-})
-
-routes.get("/admin/recipes/:index", function (req, res) {
-    const index = req.params.index
-    const recipe = content[index]
-    if (!recipe) {
-        return res.render('not-found')
-    }
-    return res.render('admin/show', { recipe })
-    
-})
-
-routes.get("/admin/recipes/:index/edit", function (req, res) {
-    const index = req.params.index
-    const recipe = adminContent.recipes[index]
-    console.log(index)
-    console.log(recipe)
-    if (!recipe) {
-        return res.render('not-found')
-    }
-    return res.render('admin/edit', { recipe })
-})
-
-routes.post("/admin/recipes", recipes.post) // Cadastrar nova receita
-
-routes.put("/admin/recipes", recipes.put); // Editar uma receita
+routes.get('/admin/recipes', admin.index)
+routes.get("/admin/recipes/create", admin.create)
+routes.get("/admin/recipes/:index", admin.show)
+routes.get("/admin/recipes/:index/edit", admin.edit)
+routes.post("/admin/recipes", admin.post) // Cadastrar nova receita
+routes.put("/admin/recipes", admin.put); // Editar uma receita
 
 //routes.delete("/admin/recipes", recipes.delete); // Deletar uma receita 
 
