@@ -338,7 +338,7 @@ a.button-admin-recipe.delete{
     margin-bottom: 10px;
 }
 
-.item input {
+.item input, textarea {
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
@@ -351,9 +351,13 @@ a.button-admin-recipe.delete{
     padding-left: 20px;
 }
 
-.item:last-child input {
+.item textarea {
     height: 257px;
 }
+
+/* .item:last-child input {
+    height: 257px;
+} */
 
 .add-button {
     margin: 15px auto 0;

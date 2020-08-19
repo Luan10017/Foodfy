@@ -7,6 +7,55 @@
             <a class="button-admin-recipe">Salvar receita</a>
             <a class="button-admin-recipe delete">Deletar</a>
         </div>
-        {% include 'admin/fields.njk' %}
+        <main>
+        <div class="item">
+            <div>Avatar URL</div>
+                <div>
+                    <input 
+                        type="URL" 
+                        name="image" 
+                        value="{{recipe.image}}"
+                    >
+                </div>
+        </div>  
+        <div class="item">
+            <div>Ingredientes</div>
+                <div id="ingredients">
+                    <div class="ingredient">
+                        {% for ingrediente in recipe.ingredients %}
+                        <input 
+                            type="text" 
+                            name="ingredients[]" 
+                            value="{{ingrediente}}"
+                        >
+                        {% endfor %}
+                    </div>
+                </div>
+                <a class="add-button ingredients">Adicionar novo ingrediente</a>
+        </div>  
+        <div class="item">
+            <div>Modo de preparo</div>
+                <div id="steps">
+                    <div class="step">
+                        {% for step in recipe.preparation %}
+                        <input 
+                            type="text" 
+                            name="preparation[]" 
+                            value="{{step}}"
+                        >
+                        {% endfor %}
+                    </div>
+                </div>
+            <a class="add-button steps">Adicionar novo passo</a>
+        </div>  
+        <div class="item">
+            <div>informações adicionais</div>
+                <div>
+                    <textarea name="information" cols="30" rows="10">
+                        {{recipe.information}}
+                    </textarea>
+                </div>
+        </div>    
+        </main>
     </div>
 {% endblock %}

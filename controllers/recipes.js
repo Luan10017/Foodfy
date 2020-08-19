@@ -1,5 +1,5 @@
 const fs = require('fs')
-const data = require('../data.json')
+const data = require('../adminData.json')
 
 
 /* CREATE - POST */
@@ -15,6 +15,8 @@ exports.post = function (req, res) {
 }
 
 /* UPDATE - PUT */
+exports.put = function (req, res) {
 
+}
 
 /* DELETE  */
