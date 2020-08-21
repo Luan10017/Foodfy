@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Luan10017/Foodfy#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "nunjucks": "^3.2.1"
   },
   "devDependencies": {

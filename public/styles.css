@@ -308,9 +308,10 @@ li, ul {
     position: relative;
 }
 
-.button-admin-recipe {
+button[type="submit"]{
     background-color: var(--color-rocket);
-    padding: 9px 20px;
+    height: 37px;
+    width: 139px;
     border-radius: 4px;
     color: white;
     font-weight: bold;
@@ -322,9 +323,10 @@ li, ul {
     top: 9px;
 }
 
-a.button-admin-recipe.delete{
+#form-delete button[type="submit"]{
     background-color: #DC4747;
     margin-right: 149px;
+    width: 92px;
 }
 
 .item {
