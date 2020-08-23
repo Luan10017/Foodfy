@@ -53,7 +53,7 @@ exports.post = function (req, res) {
 /* UPDATE - PUT */
 exports.put = function (req, res) {
     const { id } = req.body
-    
+
     const foundRecipes = data.recipes.find(function(recipe) {
         console.log(data.recipes.indexOf(recipe))
         if (id == data.recipes.indexOf(recipe)){
@@ -65,8 +65,10 @@ exports.put = function (req, res) {
 
     const recipe = {
         ...foundRecipes,
-        ...req.body
+        ...req.body,
     }
+
+    delete recipe.id
 
     data.recipes[id] = recipe
 
