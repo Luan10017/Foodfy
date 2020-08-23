@@ -48,7 +48,8 @@
         "Cubra a massa com mussarela ralada, tomate e orégano a gosto.",
         "Leve novamente ao forno até derreter a mussarela."
       ],
-      "information": "Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!"
+      "information": "Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!",
+      "id": 1
     },
     {
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/asinha.png",
@@ -132,6 +133,20 @@
         "açúcar de confeiteiro e corte em quadrados."
       ],
       "information": ""
+    },
+    {
+      "image": "https://image.flaticon.com/icons/svg/2729/2729007.svg",
+      "title": "Teste",
+      "author": "Fabiana ",
+      "ingredients": [
+        "1 xícara (chá) de leite",
+        "tomate"
+      ],
+      "preparation": [
+        "No liquidificador bata o leite, o ovo, o sal, o açúcar, a margarina, a farinha de trigo e o fermento em pó até que tudo esteja encorporado.",
+        "Bata por 30 minutos"
+      ],
+      "information": "É isso ai man                        \r\n                    "
     }
   ]
 }

@@ -308,7 +308,8 @@ li, ul {
     position: relative;
 }
 
-button[type="submit"]{
+button[type="submit"],
+button.button-admin-recipe{
     background-color: var(--color-rocket);
     height: 37px;
     width: 139px;
@@ -319,7 +320,6 @@ button[type="submit"]{
     text-align: center;
     position: absolute;
     right: 0;
-    text-align: center;
     top: 9px;
 }
 
@@ -344,17 +344,27 @@ button[type="submit"]{
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    width: 100%;
+    width: 920px;
     height: 49px;
     margin-bottom: 10px;
     font-family: Roboto;
     font-size: 16px;
     color: #111111;
-    padding-left: 20px;
 }
+
+input[type="text"], 
+input[type="URL"], 
+textarea {
+    padding-left: 20px;
+    
+}
+
 
 .item textarea {
     height: 257px;
+    line-height: 24px;
+    text-align: justify;
+    padding-top: 18px;
 }
 
 /* .item:last-child input {
