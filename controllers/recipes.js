@@ -1,7 +1,7 @@
-const content = require("../data") //Provavelmente vou adequar o nome da variável para data
+const data = require("../data.json") 
 
 exports.home = function (req, res) {
-    return res.render('home', { recipes: content })
+    return res.render('home', { recipes: data.recipes })
 }
 
 exports.about = function (req, res) {
@@ -9,12 +9,12 @@ exports.about = function (req, res) {
 }
 
 exports.recipes = function (req, res) {
-    return res.render('recipes', { recipes: content })
+    return res.render('recipes', { recipes: data.recipes })
 }
 
 exports.details = function (req, res) {
     const index = req.params.index
-    const recipe = content[index]
+    const recipe = data.recipes[index]
     if (!recipe) {
         return res.render('not-found')
     }

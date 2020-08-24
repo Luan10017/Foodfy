@@ -1,12 +1,7 @@
 const cards = document.querySelectorAll('.card')
 const buttons = document.querySelectorAll('.button') 
 const content = document.querySelectorAll('.content')
-const editButton = document.querySelectorAll('.button-admin-recipe')
- 
 
-const currentPage = location.pathname
-
-console.log(currentPage)
 
 /* REDIRECIONAMENTO CARDS PARA DETALHES*/
 for (let i = 0;cards.length; i++){
@@ -18,7 +13,7 @@ for (let i = 0;cards.length; i++){
 
 /* DETAILS RECIPE - MOSTRA / ESCONDE */
 for (let [i,button] of buttons.entries()) {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
         if(content[i].classList.contains("show")){
             content[i].classList.remove('show')
             content[i].classList.add('hide')
@@ -51,7 +46,7 @@ function addIngredient() {
   }
   
 const ingredientButton = document.querySelector(".add-button.ingredients")
-ingredientButton.addEventListener("click", addIngredient);
+ingredientButton.addEventListener('click', addIngredient);
 
 /* ===  ADMIN STEPS === */
 
@@ -71,22 +66,18 @@ function addStep() {
   }
   
 const stepButton = document.querySelector(".add-button.steps")
-stepButton.addEventListener("click", addStep);
+stepButton.addEventListener('click', addStep);
 
 /* REDIRECIONAMENTO PARA EDIT */
 
-/* console.log(cards.length)
-for (let i = 0;cards.length; i++){
-    cards[i].addEventListener('click', function () {
-        window.location.href = `/details_recipes/${i}` 
-    })
-} */
-/* let index 
-editButton.addEventListener("click", function(){
-    index = params.index
-    window.location.href =`/admin/recipes/${index}/edit`
-}) */
+const editButton = document.querySelector('.button-admin-recipe')
+const currentPage = location.pathname
+console.log(editButton)
+editButton.addEventListener('click', function(){
+    window.location.href = `${currentPage}/edit`
+})
 
+/* CONTROLE DELETE */
 const formDelete = document.querySelector("#form-delete")
 formDelete.addEventListener("submit", function (event) {
         const confirmation = confirm("Deseja Deletar?")
