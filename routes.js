@@ -19,8 +19,7 @@ routes.get("/admin/recipes/:index", admin.show)
 routes.get("/admin/recipes/:index/edit", admin.edit)
 routes.post("/admin/recipes", admin.post) // Cadastrar nova receita
 routes.put("/admin/recipes", admin.put); // Editar uma receita
-
-//routes.delete("/admin/recipes", recipes.delete); // Deletar uma receita 
+routes.delete("/admin/recipes", admin.delete); // Deletar uma receita 
 
 
 /* PÁGINA DE ERRO */

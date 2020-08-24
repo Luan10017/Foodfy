@@ -86,3 +86,11 @@ editButton.addEventListener("click", function(){
     index = params.index
     window.location.href =`/admin/recipes/${index}/edit`
 }) */
+
+const formDelete = document.querySelector("#form-delete")
+formDelete.addEventListener("submit", function (event) {
+        const confirmation = confirm("Deseja Deletar?")
+        if (!confirmation) {
+                event.preventDefault()
+        }
+})

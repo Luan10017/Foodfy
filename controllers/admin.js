@@ -33,8 +33,6 @@ exports.edit = function (req, res) {
         id: req.params.index
     }
 
-    console.log(`New recepi is ${recipe.id}`)
-
     return res.render('admin/edit', { recipe })
 }
 
@@ -65,7 +63,6 @@ exports.put = function (req, res) {
     const { id } = req.body
 
     const foundRecipes = data.recipes.find(function(recipe) {
-        console.log(data.recipes.indexOf(recipe))
         if (id == data.recipes.indexOf(recipe)){
             return true
         } 
@@ -90,3 +87,19 @@ exports.put = function (req, res) {
 }
 
 /* DELETE  */
+
+exports.delete = function (req, res) {
+    const { id } = req.body
+
+    const filteredRecipes = data.recipes.filter(function(recipe) {
+        return data.recipes.indexOf(recipe) != id
+    })
+
+    data.recipes = filteredRecipes
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
+        if (err) return res.send('write error!')
+
+        return res.redirect(`/admin/recipes`)
+    })
+}
