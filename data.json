@@ -147,6 +147,32 @@
         "Bata por 30 minutos"
       ],
       "information": "                                                                                    É isso ai man                        \r\n                    \r\n                        \r\n                        \r\n                        "
+    },
+    {
+      "image": "https://image.flaticon.com/icons/svg/2729/2729007.svg",
+      "title": "Exercícios",
+      "author": "Fabiana ",
+      "ingredients": [
+        "1 xícara (chá) de leite",
+        "tomate"
+      ],
+      "preparation": [
+        "No liquidificador bata o leite, o ovo, o sal, o açúcar, a margarina, a farinha de trigo e o fermento em pó até que tudo esteja encorporado.",
+        "Bata por 30 minutos"
+      ],
+      "information": "                        \r\n                    "
+    },
+    {
+      "image": "https://image.flaticon.com/icons/svg/2729/2729005.svg",
+      "title": "mudando dados",
+      "author": "Anônimo",
+      "ingredients": [
+        "1 xícara (chá) de leite"
+      ],
+      "preparation": [
+        "Bata por 30 minutos"
+      ],
+      "information": "                        \r\n                    "
     }
   ]
 }

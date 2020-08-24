@@ -1,30 +1,31 @@
 {% extends "admin/layout.njk" %}
 
-    {%block contentAdmin%}
-        <h1 class="show-title">Gerenciar receitas</h1>
-        <!-- SECTION CARDS -->
-        <section class="cards-admin">
-            {%for recipe in recipes%}
-                <div class="card" id="{{recipe.index}}">
-                    <div class="card__image-admin">
-                        <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
-                    </div>
-                    <div class="card__content-admin">
-                        <h4>{{recipe.title}}</h4>
-                        <p class="card__author">por {{recipe.author}}</p>
-                        <a class="visualization_button">Visualizar</a>
-                    </div>
+{%block contentAdmin%}
+    <h1 class="show-title">Gerenciar receitas</h1>
+    <!-- SECTION CARDS -->
+    <section class="cards-admin">
+        {%for recipe in recipes%}
+            <div class="card" id="{{recipe.index}}">
+                <div class="card__image-admin">
+                    <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
                 </div>
-            {% endfor %}
-        </section>
-    <script> //Coloquei o script aqui pois estava dando um erro
-       const vButton = document.querySelectorAll('.visualization_button')
-
-        console.log(vButton.length)
-        for (let i = 0;vButton.length; i++){
+                <div class="card__content-admin">
+                    <h4>{{recipe.title}}</h4>
+                    <p class="card__author">por
+                        {{recipe.author}}</p>
+                    <a class="visualization_button">Visualizar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    <script>
+        //Coloquei o script aqui pois estava dando um erro
+        const vButton = document.querySelectorAll('.visualization_button')
+        /* REDIRECIONAMENTO CARDS PARA DETALHES ADMIN */
+        for (let i = 0; vButton.length; i++) {
             vButton[i].addEventListener('click', function () {
-                window.location.href = `/admin/recipes/${i}` 
+                window.location.href = `/admin/recipes/${i}`
             })
         }
     </script>
-{%endblock%}
+    {%endblock%}

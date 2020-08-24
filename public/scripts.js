@@ -1,10 +1,14 @@
 const cards = document.querySelectorAll('.card')
 const buttons = document.querySelectorAll('.button') 
 const content = document.querySelectorAll('.content')
+const editButton = document.querySelectorAll('.button-admin-recipe')
+ 
 
+const currentPage = location.pathname
+
+console.log(currentPage)
 
 /* REDIRECIONAMENTO CARDS PARA DETALHES*/
-console.log(cards.length)
 for (let i = 0;cards.length; i++){
     cards[i].addEventListener('click', function () {
         window.location.href = `/details_recipes/${i}` 
@@ -69,3 +73,16 @@ function addStep() {
 const stepButton = document.querySelector(".add-button.steps")
 stepButton.addEventListener("click", addStep);
 
+/* REDIRECIONAMENTO PARA EDIT */
+
+/* console.log(cards.length)
+for (let i = 0;cards.length; i++){
+    cards[i].addEventListener('click', function () {
+        window.location.href = `/details_recipes/${i}` 
+    })
+} */
+/* let index 
+editButton.addEventListener("click", function(){
+    index = params.index
+    window.location.href =`/admin/recipes/${index}/edit`
+}) */

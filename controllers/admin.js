@@ -41,6 +41,16 @@ exports.edit = function (req, res) {
 /* CREATE - POST */
 exports.post = function (req, res) {
     
+    /* Validação de dados do formulario */
+    const keys = Object.keys(req.body)
+    for (key of keys) {
+        if (req.body[key] == "" && req.body[key]!= req.body.author && req.body[key]!= req.body.information)
+            return res.send('Please, fill all fields.')
+    }
+    if (req.body.author == "")
+        req.body.author = "Anônimo"
+
+    /* Gravação dos dados */
     data.recipes.push(req.body)
     
     fs.writeFile("data.json", JSON.stringify(data,null,2), function(err){
