@@ -1,10 +1,10 @@
 {% extends "admin/layout.njk" %}
 
-
 {%block contentAdmin%}
-    <div class="admin-content"> 
+    <div class="admin-content">
         <div class="presentation">
-            <h1>Receita: {{recipe.title}}</h1>
+            <h1>Receita:
+                {{recipe.title}}</h1>
             <button class="button-admin-recipe">Editar receita</button>
         </div>
         <div class="detalhe__image-container">
@@ -12,26 +12,26 @@
         </div>
         <div class="title_detalhe">
             <h1>{{recipe.title}}</h1>
-            <p>por {{recipe.author}}</p>
+            <p>por
+                {{recipe.author}}</p>
         </div>
 
         <!-- SECTION informações -->
 
         <section class="info">
-            
+
             <div class="ingredients">
                 <div class="title-and-button">
                     <h1>Ingredientes</h1>
                 </div>
                 <ul class="content-admin">
                     <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
-                    
+
                     {% for ingredient in recipe.ingredients %}
                         <li>{{ingredient}};</li>
                     {% endfor %}
                 </ul>
             </div>
-            
 
             <div class="preparation">
                 <div class="title-and-button">
@@ -39,7 +39,7 @@
                 </div>
                 <ul class="content-admin">
                     {% for preparation in recipe.preparation %}
-                    <li>{{preparation}}.</li>
+                        <li>{{preparation}}.</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -52,8 +52,19 @@
                     {{ recipe.information | striptags(true) | escape | nl2br }}
                 </ul>
             </div>
-            
+
         </section>
     </div>
-    <script src='/scripts.js'></script>
+    <script>
+        /* REDIRECIONAMENTO PARA EDIT */
+
+        const editButton = document.querySelector('.button-admin-recipe')
+        const currentPage = location
+            .pathname
+            console
+            .log(editButton)
+        editButton.addEventListener('click', function () {
+            window.location.href = `${currentPage}/edit`
+        })
+    </script>
 {% endblock %}
