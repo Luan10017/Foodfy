@@ -21,6 +21,19 @@
     position: relative; /* testar isso - combinar relative com absolut */
 } 
 
+header nav .header{
+    display: inline;
+}
+
+header nav .header form{
+    display: grid;
+    grid-template-columns: 1fr 91px;
+}
+
+header nav .header form {
+    max-width: 60px;
+}
+
 nav a img {
     margin: 36.1px auto 30px;
 }

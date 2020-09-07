@@ -2,7 +2,7 @@
   "name": "foodfy",
   "version": "1.0.0",
   "description": "<h3 align=\"center\">\r   Desafio: Construindo Foodfy\r </h3>",
-  "main": "server.js",
+  "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"

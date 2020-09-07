@@ -1,4 +1,4 @@
-const data = require("../data.json") 
+const data = require("../model/data.json") 
 
 exports.home = function (req, res) {
     return res.render('home', { recipes: data.recipes })
