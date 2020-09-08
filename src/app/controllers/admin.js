@@ -1,5 +1,6 @@
 const fs = require('fs')
 const data = require('../model/data.json')
+const Chef = require("../model/chef")
 
 /* CONTROLES DE EXIBIÇÃO */
 
@@ -101,5 +102,21 @@ exports.delete = function (req, res) {
         if (err) return res.send('write error!')
 
         return res.redirect(`/admin/recipes`)
+    })
+}
+
+/* CHEFS */
+
+exports.chefs = function (req, res) {
+    Chef.chefs(function(chefs){
+        return res.render('admin/chefs/index', {chefs})
+    })
+}
+
+exports.details = function (req, res) {
+    const id = req.params.index
+    Chef.find(id, function(chef){
+        if (!chef) return res.send("Chef not found!")
+        return res.render('admin/chefs/details', { chef})
     })
 }

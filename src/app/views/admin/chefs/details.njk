@@ -1,0 +1,15 @@
+{% extends "layouts/admin.njk" %}
+
+{%block contentAdmin%}
+    <div class="chef_info">
+        <h1>Chefe: {{chef.name}}</h1>
+        <button>Editar Chef</button>
+    </div>
+    <div class="chef_content">
+        <img src="{{chef.avatar_url}}" alt="">
+        <h1>{{chef.name}}</h1>
+        <p>{{chef.total_recipes}} receitas</p>
+    </div>
+{%endblock%}
+
+{% include 'admin/cards.njk' %}
