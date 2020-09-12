@@ -1,12 +1,16 @@
 const fs = require('fs')
 const data = require('../model/data.json')
 const Chef = require("../model/chef")
+const Recipes = require("../model/recipes")
 
 /* CONTROLES DE EXIBIÇÃO */
 
 exports.index = function (req, res) {
-    return res.render('admin/index', {recipes: data.recipes})
+    Recipes.all(function(recipes) {
+        return res.render('admin/index', {recipes})
+    })
 }
+
 
 exports.create = function (req, res) {
     return res.render('admin/create')
@@ -117,6 +121,26 @@ exports.details = function (req, res) {
     const id = req.params.index
     Chef.find(id, function(chef){
         if (!chef) return res.send("Chef not found!")
-        return res.render('admin/chefs/details', { chef})
+        Recipes.all(function(recipes) {
+            return res.render('admin/chefs/details', {chef, recipes})
+        })
+    })
+}
+
+exports.createChef = function (req, res) {
+    return res.render('admin/chefs/chefs_create')
+}
+
+exports.post = function (req, res) {
+    
+    /* Validação de dados do formulario */
+    const keys = Object.keys(req.body)
+    for (key of keys) {
+        if (req.body[key] == "")
+            return res.send('Please, fill all fields.')
+    }
+
+    Chef.create(req.body, function(chef) {
+        return res.redirect(`/admin/chefs/${chef.id}`)
     })
 }
