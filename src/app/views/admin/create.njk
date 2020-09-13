@@ -20,10 +20,16 @@
                 </div>
             </div>
             <div class="item">
-                <div>Autor</div>
-                <div>
-                    <input type="text" name="author" placeholder="Nome do autor">
-                </div>
+                <div>Chef</div>
+                    <div>
+                        <select name="chef">
+                            {% for chef in chefOptions %}
+                            <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %}selected{%endif%}>
+                                {{chef.name}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
             </div>
             <div class="item">
                 <div>Ingredientes</div>

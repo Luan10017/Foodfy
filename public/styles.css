@@ -203,6 +203,7 @@ li, ul {
 .chefs {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 30px;
 }
 
 .chef {
@@ -326,11 +327,16 @@ li, ul {
 
 
 /* CHEFS */
+/* index */
+#content-admin h1 {
+    margin-top: 50px;
+}
+
 /* details */
 .chef_details {
     margin: 50px auto;
 }
-.chef_content {
+.chef_wrapper {
     align-items: center;
     margin-top: 51px;
 }
@@ -349,13 +355,13 @@ li, ul {
     top: 9px;
 }
 
-.chef_content img {
+.chef_wrapper img {
     border-radius: 100%;
     width: 200px;
     height: 200px;
 }
 
-.chef_content h1 {
+.chef_wrapper h1 {
     font-size: 36px;
     color: #111111;
 }

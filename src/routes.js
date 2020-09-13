@@ -28,7 +28,7 @@ routes.delete("/admin/recipes", admin.delete); // Deletar uma receita
 routes.get('/admin/chefs', admin.chefs)
 routes.get("/admin/chefs/create", admin.createChef)
 routes.get('/admin/chefs/:index', admin.details)
-routes.post("/admin/chefs", admin.post) 
+routes.post("/admin/chefs", admin.postChefs) 
 
 /* PÁGINA DE ERRO */
 routes.use(function (req, res) {
