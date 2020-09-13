@@ -1,4 +1,3 @@
-const chef = require("../model/chef")
 const Chef = require("../model/chef")
 const Recipes = require("../model/recipes")
 
