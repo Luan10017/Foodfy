@@ -1,5 +1,4 @@
-const fs = require('fs')
-const data = require('../model/data.json')
+const chef = require("../model/chef")
 const Chef = require("../model/chef")
 const Recipes = require("../model/recipes")
 
@@ -17,18 +16,15 @@ module.exports = {
     show(req, res) {
         Recipes.find(req.params.index, function(recipe) {
             if (!recipe) return res.send('Recipe not found')
-        
-            /* recipe.ingredients = recipe.ingredients.split(",")
-            recipe.preparation = recipe.preparation.split(".") */
-            return res.render('admin/show', { recipe }) 
+            
+            Chef.find(recipe.chef_id, function(chef) {
+                return res.render('admin/show', { recipe, chef }) 
+            })
         })  
     },
     edit(req, res) {
         Recipes.find(req.params.index, function (recipe) {
             if(!recipe) return res.send("Recipe not found!")
-
-            recipe.ingredients = recipe.ingredients.split(",")
-            recipe.preparation = recipe.preparation.split(".")
 
             Recipes.chefsSelectOptions(function(options) {
                 return res.render('admin/edit', { recipe, chefOptions: options })
@@ -56,20 +52,9 @@ module.exports = {
         Recipes.update(req.body, function() {
             return res.redirect(`/admin/recipes/${req.body.id}`)
         })
-
     },
     delete(req, res) {
-        const { id } = req.body
-
-        const filteredRecipes = data.recipes.filter(function(recipe) {
-            return data.recipes.indexOf(recipe) != id
-        })
-    
-        data.recipes = filteredRecipes
-    
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
-            if (err) return res.send('write error!')
-    
+        Recipes.delete(req.body.id, function() {
             return res.redirect(`/admin/recipes`)
         })
     },

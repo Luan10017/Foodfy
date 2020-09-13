@@ -34,7 +34,7 @@ module.exports = {
         const values = [
             data.image,
             data.title,
-            data.chef_id,
+            data.chef,
             data.ingredients,
             data.preparation,
             data.information,
@@ -61,7 +61,7 @@ module.exports = {
         const values = [
             data.image,
             data.title,
-            data.chef_id,
+            data.chef,
             data.ingredients,
             data.preparation,
             data.information,
@@ -81,6 +81,13 @@ module.exports = {
         WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error! ${err}`
             callback(results.rows[0]) 
+        })
+    },
+    delete(id, callback) {
+        db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
+            if(err) throw `Database Error! ${err}`
+
+            return callback()
         })
     }
 
