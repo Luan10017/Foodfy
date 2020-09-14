@@ -29,6 +29,10 @@ routes.get('/admin/chefs', admin.chefs)
 routes.get("/admin/chefs/create", admin.createChef)
 routes.get('/admin/chefs/:index', admin.details)
 routes.post("/admin/chefs", admin.postChefs) 
+routes.get('/admin/chefs/:index/edit', admin.editChefs)
+routes.put("/admin/chefs", admin.putChefs); 
+routes.delete("/admin/chefs", admin.deleteChefs); 
+
 
 /* PÁGINA DE ERRO */
 routes.use(function (req, res) {
