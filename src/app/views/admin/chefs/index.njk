@@ -4,7 +4,7 @@
     <h1>Gerenciar chefs</h1>
     <section class="chefs">
         {%for chef in chefs%}
-            <div class="chef">
+            <div class="chef" id={{chef.id}}>
                <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
                <div class="chef_content">
                     <h1>{{chef.name}}</h1>
@@ -13,4 +13,15 @@
             </div>
         {% endfor %}
     </section>
+    <script>
+        const chefs = document.querySelectorAll('.chef')
+
+        for (let chef of chefs) {
+            chef.addEventListener("click", function() {
+                const chefId = chef.getAttribute("id")
+                window.location.href = `/admin/chefs/${chefId}`
+            })
+        }
+
+    </script>
 {%endblock%}

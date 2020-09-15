@@ -8,11 +8,24 @@
     <script>
         //Coloquei o script aqui pois estava dando um erro
         const vButton = document.querySelectorAll('.visualization_button')
-        /* REDIRECIONAMENTO CARDS PARA DETALHES ADMIN */
-        for (let i = 0; vButton.length; i++) {
-            vButton[i].addEventListener('click', function () {
-                window.location.href = `/admin/recipes/${i}`
+        const cards = document.querySelectorAll('.card')
+
+        for (let card of cards) {
+            card.addEventListener("click", function() {
+                const recipeId = card.getAttribute("id")
+                window.location.href = `/admin/recipes/${recipeId}`
+            
             })
+        
         }
+
+
+        /* REDIRECIONAMENTO CARDS PARA DETALHES ADMIN */
+       /* for (let i = 0; vButton.length; i++) {
+            vButton[i].addEventListener('click', function () {
+
+                window.location.href = `/admin/recipes/${cards}`
+            })
+        }*/
     </script>
     {%endblock%}

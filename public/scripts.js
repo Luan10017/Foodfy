@@ -6,7 +6,7 @@ const content = document.querySelectorAll('.content')
 /* REDIRECIONAMENTO CARDS PARA DETALHES*/
 for (let i = 0;cards.length; i++){
     cards[i].addEventListener('click', function () {
-        window.location.href = `/details_recipes/${i}` 
+        window.location.href = `/details_recipes/${req.body.id}` 
     })
 }
 
