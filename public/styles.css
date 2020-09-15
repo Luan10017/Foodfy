@@ -378,6 +378,21 @@ li, ul {
     margin-bottom: 30px;
 }
 
+/* edit */
+
+.button-edit-chef {
+    background-color: var(--color-rocket);
+    height: 37px;
+    width: 120px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 9px;
+}
 
 /* RECIPES */
 /* index */
