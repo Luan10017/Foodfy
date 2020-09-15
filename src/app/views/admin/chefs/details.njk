@@ -7,9 +7,11 @@
             <button>Editar Chef</button>
         </div>
         <div class="chef_wrapper">
-            <img src="{{chef.avatar_url}}" alt="Imagem {{chef.name}}">
-            <h1>{{chef.name}}</h1>
-            <p>{{chef.total_recipes}} receitas</p>
+            <div class="teste">
+                <img src="{{chef.avatar_url}}" alt="Imagem {{chef.name}}">
+                <h1>{{chef.name}}</h1>
+                <p>{{chef.total_recipes}} receitas</p>
+            </div>
             <div class="recipes_of_chef">
                 <h1>Receitas</h1>
                 {% include 'admin/cards.njk' %}
