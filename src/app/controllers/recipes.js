@@ -1,8 +1,10 @@
-const data = require("../model/data.json") 
 const Chef = require("../model/chef")
+const Recipes = require("../model/recipes")
 
 exports.home = function (req, res) {
-    return res.render('public/home', { recipes: data.recipes })
+    Recipes.all(function(recipes) {
+        return res.render('public/home', { recipes })
+    })
 }
 
 exports.about = function (req, res) {
@@ -10,7 +12,9 @@ exports.about = function (req, res) {
 }
 
 exports.recipes = function (req, res) {
-    return res.render('public/recipes', { recipes: data.recipes })
+    Recipes.all(function(recipes) {
+        return res.render('public/recipes', { recipes })
+    })
 }
 
 exports.chefs = function (req, res) {
