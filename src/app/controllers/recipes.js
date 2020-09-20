@@ -21,9 +21,17 @@ exports.about = function (req, res) {
 }
 
 exports.recipes = function (req, res) {
-    Recipes.all(function(recipes) {
-        return res.render('public/recipes', { recipes })
-    })
+    const { filter } = req.query   
+
+    if (filter) {
+        Recipes.findBy(filter, function(recipes) {
+            return res.render('public/recipes', { recipes })
+        })
+    } else {
+        Recipes.all(function(recipes) {
+            return res.render('public/recipes', { recipes })
+        })
+    }
 }
 
 exports.chefs = function (req, res) {
