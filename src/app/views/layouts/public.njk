@@ -9,30 +9,25 @@
 <body>
     <div id="content">
         <header>
-            <nav>
                 <a href="/">
                     <img src="/logo.png" alt="Imagem da logomarca">
                 </a>
-                <div class="header">
-                    <div class="links">
-                        <a href="/about">Sobre</a>
-                        <a href="/recipes">Receitas</a>
-                        <a href="/chefs">Chefes</a>
-                    </div>
-                    
+            <nav>
+                <div class="links">
+                    <a href="/about">Sobre</a>
+                    <a href="/recipes">Receitas</a>
+                    <a href="/chefs">Chefes</a>
                 </div>
-                    <div class="form_filter">
-                        <form action="" method="GET">
-                            <input 
-                                type="text"
-                                name="filter"
-                                placeholder="Buscar uma receita"
-                            >
-                            <button type="submit">Buscar</button>
-                        </form>
-                    </div>
-                
             </nav>
+            <form class="form_filter" action="/" method="GET">
+                <input 
+                    type="text"
+                    name="filter"
+                    placeholder="Buscar uma receita"
+                    value={{filter}}
+                >
+                <button type="submit">Buscar</button>
+            </form>
         </header>
         {% block content %}{% endblock %} 
     </div>
