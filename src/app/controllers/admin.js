@@ -67,7 +67,7 @@ module.exports = {
         const id = req.params.index
         Chef.find(id, function(chef){
             if (!chef) return res.send("Chef not found!")
-            Recipes.all(function(recipes) {
+            Recipes.findRecipeByChef(id, function(recipes) {
                 return res.render('admin/chefs/details', {chef, recipes})
             })
         })
