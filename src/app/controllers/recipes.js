@@ -2,9 +2,18 @@ const Chef = require("../model/chef")
 const Recipes = require("../model/recipes")
 
 exports.home = function (req, res) {
-    Recipes.all(function(recipes) {
-        return res.render('public/home', { recipes })
-    })
+    const { filter } = req.query   
+
+    if (filter) {
+        Recipes.findBy(filter, function(recipes) {
+            return res.render('public/home', { recipes })
+        })
+    } else {
+        Recipes.all(function(recipes) {
+            return res.render('public/home', { recipes })
+        })
+    }
+
 }
 
 exports.about = function (req, res) {
