@@ -5,7 +5,10 @@ const { date } = require('../../lib/utils')
 module.exports = {
     all(callback) {
         db.query(`
-        SELECT * FROM recipes`, function(err, results){
+        SELECT recipes.*, chefs.name AS chef_name 
+        FROM recipes
+        LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+        `, function(err, results){
             if(err) throw `Database Error! ${err}`
 
             callback(results.rows)
@@ -99,7 +102,16 @@ module.exports = {
 
             callback(results.rows)
         })
+    },
+    findRecipeByChef(id, callback) {
+        db.query (`
+        SELECT recipes.*, chefs.name AS chef_name 
+        FROM recipes
+        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+        WHERE chefs.id = $1`, [id], function(err, results) {
+            if(err) throw `Database Error! ${err}`
+            callback(results.rows) 
+        })
     }
-
     
 }
