@@ -8,9 +8,18 @@
         </div>
         <main>
             <div class="item">
-                <div>Foto da receita</div>
+                <div>Fotos</div>
                 <div>
-                    <input type="URL" name="image" placeholder="http://">
+                    <div id="photos-upload">
+                        <input 
+                            id="photos-input"
+                            type="file"
+                            name="photos"
+                            multiple
+                            accept="image/*"
+                        >
+                        <p>Selecione pelo menos 1 foto e até 5</p>
+                    </div>
                 </div>
             </div>
             <div class="item">
