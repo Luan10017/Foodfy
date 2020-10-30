@@ -10,5 +10,79 @@
   margin: 0;
   padding: 0;
   border: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+body {
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  background-color: var(--color-rocket);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  height: 37px;
+}
+
+.container {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+footer {
+  margin-top: auto;
+  background: #EEEEEE;
+  padding: 23px 0;
+  justify-content: center;
+  display: flex;
+}
+
+/* HEADER */
+header{
+  padding: 30px 0;
+}
+
+header div.container {
+  display: flex;
+  align-items: center;
+}
+
+header div.container a img{
+  margin-right: 122.4px;
+}
+
+header div.container nav .links a {
+  margin-right: 30px;
+  font-size: 16px;
+  color: #111111;
+}
+
+header div.container nav .links a:last-child {
+  margin-right: 0;
+}
+
+header div.container form{
+  margin-left: 160px;
+  align-items: center;
+  display: flex;
+}
+
+header div.container form .button.filter {
+  width: 91px;
+}
+
+.search input {
+  width: 246px;
+  height: 37px;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  margin-right: 8px;
 }
