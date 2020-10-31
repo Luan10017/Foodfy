@@ -183,3 +183,44 @@ main.about h2 {
   margin-top: 22px;
   font-size: 24px;
 }
+
+/* CHEFS */
+
+section.chefs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+div.chef {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+div.chef img {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+}
+
+div.chef_content {
+  margin-left: 20px;
+}
+
+div.chef_content h1 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+div.chef_content p {
+  font-size: 14px;
+  color: #666666;
+}
+
+/* ERROR */
+.erro {
+  text-align: center;
+  margin: 200px auto;
+}

@@ -1,7 +1,7 @@
 {% extends "layouts/public.njk" %}
 
 {%block content%}
-    <section class="chefs">
+    <section class="chefs container">
         {%for chef in chefs%}
             <div class="chef">
                <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
