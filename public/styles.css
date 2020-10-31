@@ -21,6 +21,7 @@ html,body {
 
 body {
   font-family: 'Roboto', sans-serif;
+  color: #111111;
   display: flex;
   flex-direction: column;
 }
@@ -46,6 +47,7 @@ footer {
   padding: 23px 0;
   justify-content: center;
   display: flex;
+  color: #999999;
 }
 
 /* HEADER */
@@ -97,4 +99,16 @@ main.about p {
   font-size: 18px;
   color: #444444;
   line-height: 28px;
+  margin-bottom: 30px;
+}
+
+main.about h1 {
+  font-size: 24px;
+  margin: 20px 0 30px;
+}
+
+main.about h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
