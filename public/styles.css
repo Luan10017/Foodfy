@@ -98,11 +98,37 @@ header div.container form .button.filter {
 section.intro {
   background: #FBDFDB;
   border-radius: 30px;
+  height: 366px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 50px;
 }
 
 section.intro img {
-  right: 0;
-  position: relative;
+  position: absolute;
+  margin: 66px 100px 0 624px;
+}
+
+.intro__content h1 {
+  margin: 117px 575px 10px 60px;
+  font-size: 32px;
+}
+
+.intro__content p {
+  margin: 0 564px 117px 60px;
+  font-size: 18px;
+  opacity: 70%;
+  line-height: 28px;
+}
+
+/* CARDS */
+
+section.cards {
+  margin-top: 20px;
+}
+
+div.card {
+  width: 300px;
 }
 
 /* ABOUT */
