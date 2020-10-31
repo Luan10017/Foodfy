@@ -93,6 +93,12 @@ header div.container form .button.filter {
   margin-right: 8px;
 }
 
+.search input[type="text"] {
+  font-size: 14px;
+  color: #999999;
+  padding-left: 15px;
+}
+
 /* HOME */
 
 section.intro {
@@ -169,4 +175,11 @@ main.about h2 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 30px;
+}
+
+/* RECIPES */
+
+.container h1.filter {
+  margin-top: 22px;
+  font-size: 24px;
 }

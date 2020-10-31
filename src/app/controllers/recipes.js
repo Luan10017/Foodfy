@@ -25,7 +25,7 @@ exports.recipes = function (req, res) {
 
     if (filter) {
         Recipes.findBy(filter, function(recipes) {
-            return res.render('public/recipes', { recipes })
+            return res.render('public/recipes', { recipes, filter })
         })
     } else {
         Recipes.all(function(recipes) {
