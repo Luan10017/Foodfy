@@ -189,14 +189,13 @@ main.about h2 {
 section.chefs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 30px 20px;
   margin-top: 20px;
 }
 
 div.chef {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
 }
 
 div.chef img {
