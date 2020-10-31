@@ -42,9 +42,11 @@ exports.chefs = function (req, res) {
 
 exports.details = function (req, res) {
     Recipes.find(req.params.index, function(recipe) {
-        if (!recipe) {
-            return res.render('not-found')
-        }
-        return res.render('public/details_recipes', { recipe })
+        Chef.find(recipe.chef_id, function(chef){
+            if (!recipe) {
+                return res.render('not-found')
+            }
+            return res.render('public/details_recipes', { recipe, chef })
+        })
     })
 }

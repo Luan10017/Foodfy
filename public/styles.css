@@ -218,6 +218,30 @@ div.chef_content p {
   color: #666666;
 }
 
+/* DETAILS */
+section.details_intro{
+  text-align: center;
+  margin: 20px 0 50px;
+}
+
+section.details_intro img {
+  height: 280px;
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+
+section.details_intro h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+section.details_intro p {
+  font-size: 20px;
+  font-weight: normal;
+  color: #777777;
+}
+
 /* ERROR */
 .erro {
   text-align: center;
