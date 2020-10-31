@@ -124,11 +124,31 @@ section.intro img {
 /* CARDS */
 
 section.cards {
-  margin-top: 20px;
+  margin: 20px 0 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
-div.card {
+.card {
+  max-width: 300px;
+}
+
+.card img {
+  border-radius: 15px;
   width: 300px;
+  height: 140px;
+}
+
+.card h4 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 20px 0 5px;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--color-author);
 }
 
 /* ABOUT */
