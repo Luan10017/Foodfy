@@ -93,6 +93,18 @@ header div.container form .button.filter {
   margin-right: 8px;
 }
 
+/* HOME */
+
+section.intro {
+  background: #FBDFDB;
+  border-radius: 30px;
+}
+
+section.intro img {
+  right: 0;
+  position: relative;
+}
+
 /* ABOUT */
 
 main.about p {
