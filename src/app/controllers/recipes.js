@@ -41,10 +41,10 @@ exports.chefs = function (req, res) {
 }
 
 exports.details = function (req, res) {
-    const index = req.params.index
-    const recipe = data.recipes[index]
-    if (!recipe) {
-        return res.render('not-found')
-    }
-    return res.render('public/details_recipes', { recipe })
+    Recipes.find(req.params.index, function(recipe) {
+        if (!recipe) {
+            return res.render('not-found')
+        }
+        return res.render('public/details_recipes', { recipe })
+    })
 }
