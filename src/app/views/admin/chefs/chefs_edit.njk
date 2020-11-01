@@ -6,32 +6,7 @@
             <h1>Criando chefe</h1>
             <button class="button" type="submit">Salvar Chef</button>
         </div>
-        <main>
-            <div class="item">
-                <div>Nome</div>
-                <div>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value="{{chef.name}}"
-                        placeholder="Nome do chef"
-                    >
-                </div>
-            </div>
-            <div class="item">
-                <div>Avatar</div>
-                <div>
-                    <input 
-                        type="URL" 
-                        name="avatar_url" 
-                        value="{{chef.avatar_url}}"
-                        placeholder="htpp://"
-                    >
-                </div>
-            </div>
-            <input type="hidden" name="id" value="{{chef.id}}">
-
-        </main>
+        {% include 'admin/chefs/fields.njk' %}
     </form>
     <form method="POST" id="form-delete" action="/admin/chefs?_method=DELETE">
             <button class="button" type="submit">Deletar</button>
