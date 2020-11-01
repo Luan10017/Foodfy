@@ -234,6 +234,7 @@ section.details_intro img {
 section.details_intro h1 {
   font-size: 36px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 section.details_intro p {
@@ -244,7 +245,27 @@ section.details_intro p {
 
 .title-and-button {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+}
+
+.title-and-button a {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #999999;
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+li, ul {
+  list-style-position: inside;
+  line-height: 28px;
+}
+
+/* Esconde  MOstra */
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
 }
 
 /* ERROR */
