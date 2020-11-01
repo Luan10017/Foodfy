@@ -2,9 +2,9 @@
 
 {%block contentAdmin%}
     <form class="chef_details" method="post" action="/admin/chefs?_method=PUT">
-        <div class="chef_info">
+        <div class="sub_title_info">
             <h1>Criando chefe</h1>
-            <button type="submit">Salvar Chef</button>
+            <button class="button" type="submit">Salvar Chef</button>
         </div>
         <main>
             <div class="item">
@@ -34,9 +34,8 @@
         </main>
     </form>
     <form method="POST" id="form-delete" action="/admin/chefs?_method=DELETE">
-            <button type="submit">Deletar</button>
+            <button class="button" type="submit">Deletar</button>
             <input type="hidden" name="id" value="{{chef.id}}">
-
     </form>
 
 {%endblock%}
