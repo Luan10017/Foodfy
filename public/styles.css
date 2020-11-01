@@ -84,7 +84,7 @@ header div.container form .button.filter {
   width: 91px;
 }
 
-.search input {
+input {
   width: 246px;
   height: 37px;
   background: #FFFFFF;
@@ -93,7 +93,7 @@ header div.container form .button.filter {
   margin-right: 8px;
 }
 
-.search input[type="text"] {
+input[type="text"] {
   font-size: 14px;
   color: #999999;
   padding-left: 15px;
@@ -134,10 +134,6 @@ section.cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-}
-
-.card {
-  max-width: 300px;
 }
 
 .card img {
@@ -255,9 +251,23 @@ section.details_intro p {
   font-weight: bold;
 }
 
+.title-and-button h1 {
+  margin: 40px 0 20px;
+}
+
+.additional_info ul {
+  margin-bottom: 50px;
+}
+
+ul {
+  list-style-position: outside;
+}
+
 li, ul {
-  list-style-position: inside;
+  list-style: disc;
   line-height: 28px;
+  font-size: 18px;
+  color: #444444;
 }
 
 /* Esconde  MOstra */
@@ -271,4 +281,133 @@ li, ul {
 .erro {
   text-align: center;
   margin: 200px auto;
+}
+
+/* ADMIN */
+
+header.header_admin {
+  background-color: black;
+  margin-bottom: 50px;
+}
+
+header.header_admin nav {
+  display: flex;
+  align-items: center;
+  
+}
+
+#links a{
+  color: white;
+  margin-right: 30px;
+}
+
+/* ideias globais */
+
+
+
+div.sub_title_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 51px;
+}
+
+div.sub_title_info .button {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+}
+
+div.sub_title_info .button a {
+  color: white;
+}
+
+h1.sub_title{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+div.item input {
+  width: 100%;
+  height: 49px;
+  padding-left: 20px;
+  color: #111111;
+  font-size: 16px;
+  margin: 10px 0 30px;
+}
+
+/* CARDS */
+
+section.cards_admin {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 20px;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+div.card_admin {
+  display: flex;
+}
+
+div.card_admin img {
+  width: 172px;
+  height: 80px;
+  border-radius: 8.57px;
+  margin-right: 20px;
+}
+
+.card_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card_container p {
+  font-size: 14px;
+  color: #777777;
+}
+
+.visualization_button {
+  font-size: 14px;
+  color: var(--color-rocket);
+  font-weight: bold;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* CHEF DETAILS */
+
+div.chef_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+div.chef_container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-bottom: 30px;
+}
+
+div.chef_container h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+div.chef_container p {
+  font-size: 20px;
+  color: #777777;
+}
+
+/* CHEF EDIT */
+
+div.item div {
+  font-size: 16px;
+  font-weight: bold;
 }
