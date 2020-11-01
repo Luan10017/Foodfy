@@ -242,6 +242,11 @@ section.details_intro p {
   color: #777777;
 }
 
+.title-and-button {
+  display: flex;
+  align-items: center;
+}
+
 /* ERROR */
 .erro {
   text-align: center;

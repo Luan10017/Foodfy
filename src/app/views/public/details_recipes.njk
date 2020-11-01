@@ -11,11 +11,10 @@
     <!-- SECTION informações -->
 
         <section class="info">
-            
             <div class="ingredients">
                 <div class="title-and-button">
                     <h1>Ingredientes</h1>
-                    <a class="button">Esconder</a>
+                    <a class="show-button">Esconder</a>
                 </div>
                 <ul class="content show">
                     <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
@@ -30,7 +29,7 @@
             <div class="preparation">
                 <div class="title-and-button">
                     <h1>Modo de preparo</h1>
-                    <a class="button">Esconder</a>
+                    <a class="show-button">Esconder</a>
                 </div>
                 <ul class="content show">
                     {% for preparation in recipe.preparation %}
@@ -42,7 +41,7 @@
             <div class="additional_info">
                 <div class="title-and-button">
                     <h1>Informações adicionais</h1>
-                    <a class="button">Esconder</a>
+                    <a class="show-button">Esconder</a>
                 </div>
                 <ul class="content show">
                     {{ recipe.information | striptags(true) | escape | nl2br }}

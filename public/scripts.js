@@ -1,5 +1,5 @@
 /* const cards = document.querySelectorAll('.card') */
-const buttons = document.querySelectorAll('.button') 
+const buttons = document.querySelectorAll('.show-button') 
 const content = document.querySelectorAll('.content')
 
 
