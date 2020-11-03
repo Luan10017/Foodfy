@@ -259,8 +259,8 @@ section.details_intro p {
   margin-bottom: 50px;
 }
 
-ul {
-  list-style-position: outside;
+li {
+  list-style-position: inside;
 }
 
 li, ul {
