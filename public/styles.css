@@ -259,11 +259,8 @@ section.details_intro p {
   margin-bottom: 50px;
 }
 
-li {
-  list-style-position: inside;
-}
-
 li, ul {
+  list-style-position: inside;
   list-style: disc;
   line-height: 28px;
   font-size: 18px;
