@@ -12,7 +12,6 @@
   border: 0;
   box-sizing: border-box;
   text-decoration: none;
-  list-style-type: none;
 }
 
 html,body {
@@ -261,11 +260,11 @@ section.details_intro p {
 
 li, ul {
   list-style-position: inside;
-  list-style: disc;
   line-height: 28px;
   font-size: 18px;
   color: #444444;
 }
+
 
 /* Esconde  MOstra */
 .hide {
