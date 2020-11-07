@@ -443,3 +443,27 @@ div.item .add-button {
 section.info.admin ul{
   list-style-type: '- ';
 }
+
+/* EDIT RECIPES  */
+
+.admin-content {
+  position: absolute;
+  width: 940px;
+}
+
+form button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#form-delete button {
+  margin-right: 149px;
+  background: #DC4747;
+  border-radius: 4px;
+  width: 92px;
+  height: 37px;
+  font-family: Helvetica;
+  font-size: 16px;
+  color: #FFFFFF;
+}
