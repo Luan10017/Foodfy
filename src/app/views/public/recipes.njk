@@ -1,23 +1,15 @@
 {% extends "layouts/public.njk" %}
 
-{%block link%}
+{# {%block link%}
                     <a href="/about">Sobre</a>
                     <a class="headline" href="/recipes">Receitas</a>
-               {%endblock%}
+               {%endblock%} #}
         {%block content%}
+    <div class="container">
+        {% if filter %}
+            <h1 class="filter">Buscando por "{{filter}}"</h1>
+        {% endif %}
         <!-- SECTION CARDS -->
-        <section class="cards">
-            {%for recipe in recipes%}
-            <div class="card" id="{{recipe.index}}">
-                <div class="card__image-container">
-                    <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
-                </div>
-                <div class="card__content">
-                    <h4>{{recipe.title}}</h4>
-                    <p class="card__author">por {{recipe.chef_name}}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </section>
-        <script src='public/scripts.js'></script>
+        {%include "public/cards.njk"%}
+        </div>
     {%endblock%}

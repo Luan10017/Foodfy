@@ -1,60 +1,52 @@
 {% extends "layouts/public.njk" %}
 
-{%block link%}
-    <a href="/about">Sobre</a>
-    <a href="/recipes">Receitas</a>
-{% endblock %}
-
 {%block content%}
-    <div class="detalhe__image-container">
-        <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
-    </div>
-    <div class="title_detalhe">
-        <h1>{{recipe.title}}</h1>
-        <p>por {{recipe.author}}</p>
-    </div>
+    <div class="container">
+        <section class="details_intro">
+            <img  src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
+            <h1>{{recipe.title}}</h1>
+            <p>por {{chef.name}}</p>
+        </section>
 
     <!-- SECTION informações -->
 
-    <section class="info">
-        
-        <div class="ingredients">
-            <div class="title-and-button">
-                <h1>Ingredientes</h1>
-                <a class="button">Esconder</a>
+        <section class="info">
+            <div class="ingredients">
+                <div class="title-and-button">
+                    <h1>Ingredientes</h1>
+                    <a class="show-button">Esconder</a>
+                </div>
+                <ul class="content show">
+                    <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
+                    
+                    {% for ingredient in recipe.ingredients %}
+                        <li>{{ingredient}};</li>
+                    {% endfor %}
+                </ul>
             </div>
-            <ul class="content show">
-                <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
-                
-                {% for ingredient in recipe.ingredients %}
-                    <li>{{ingredient}};</li>
-                {% endfor %}
-            </ul>
-        </div>
-        
+            
 
-        <div class="preparation">
-            <div class="title-and-button">
-                <h1>Modo de preparo</h1>
-                <a class="button">Esconder</a>
+            <div class="preparation">
+                <div class="title-and-button">
+                    <h1>Modo de preparo</h1>
+                    <a class="show-button">Esconder</a>
+                </div>
+                <ul class="content show">
+                    {% for preparation in recipe.preparation %}
+                    <li>{{preparation}}.</li>
+                    {% endfor %}
+                </ul>
             </div>
-            <ul class="content show">
-                {% for preparation in recipe.preparation %}
-                <li>{{preparation}}.</li>
-                {% endfor %}
-            </ul>
-        </div>
 
-        <div class="additional_info">
-            <div class="title-and-button">
-                <h1>Informações adicionais</h1>
-                <a class="button">Esconder</a>
+            <div class="additional_info">
+                <div class="title-and-button">
+                    <h1>Informações adicionais</h1>
+                    <a class="show-button">Esconder</a>
+                </div>
+                <ul class="content show">
+                    {{ recipe.information | striptags(true) | escape | nl2br }}
+                </ul>
             </div>
-            <ul class="content show">
-                {{ recipe.information | striptags(true) | escape | nl2br }}
-            </ul>
-        </div>
-        
-    </section>
-    <script src='/scripts.js'></script>
+        </section>
+    </div>
 {% endblock %}

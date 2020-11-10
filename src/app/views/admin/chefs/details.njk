@@ -1,25 +1,21 @@
 {% extends "layouts/admin.njk" %}
 
 {%block contentAdmin%}
-    <main class="chef_details">
-        <div class="chef_info">
-            <h1>Chefe: {{chef.name}}</h1>
-            <div class="button-edit-chef">
+    <main>
+        <div class="sub_title_info">
+            <h1 class="sub_title">Chefe: {{chef.name}}</h1>
+            <div class="button">
                 <a href="/admin/chefs/{{chef.id}}/edit"> Editar Chef</a>
             </div>
         </div>
-        <div class="chef_wrapper">
-            <div class="chef_container">
-                <img src="{{chef.avatar_url}}" alt="Imagem {{chef.name}}">
-                <h1>{{chef.name}}</h1>
-                <p>{{chef.total_recipes}} receitas</p>
-            </div>
-            <div class="recipes_of_chef">
-                <h1>Receitas</h1>
-                {% include 'admin/cards.njk' %}
-            </div>
+        <div class="chef_container">
+            <img src="{{chef.avatar_url}}" alt="Imagem {{chef.name}}">
+            <h1>{{chef.name}}</h1>
+            <p>{{chef.total_recipes}} receitas</p>
         </div>
-    </main>
+        <h1 class="sub_title">Receitas</h1>
 
+        {% include 'admin/cards.njk' %}    
+    </main>
 {%endblock%}
 

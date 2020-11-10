@@ -1,60 +1,58 @@
 {% extends "layouts/admin.njk" %}
 
 {%block contentAdmin%}
-    <div class="admin-content">
-        <div class="presentation">
-            <h1>Receita:
-                {{recipe.title}}</h1>
-            <button class="button-admin-recipe">Editar receita</button>
-        </div>
-        <div class="detalhe__image-container">
-            <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
-        </div>
-        <div class="title_detalhe">
-            <h1>{{recipe.title}}</h1>
-            <p>por
-                {{chef.name}}</p>
-        </div>
 
-        <!-- SECTION informações -->
-
-        <section class="info">
-
-            <div class="ingredients">
-                <div class="title-and-button">
-                    <h1>Ingredientes</h1>
-                </div>
-                <ul class="content-admin">
-                    <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
-
-                    {% for ingredient in recipe.ingredients %}
-                        <li>{{ingredient}};</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="preparation">
-                <div class="title-and-button">
-                    <h1>Modo de preparo</h1>
-                </div>
-                <ul class="content-admin">
-                    {% for preparation in recipe.preparation %}
-                        <li>{{preparation}}.</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="additional_info">
-                <div class="title-and-button">
-                    <h1>Informações adicionais</h1>
-                </div>
-                <ul class="content-admin">
-                    {{ recipe.information | striptags(true) | escape | nl2br }}
-                </ul>
-            </div>
-
-        </section>
+    <div class="sub_title_info">
+        <h1>Receita:
+            {{recipe.title}}</h1>
+        <button class="button button-admin-recipe">Editar receita</button>
     </div>
+
+    <section class="details_intro">
+        <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
+        <h1>{{recipe.title}}</h1>
+        <p>por {{chef.name}}</p>
+    </section>
+
+    <!-- SECTION informações -->
+
+    <section class="info admin">
+
+        <div class="ingredients">
+            <div class="title-and-button">
+                <h1>Ingredientes</h1>
+            </div>
+            <ul class="content-admin">
+                <!-- Adicionei id para cria o conceito de esconder o conteudo atráves do javascript -->
+
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ingredient}};</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="preparation">
+            <div class="title-and-button">
+                <h1>Modo de preparo</h1>
+            </div>
+            <ul class="content-admin">
+                {% for preparation in recipe.preparation %}
+                    <li>{{preparation}}.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="additional_info">
+            <div class="title-and-button">
+                <h1>Informações adicionais</h1>
+            </div>
+            <ul class="content-admin">
+                {{ recipe.information | striptags(true) | escape | nl2br }}
+            </ul>
+        </div>
+    </section>
+
+
     <script>
         /* REDIRECIONAMENTO PARA EDIT */
 

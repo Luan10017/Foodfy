@@ -2,32 +2,11 @@
 
 {%block contentAdmin%}
     <form class="chef_details" method="post" action="/admin/chefs">
-        <div class="chef_info">
+        <div class="sub_title_info">
             <h1>Criando chefe</h1>
-            <button type="submit">Salvar Chef</button>
+            <button class="button" type="submit">Salvar Chef</button>
         </div>
-        <main>
-            <div class="item">
-                <div>Nome</div>
-                <div>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Nome do chef"
-                    >
-                </div>
-            </div>
-            <div class="item">
-                <div>Avatar</div>
-                <div>
-                    <input 
-                        type="URL" 
-                        name="avatar_url" 
-                        placeholder="http://"
-                    >
-                </div>
-            </div>
-        </main>
+        {% include 'admin/chefs/fields.njk' %}
     </form>
 
 {%endblock%}

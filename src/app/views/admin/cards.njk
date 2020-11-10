@@ -1,13 +1,10 @@
-<section class="cards-admin">
+<section class="cards_admin">
     {%for recipe in recipes%}
-        <div class="card" id="{{recipe.id}}">
-            <div class="card__image-admin">
-                <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
-            </div>
-            <div class="card__content-admin">
+        <div class="card_admin" id="{{recipe.id}}">
+            <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
+            <div class="card_container">
                 <h4>{{recipe.title}}</h4>
-                <p class="card__author">por
-                    {{recipe.chef_name}}</p>
+                <p class="card__author">por {{recipe.chef_name}}</p>
                 <a class="visualization_button">Visualizar</a>
             </div>
         </div>

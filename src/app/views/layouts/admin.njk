@@ -8,19 +8,22 @@
 
 <body>
     <header class="header_admin">
-        <nav>
-            <a href="/admin/recipes">
-                <img src="/logo-admin.png" alt="Imagem da logomarca">
-            </a>
-            <div class="links">
-                <a href="/admin/recipes">Receitas</a>
-                <a href="/admin/chefs">Chefs</a>
-            </div>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="/admin/recipes">
+                    <img src="/logo-admin.png" alt="Imagem da logomarca">
+                </a>
+                <div class="links admin">
+                    <a href="/admin/recipes">Receitas</a>
+                    <a href="/admin/chefs">Chefs</a>
+                </div>
+            </nav>
+        </div>
     </header>
-    <div id="content-admin">
+    <div class="container">
         {% block contentAdmin %}{% endblock %} 
     </div>
+    <script src="/scripts.js"></script>
 </body>
 
 </html>

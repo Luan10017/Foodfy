@@ -95,7 +95,9 @@ module.exports = {
     },
     findBy(filter, callback) {
         db.query(`
-        SELECT * FROM recipes
+        SELECT recipes.*, chefs.name AS chef_name 
+        FROM recipes
+        LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
         WHERE recipes.title ILIKE '%${filter}%'
         `, function(err, results) {
             if(err) throw `Database Error! ${err}`
