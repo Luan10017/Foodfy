@@ -1,15 +1,5 @@
-/* const cards = document.querySelectorAll('.card') */
 const buttons = document.querySelectorAll('.show-button') 
 const content = document.querySelectorAll('.content')
-
-
-/* REDIRECIONAMENTO CARDS PARA DETALHES*/
-/* for (let i = 0;cards.length; i++){
-    cards[i].addEventListener('click', function () {
-        window.location.href = `/details_recipes/${req.body.id}` 
-    })
-} */
-
 
 /* DETAILS RECIPE - MOSTRA / ESCONDE */
 for (let [i,button] of buttons.entries()) {
@@ -29,11 +19,22 @@ for (let [i,button] of buttons.entries()) {
 
 
 const currentPage = location.pathname
-const menuItens = document.querySelectorAll("header nav .links a")
+const menuItens = document.querySelectorAll("header .container nav .links a")
 
-console.log(currentPage)
+console.log(currentPage, menuItens)
 for (item of menuItens) {
     if(currentPage.includes(item.getAttribute("href"))) {
         item.classList.add("active")
     }
+}
+
+/* CONTROLE DELETE */
+const formDelete = document.querySelector("#form-delete")
+if (formDelete) {
+    formDelete.addEventListener("submit", function (event) {
+        const confirmation = confirm("Deseja Deletar?")
+        if (!confirmation) {
+            event.preventDefault()
+        }
+    })
 }

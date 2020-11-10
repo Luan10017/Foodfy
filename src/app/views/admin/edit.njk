@@ -64,14 +64,5 @@
 
         const stepButton = document.querySelector(".add-button.steps")
         stepButton.addEventListener('click', addStep);
-
-        /* CONTROLE DELETE */
-        const formDelete = document.querySelector("#form-delete")
-        formDelete.addEventListener("submit", function (event) {
-            const confirmation = confirm("Deseja Deletar?")
-            if (!confirmation) {
-                event.preventDefault()
-            }
-        })
     </script>
 {% endblock %}

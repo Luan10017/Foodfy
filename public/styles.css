@@ -98,6 +98,10 @@ header div.container form .button.filter {
   width: 91px;
 }
 
+header div.container nav .links a.active {
+  font-weight: bold;
+}
+
 /* CARDS */
 
 section.cards {
@@ -292,9 +296,14 @@ header.header_admin nav {
   
 }
 
-#links a{
-  color: white;
+header nav div.links.admin a{
+  color: #999999;
   margin-right: 30px;
+  font-weight: bold;
+}
+
+header nav .links.admin a.active {
+  color: #FFFFFF;
 }
 
 /* ideias globais */
