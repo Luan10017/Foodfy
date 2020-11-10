@@ -300,6 +300,7 @@ header nav div.links.admin a{
   color: #999999;
   margin-right: 30px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 header nav .links.admin a.active {
