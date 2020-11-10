@@ -2,4 +2,4 @@ node_modules
 package-lock.json
 README.md
 debug.log
-assets
+public/assets
