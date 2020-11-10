@@ -25,6 +25,12 @@ body {
   flex-direction: column;
 }
 
+.container {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
 .button {
   background-color: var(--color-rocket);
   color: white;
@@ -34,10 +40,19 @@ body {
   height: 37px;
 }
 
-.container {
-  width: 100%;
-  max-width: 940px;
-  margin: 0 auto;
+input {
+  width: 246px;
+  height: 37px;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+input[type="text"] {
+  font-size: 14px;
+  color: #999999;
+  padding-left: 15px;
 }
 
 footer {
@@ -83,19 +98,30 @@ header div.container form .button.filter {
   width: 91px;
 }
 
-input {
-  width: 246px;
-  height: 37px;
-  background: #FFFFFF;
-  border: 1px solid #DDDDDD;
-  border-radius: 4px;
-  margin-right: 8px;
+/* CARDS */
+
+section.cards {
+  margin: 20px 0 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
-input[type="text"] {
+.card img {
+  border-radius: 15px;
+  width: 300px;
+  height: 140px;
+}
+
+.card h4 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 20px 0 5px;
+}
+
+.card p {
   font-size: 14px;
-  color: #999999;
-  padding-left: 15px;
+  color: var(--color-author);
 }
 
 /* HOME */
@@ -124,32 +150,6 @@ section.intro img {
   font-size: 18px;
   opacity: 70%;
   line-height: 28px;
-}
-
-/* CARDS */
-
-section.cards {
-  margin: 20px 0 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
-
-.card img {
-  border-radius: 15px;
-  width: 300px;
-  height: 140px;
-}
-
-.card h4 {
-  font-size: 18px;
-  font-weight: normal;
-  margin: 20px 0 5px;
-}
-
-.card p {
-  font-size: 14px;
-  color: var(--color-author);
 }
 
 /* ABOUT */
@@ -299,8 +299,6 @@ header.header_admin nav {
 
 /* ideias globais */
 
-
-
 div.sub_title_info {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -323,6 +321,46 @@ div.sub_title_info .button a {
 h1.sub_title{
   font-size: 24px;
   font-weight: bold;
+}
+
+/* CARDS */
+
+section.cards_admin {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 20px;
+  font-size: 18px;
+  margin: 30px 0 50px;
+}
+
+div.card_admin {
+  display: flex;
+}
+
+div.card_admin img {
+  width: 172px;
+  height: 80px;
+  border-radius: 8.57px;
+  margin-right: 20px;
+}
+
+.card_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card_container p {
+  font-size: 14px;
+  color: #777777;
+}
+
+.visualization_button {
+  font-size: 14px;
+  color: var(--color-rocket);
+  font-weight: bold;
+  margin-bottom: 12px;
+  cursor: pointer;
 }
 
 /* FIELDS */
@@ -366,90 +404,6 @@ div.item div.title {
   margin: 20px 0 10px;
 }
 
-/* CARDS */
-
-section.cards_admin {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px 20px;
-  font-size: 18px;
-  margin-top: 30px;
-}
-
-div.card_admin {
-  display: flex;
-}
-
-div.card_admin img {
-  width: 172px;
-  height: 80px;
-  border-radius: 8.57px;
-  margin-right: 20px;
-}
-
-.card_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card_container p {
-  font-size: 14px;
-  color: #777777;
-}
-
-.visualization_button {
-  font-size: 14px;
-  color: var(--color-rocket);
-  font-weight: bold;
-  margin-bottom: 12px;
-  cursor: pointer;
-}
-
-/* CHEF DETAILS */
-
-div.chef_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
-div.chef_container img {
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  margin-bottom: 30px;
-}
-
-div.chef_container h1 {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-div.chef_container p {
-  font-size: 20px;
-  color: #777777;
-}
-
-/* CHEF EDIT */
-
-div.item div {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-div.item .add-button {
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--color-rocket);
-}
-
-div.item a.add-button {
-  display: inline-block;
-  margin: 5px 0 10px;
-}
 
 /* RECIPES DETAILS */
 
@@ -479,4 +433,49 @@ section.info.admin ul{
   font-family: Helvetica;
   font-size: 16px;
   color: #FFFFFF;
+}
+
+/* CHEF EDIT */
+
+div.item div {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+div.item .add-button {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-rocket);
+}
+
+div.item a.add-button {
+  display: inline-block;
+  margin: 5px 0 10px;
+}
+
+/* CHEF DETAILS */
+
+div.chef_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+div.chef_container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-bottom: 30px;
+}
+
+div.chef_container h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+div.chef_container p {
+  font-size: 20px;
+  color: #777777;
 }
