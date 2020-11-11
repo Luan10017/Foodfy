@@ -1,7 +1,25 @@
-<div class="item">
+{# <div class="item">
     <div class="title">Foto da receita</div>
     <div>
         <input type="URL" name="image" value="{{recipe.image}}">
+    </div>
+</div> #}
+<div class="item">
+    <div class="title">Fotos</div>
+    <div>
+        <div id="photos-upload">
+
+        </div>
+        <div id="photos-preview">
+            <input 
+                id="photos-input"
+                type="file"
+                name="photos"
+                multiple
+                accept="image/*"
+                onchange="PhotosUpload.handleFileInput(event)"
+            >
+        </div>
     </div>
 </div>
 <div class="item">
