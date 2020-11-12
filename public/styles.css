@@ -414,6 +414,21 @@ div.item div.title {
   margin: 20px 0 10px;
 }
 
+/* gerenciador de imagens */
+
+form .item #photos-preview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px; 
+  width: 100%;
+  margin: 8px 0;
+}
+
+form .item #photos-preview img {
+  width: 151px;
+  height: 150px;
+  object-fit: cover;
+}
 
 /* RECIPES DETAILS */
 
@@ -489,3 +504,4 @@ div.chef_container p {
   font-size: 20px;
   color: #777777;
 }
+
