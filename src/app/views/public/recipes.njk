@@ -1,15 +1,11 @@
 {% extends "layouts/public.njk" %}
 
-{# {%block link%}
-                    <a href="/about">Sobre</a>
-                    <a class="headline" href="/recipes">Receitas</a>
-               {%endblock%} #}
-        {%block content%}
+{%block content%}
     <div class="container">
         {% if filter %}
             <h1 class="filter">Buscando por "{{filter}}"</h1>
         {% endif %}
-        <!-- SECTION CARDS -->
-        {%include "public/cards.njk"%}
-        </div>
-    {%endblock%}
+    <!-- SECTION CARDS -->
+    {%include "public/cards.njk"%}
+    </div>
+{%endblock%}
