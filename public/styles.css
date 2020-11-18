@@ -418,7 +418,7 @@ div.item div.title {
 form .item #photos-manager {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
+  gap: 10px;
 }
 
 form .item #photos-upload {

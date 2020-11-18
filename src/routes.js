@@ -2,6 +2,7 @@ const express =  require('express')
 const routes = express.Router()
 const admin = require('./app/controllers/admin')
 const recipes = require('./app/controllers/recipes')
+const multer = require('./app/middlewares/multer')
 
 
 /* ==== PRINCIPAL ==== */
@@ -20,8 +21,8 @@ routes.get('/admin/recipes', admin.index)
 routes.get("/admin/recipes/create", admin.create)
 routes.get("/admin/recipes/:index", admin.show)
 routes.get("/admin/recipes/:index/edit", admin.edit)
-routes.post("/admin/recipes", admin.post) // Cadastrar nova receita
-routes.put("/admin/recipes", admin.put); // Editar uma receita
+routes.post("/admin/recipes",  multer.array("photos",5), admin.post) // Cadastrar nova receita
+routes.put("/admin/recipes",  multer.array("photos",5), admin.put); // Editar uma receita
 routes.delete("/admin/recipes", admin.delete); // Deletar uma receita 
 
 /* CHEFS */
