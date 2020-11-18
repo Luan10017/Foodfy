@@ -311,7 +311,7 @@ header nav .links.admin a.active {
 
 div.sub_title_info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 235px;
   align-items: center;
   margin-bottom: 51px;
 }
