@@ -1,3 +1,15 @@
+/* REDIRECIONAMENTO PARA DETAILS RECIPES */
+
+const pageRedirector = {
+    cards(event, recipeId) {
+        window.location.href = `/details_recipes/${recipeId}`
+    },
+    cardsAdmin(event, recipeId) {
+        window.location.href = `/admin/recipes/${recipeId}`
+    },
+}
+
+
 const buttons = document.querySelectorAll('.show-button') 
 const content = document.querySelectorAll('.content')
 
@@ -21,7 +33,6 @@ for (let [i,button] of buttons.entries()) {
 const currentPage = location.pathname
 const menuItens = document.querySelectorAll("header .container nav .links a")
 
-console.log(currentPage, menuItens)
 for (item of menuItens) {
     if(currentPage.includes(item.getAttribute("href"))) {
         item.classList.add("active")
@@ -38,6 +49,7 @@ if (formDelete) {
         }
     })
 }
+
 
 /* GERENCIADOR DE IMAGENS */
 
