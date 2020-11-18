@@ -4,20 +4,4 @@
     <h1 class="show-title">Gerenciar receitas</h1>
     <!-- SECTION CARDS -->
     {% include 'admin/cards.njk' %}
-    
-    <script>
-        //Coloquei o script aqui pois estava dando um erro
-        const vButton = document.querySelectorAll('.visualization_button')
-        const cards = document.querySelectorAll('.card_admin')
-
-        for (let card of cards) {
-            card.addEventListener("click", function() {
-                const recipeId = card.getAttribute("id")
-                console.log(recipeId)
-                window.location.href = `/admin/recipes/${recipeId}`
-            
-            })
-        
-        }
-    </script>
 {%endblock%}

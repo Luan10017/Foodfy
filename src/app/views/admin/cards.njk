@@ -5,7 +5,7 @@
             <div class="card_container">
                 <h4>{{recipe.title}}</h4>
                 <p class="card__author">por {{recipe.chef_name}}</p>
-                <a class="visualization_button">Visualizar</a>
+                <a class="visualization_button" onclick="pageRedirector.cardsAdmin(event,{{recipe.id}})">Visualizar</a>
             </div>
         </div>
     {% endfor %}
