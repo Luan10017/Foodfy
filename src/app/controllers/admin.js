@@ -46,7 +46,7 @@ module.exports = {
         Recipes.create(req.body, function(recipe) {
             return res.redirect(`/admin/recipes/${recipe.id}`)
         })
-        const recipesId = results.rows[0].id
+        const recipesId = recipe.id
 
         const filesPromise = req.files.map(file => File.create({...file, recipes_id: recipesId}))
         await Promise.all(filesPromise) 
