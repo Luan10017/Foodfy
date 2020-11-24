@@ -24,8 +24,30 @@ module.exports = {
         
         results = await Chef.find(recipe.chef_id)
         const chef = results.rows[0]
+
+
+        //get fileId
+        let resultsFiles = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
+        const filesId = []
+        for (i=0 ; i<resultsFiles.rows.length; i++) {
+            filesId[i] = resultsFiles.rows[i].file_id
+        }
+
+        //get images
+        const filesPromise = filesId.map(fileId => Recipes.files(fileId))
+        const fileResults = await Promise.all(filesPromise)
+        
+        let files = []
+        for (i=0 ; i<fileResults.length; i++) {
+            files[i] = fileResults[i].rows[0]
+        }
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+        }))
     
-        return res.render('admin/show', { recipe, chef }) 
+        return res.render('admin/show', { recipe, chef, files }) 
     },
     async edit(req, res) {
         let results = await Recipes.find(req.params.index)
