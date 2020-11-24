@@ -1,6 +1,7 @@
 const Chef = require("../model/chef")
 const Recipes = require("../model/recipes")
 const File = require('../model/File')
+const { filesId } = require("../model/recipes")
 
 
 module.exports = {
@@ -9,29 +10,56 @@ module.exports = {
             return res.render('admin/index', {recipes})
         })
     },
-    create(req, res) {
-        Recipes.chefsSelectOptions(function(options) {
-            return res.render('admin/create', {chefOptions: options})
-        })
-    },
-    show(req, res) {
-        Recipes.find(req.params.index, function(recipe) {
-            if (!recipe) return res.send('Recipe not found')
-            
-            Chef.find(recipe.chef_id, function(chef) {
-                return res.render('admin/show', { recipe, chef }) 
-            })
-        })  
-    },
-    edit(req, res) {
-        Recipes.find(req.params.index, function (recipe) {
-            if(!recipe) return res.send("Recipe not found!")
+    async create(req, res) {
+        results = await Recipes.chefsSelectOptions()
+        const chefOptions = results.rows
 
-            Recipes.chefsSelectOptions(function(options) {
-                return res.render('admin/edit', { recipe, chefOptions: options })
-            })
-        })
+        return res.render('admin/create', {chefOptions})
     },
+    async show(req, res) {
+        let results = await Recipes.find(req.params.index)
+        const recipe = results.rows[0]
+
+        if(!recipe) return res.send("Recipe not found!")
+        
+        results = await Chef.find(recipe.chef_id)
+        const chef = results.rows[0]
+    
+        return res.render('admin/show', { recipe, chef }) 
+    },
+    async edit(req, res) {
+        let results = await Recipes.find(req.params.index)
+        const recipe = results.rows[0]
+
+        if(!recipe) return res.send("Recipe not found!")
+        
+        results = await Recipes.chefsSelectOptions()
+        const chefOptions = results.rows
+
+
+        //get fileId
+        let resultsFiles = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
+        const filesId = []
+        for (i=0 ; i<resultsFiles.rows.length; i++) {
+            filesId[i] = resultsFiles.rows[i].file_id
+        }
+
+        //get images
+        const filesPromise = filesId.map(fileId => Recipes.files(fileId))
+        const fileResults = await Promise.all(filesPromise)
+        
+        let files = []
+        for (i=0 ; i<fileResults.length; i++) {
+            files[i] = fileResults[i].rows[0]
+        }
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+        }))
+
+        return res.render('admin/edit', { recipe, chefOptions, files})
+    }, 
     async post(req, res) {
         const keys = Object.keys(req.body)
         for (key of keys) {
@@ -39,19 +67,24 @@ module.exports = {
                 return res.send('Please, fill all fields.')
         }
 
-        console.log(req.files)
         if (req.files.length == 0)
             return res.send('Please, send at least one image.')
 
-        Recipes.create(req.body, function(recipe) {
-            return res.redirect(`/admin/recipes/${recipe.id}`)
+        let results = await Recipes.create(req.body)
+        const recipeId = results.rows[0].id
+
+        const filesPromise = req.files.map(file => File.create({...file}))
+        const fileResults = await Promise.all(filesPromise)
+        
+        const recipeFilesPromises = fileResults.map(file => {
+            const fileId = file.rows[0].id
+
+            File.createRecipeFiles(fileId, recipeId)
         })
-        const recipesId = recipe.id
 
-        const filesPromise = req.files.map(file => File.create({...file, recipes_id: recipesId}))
-        await Promise.all(filesPromise) 
+        await Promise.all(recipeFilesPromises)
 
-        return res.redirect(`/admin/recipes/${recipe.id}`)
+        return res.redirect(`/admin/recipes/${recipeId}`)
     },
     put(req, res) {
         const keys = Object.keys(req.body)
