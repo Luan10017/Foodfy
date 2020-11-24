@@ -14,28 +14,24 @@ module.exports = {
             callback(results.rows)
         })
     },
-    chefsSelectOptions(callback) {
-        db.query(`SELECT name, id FROM chefs`, function(err, results) {
-            if(err) throw `Database Error! ${err}`
-
-            callback(results.rows)
-        })
+    chefsSelectOptions() {
+        return db.query (`
+            SELECT name, id FROM chefs
+        `)
     },
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO recipes (
-            image,
             title,
             chef_id,
             ingredients,
             preparation,
             information,
             created_at
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ) VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING id
         `
         const values = [
-            data.image,
             data.title,
             data.chef,
             data.ingredients,
@@ -44,11 +40,16 @@ module.exports = {
             date(Date.now()).iso
         ]
 
-        db.query(query, values, function(err, results) {
+        try {
+            return db.query(query, values)
+        } catch (err) {
+            throw new Error(err)
+        }
+        /* db.query(query, values, function(err, results) {
             if(err) throw `Database Error! ${err}`
 
             callback(results.rows[0])
-        })
+        }) */
     },
     update(data, callback) {
         const query = `
@@ -77,14 +78,8 @@ module.exports = {
             callback()
         })
     },
-    find(id, callback) {
-        db.query (`
-        SELECT *
-        FROM recipes
-        WHERE id = $1`, [id], function(err, results) {
-            if(err) throw `Database Error! ${err}`
-            callback(results.rows[0]) 
-        })
+    find(id) {
+        return db.query (`SELECT * FROM recipes WHERE id = $1`, [id])
     },
     delete(id, callback) {
         db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
@@ -114,6 +109,12 @@ module.exports = {
             if(err) throw `Database Error! ${err}`
             callback(results.rows) 
         })
+    },
+    filesId(id) {
+        return db.query(`SELECT * FROM recipe_files WHERE recipe_id = $1`, [id])
+    },
+    files(id) {
+        return db.query(`SELECT * FROM files WHERE id = $1`, [id])
     }
     
 }
