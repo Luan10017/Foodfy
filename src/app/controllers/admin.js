@@ -129,14 +129,20 @@ module.exports = {
             return res.render('admin/chefs/index', {chefs})
         })
     },
-    details(req, res) {
+    async details(req, res) {
         const id = req.params.index
-        Chef.find(id, function(chef){
-            if (!chef) return res.send("Chef not found!")
-            Recipes.findRecipeByChef(id, function(recipes) {
-                return res.render('admin/chefs/details', {chef, recipes})
-            })
-        })
+        let results = await Chef.find(req.params.index)
+        const chef = results.rows[0]
+        
+        if (!chef) return res.send("Chef not found!")
+        
+        results = await Recipes.findRecipeByChef(req.params.index)
+        const recipes = results.rows
+        
+        if (!recipes) return res.send("Recipe not found!")
+
+
+        return res.render('admin/chefs/details', {chef, recipes})
     },
     createChef(req, res) {
         return res.render('admin/chefs/chefs_create')
