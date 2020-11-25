@@ -9,17 +9,30 @@
     </div>
 
     <section class="details_intro">
-        <div id="photos-preview show">
-            {% if files.length !=0 %}
+        <div class="gallery">
+            <div class="highlight">
+                {% if files.length == 0 %}
+                        <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
+                {% else %}
+                    <img 
+                        src="{{files[0].src}}" 
+                        alt="{{files[0].name}}"
+                        onclick="Lightbox.open()"
+                        >
+                {% endif %}
+            </div>
+            <div class="gallery-preview">
                 {% for image in files %}
-                    <div class="photo" id="{{image.id}}">
-                        <img src="{{image.src}}" alt="{{image.name}}">
-                        <i class="material-icons">close</i>
-                    </div>
+                    <img 
+                        src="{{image.src}}" 
+                        alt="{{image.name}}"
+                        {% if loop.index0 == 0 %}
+                        class="active"
+                        {% endif %}
+                        onclick="ImageGallery.setImage(event)"
+                    >
                 {% endfor %}
-            {% else %}
-                <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
-            {% endif %}
+            </div>
         </div>
         <h1>{{recipe.title}}</h1>
         <p>por {{chef.name}}</p>
