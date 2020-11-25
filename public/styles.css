@@ -499,6 +499,25 @@ form .item #photos-preview img {
   opacity: 1;
 }
 
+/* Gallary - SHOW */
+.gallery {
+  position: relative;
+}
+
+section.details_intro .gallery .gallery-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  gap: 10px;
+  position: absolute;
+  right: 0;
+}
+
+section.details_intro .gallery-preview img {
+  height: 49.7px;
+  width: 100%;
+  border-radius: 3.5px;
+}
+
 /* RECIPES DETAILS */
 
 section.info.admin ul{
