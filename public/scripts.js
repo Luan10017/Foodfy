@@ -51,6 +51,16 @@ if (formDelete) {
 }
 
 
+/* REDIRECIONAMENTO PARA EDIT */
+
+const editButton = document.querySelector('.button-admin-recipe')
+if (editButton) {
+    const currentPage = location.pathname
+    editButton.addEventListener('click', function () {
+        window.location.href = `${currentPage}/edit`
+    })
+}
+
 /* GERENCIADOR DE IMAGENS */
 
 const PhotosUpload = {
@@ -139,5 +149,18 @@ const PhotosUpload = {
         PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
         photoDiv.remove()
+    }
+}
+
+const ImageGallery = {
+    highlight: document.querySelector('.gallery .highlight > img'),
+    previews: document.querySelectorAll('.gallery-preview img'),
+    setImage(e) {
+        const {target} = e
+
+        ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+        target.classList.add('active')
+
+        ImageGallery.highlight.src = target.src
     }
 }
