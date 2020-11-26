@@ -8,7 +8,7 @@
         <button class="button button-admin-recipe">Editar receita</button>
     </div>
 
-    <section class="details_intro">
+    <section class="details_intro show">
         <div class="gallery">
             <div class="highlight">
                 {% if files.length == 0 %}
@@ -76,14 +76,4 @@
         </div>
     </section>
 
-
-    <script>
-        /* REDIRECIONAMENTO PARA EDIT */
-
-        const editButton = document.querySelector('.button-admin-recipe')
-        const currentPage = location.pathname
-        editButton.addEventListener('click', function () {
-            window.location.href = `${currentPage}/edit`
-        })
-    </script>
 {% endblock %}
