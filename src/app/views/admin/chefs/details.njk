@@ -9,7 +9,11 @@
             </div>
         </div>
         <div class="chef_container">
-            <img src="{{chef.avatar_url}}" alt="Imagem {{chef.name}}">
+            {% if files %}
+                <img src="{{files[0].src}}" alt="Foto de {{files.name}}">
+            {% else %}
+                <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
+            {% endif %}
             <h1>{{chef.name}}</h1>
             <p>{{chef.total_recipes}} receitas</p>
         </div>
