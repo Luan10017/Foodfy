@@ -130,7 +130,6 @@ module.exports = {
         })
     },
     async details(req, res) {
-        const id = req.params.index
         let results = await Chef.find(req.params.index)
         const chef = results.rows[0]
         
@@ -159,11 +158,13 @@ module.exports = {
             return res.redirect(`/admin/chefs/${chef.id}`)
         })
     },
-    editChefs(req, res) {
-        Chef.find(req.params.index, function (chef) {
-            if(!chef) return res.send("Chef not found!")
-                return res.render('admin/chefs/chefs_edit', { chef })
-        })
+    async editChefs(req, res) {
+        let results = await Chef.find(req.params.index)
+        const chef = results.rows[0]
+        
+        if (!chef) return res.send("Chef not found!")
+       
+        return res.render('admin/chefs/chefs_edit', { chef })
     },
     putChefs(req, res) {
         const keys = Object.keys(req.body)
@@ -171,7 +172,6 @@ module.exports = {
             if (req.body[key] == "")
                 return res.send('Please, fill all fields.')
         }
-        console.log(`Edit ${req.body}`)
 
         Chef.update(req.body, function() {
             return res.redirect(`/admin/chefs/${req.body.id}`)
