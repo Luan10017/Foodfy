@@ -124,10 +124,12 @@ module.exports = {
             return res.redirect(`/admin/recipes`)
         })
     },
-    chefs(req, res) {
-        Chef.chefs(function(chefs){
-            return res.render('admin/chefs/index', {chefs})
-        })
+    async chefs(req, res) {
+        let results = await Chef.chefs()
+        const chefs = results.rows
+
+        
+        return res.render('admin/chefs/index', {chefs})
     },
     async details(req, res) {
         let results = await Chef.find(req.params.index)
@@ -141,7 +143,29 @@ module.exports = {
         if (!recipes) return res.send("Recipe not found!")
 
 
-        return res.render('admin/chefs/details', {chef, recipes})
+    //get fileId
+    let resultsFiles = await Chef.filesId(chef.id) 
+    const filesId = []
+    for (i=0 ; i<resultsFiles.rows.length; i++) {
+        filesId[i] = resultsFiles.rows[i].file_id
+    }
+
+    //get images
+    const filesPromise = filesId.map(fileId => Chef.files(fileId))
+    const fileResults = await Promise.all(filesPromise)
+
+    let files = []
+    for (i=0 ; i<fileResults.length; i++) {
+        files[i] = fileResults[i].rows[0]
+    }
+
+    files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+    }))
+
+
+        return res.render('admin/chefs/details', {chef, recipes, files})
     },
     createChef(req, res) {
         return res.render('admin/chefs/chefs_create')
@@ -173,8 +197,30 @@ module.exports = {
         const chef = results.rows[0]
         
         if (!chef) return res.send("Chef not found!")
+
+        //get fileId
+        let resultsFiles = await Chef.filesId(chef.id) 
+        const filesId = []
+        for (i=0 ; i<resultsFiles.rows.length; i++) {
+            filesId[i] = resultsFiles.rows[i].file_id
+        }
+
+        //get images
+        const filesPromise = filesId.map(fileId => Chef.files(fileId))
+        const fileResults = await Promise.all(filesPromise)
+        
+        let files = []
+        for (i=0 ; i<fileResults.length; i++) {
+            files[i] = fileResults[i].rows[0]
+        }
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+        }))
+
        
-        return res.render('admin/chefs/chefs_edit', { chef })
+        return res.render('admin/chefs/chefs_edit', { chef, files })
     },
     putChefs(req, res) {
         const keys = Object.keys(req.body)
