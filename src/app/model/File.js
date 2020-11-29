@@ -37,5 +37,23 @@ module.exports = {
         } catch (err) {
             throw new Error(err)
         }
+    },
+    createChefFiles(fileId, chefId) {
+        const query = `
+        INSERT INTO chef_files (
+            chef_id,
+            file_id
+        ) VALUES ($1, $2)
+        `
+        const values = [
+            chefId,
+            fileId
+        ]
+
+        try {
+            return db.query(query, values)
+        } catch (err) {
+            throw new Error(err)
+        }
     }
 } 

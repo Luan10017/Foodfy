@@ -40,7 +40,7 @@ module.exports = {
                 callback(results.rows[0])
         })
     }, 
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO chefs (
             name,
@@ -55,11 +55,11 @@ module.exports = {
             date(Date.now()).iso
         ]
         
-        db.query(query, values, function(err, results) {
-            if(err) throw `Databese Error! ${err}`
-
-            callback(results.rows[0])
-        })
+        try {
+            return db.query(query, values)
+        } catch (err) {
+            throw new Error(err)
+        }
     },
     update(data, callback) {
         const query = `
