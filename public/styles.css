@@ -611,3 +611,20 @@ div.chef_container p {
   color: #777777;
 }
 
+/* CHEF CREATE */
+form .item .chef #photos-input {
+  width: 139px;
+  height: 37px;
+}
+
+form .item #photos-upload p {
+  background: var(--color-rocket);
+  border-radius: 4px;
+  font-size: 16px;
+  color: #FFFFFF;
+  width: 139px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
