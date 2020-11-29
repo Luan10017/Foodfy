@@ -146,17 +146,27 @@ module.exports = {
     createChef(req, res) {
         return res.render('admin/chefs/chefs_create')
     },
-    postChefs(req, res) {
+    async postChefs(req, res) {
         /* Validação de dados do formulario */
         const keys = Object.keys(req.body)
         for (key of keys) {
             if (req.body[key] == "")
                 return res.send('Please, fill all fields.')
         }
+        let results = await Chef.create(req.body)
+        const chefId = results.rows[0].id
 
-        Chef.create(req.body, function(chef) {
-            return res.redirect(`/admin/chefs/${chef.id}`)
+        const filePromise = req.files.map(file => File.create({...file}))
+        const fileResults = await Promise.all(filePromise)
+
+        const chefFilesPromises = fileResults.map(file => {
+            const fileId = file.rows[0].id
+            File.createChefFiles(fileId, chefId)
         })
+
+        await Promise.all(chefFilesPromises)
+        
+        return res.redirect(`/admin/chefs/${chefId}`)
     },
     async editChefs(req, res) {
         let results = await Chef.find(req.params.index)
