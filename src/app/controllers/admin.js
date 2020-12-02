@@ -3,6 +3,10 @@ const Recipes = require("../model/recipes")
 const File = require('../model/File')
 const { filesId } = require("../model/recipes")
 
+/* TEste */
+const fileManager = require('../controllers/fileController')
+/* TEste */
+
 
 module.exports = {
     index(req, res) {
@@ -25,22 +29,15 @@ module.exports = {
         results = await Chef.find(recipe.chef_id)
         const chef = results.rows[0]
 
-
         //get fileId
-        let resultsFiles = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
-        const filesId = []
-        for (i=0 ; i<resultsFiles.rows.length; i++) {
-            filesId[i] = resultsFiles.rows[i].file_id
-        }
+        results = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
+        const filesId = results.rows.map(id => id.file_id)
 
         //get images
         const filesPromise = filesId.map(fileId => Recipes.files(fileId))
         const fileResults = await Promise.all(filesPromise)
-        
-        let files = []
-        for (i=0 ; i<fileResults.length; i++) {
-            files[i] = fileResults[i].rows[0]
-        }
+
+        let files = fileResults.map(data => data.rows[0]) // o que acertou o formato foi o [0] no rows[0]
 
         files = files.map(file => ({
             ...file,
@@ -58,27 +55,8 @@ module.exports = {
         results = await Recipes.chefsSelectOptions()
         const chefOptions = results.rows
 
-
-        //get fileId
-        let resultsFiles = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
-        const filesId = []
-        for (i=0 ; i<resultsFiles.rows.length; i++) {
-            filesId[i] = resultsFiles.rows[i].file_id
-        }
-
-        //get images
-        const filesPromise = filesId.map(fileId => Recipes.files(fileId))
-        const fileResults = await Promise.all(filesPromise)
-        
-        let files = []
-        for (i=0 ; i<fileResults.length; i++) {
-            files[i] = fileResults[i].rows[0]
-        }
-
-        files = files.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
-        }))
+        const filesId = await fileManager.getFileId(recipe.id)
+        const files = await fileManager.getImage(filesId,req)
 
         return res.render('admin/edit', { recipe, chefOptions, files})
     }, 
