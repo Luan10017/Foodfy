@@ -9,10 +9,17 @@ const fileManager = require('../controllers/fileController')
 
 
 module.exports = {
-    index(req, res) {
-        Recipes.all(function(recipes) {
-            return res.render('admin/index', {recipes})
-        })
+    async index(req, res) {
+        let results = await Recipes.all()
+        const recipes = results.rows
+
+        //const recipesId = await recipes.map(recipe => recipe.id)
+        const recipesId = [12,13]
+        const filesId = await fileManager.getFileAllIds(recipesId)
+        const files = await fileManager.getImage(filesId,req)
+        
+        return res.render('admin/index', { recipes, files })
+
     },
     async create(req, res) {
         results = await Recipes.chefsSelectOptions()
