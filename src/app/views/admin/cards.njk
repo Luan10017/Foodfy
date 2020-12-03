@@ -1,7 +1,11 @@
 <section class="cards_admin">
     {%for recipe in recipes%}
         <div class="card_admin" id="{{recipe.id}}">
-            <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
+            {% if files %}
+                <img src="{{recipe.image}}" alt="Foto {{recipe.title}}">
+            {% else %}
+                <img src="{{files[0].src}}" alt="{{files[0].name}}">
+            {% endif %}
             <div class="card_container">
                 <h4>{{recipe.title}}</h4>
                 <p class="card__author">por {{recipe.chef_name}}</p>
