@@ -1,7 +1,8 @@
 const Recipes = require("../model/recipes")
+const Chef = require("../model/chef")
 
 module.exports = {
-    async getFileId (id) {
+    async getRecipeFileId (id) {
         let results = await Recipes.filesId(id) 
         return filesId = results.rows.map(id => id.file_id)
     },
@@ -24,5 +25,21 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         }))
         return files
-    }
+    },
+    async getChefFileId (id) {
+        let results = await Chef.filesId(id) 
+        return filesId = results.rows.map(id => id.file_id)
+    },
+    async getChefImage (filesId, req) {
+        const filesPromise = filesId.map(fileId => Chef.files(fileId))
+        const fileResults = await Promise.all(filesPromise)
+
+        let files = fileResults.map(data => data.rows[0])
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+        }))
+        return files
+    },
 }
