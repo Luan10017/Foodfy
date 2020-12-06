@@ -1,11 +1,7 @@
-const Chef = require("../model/chef")
-const Recipes = require("../model/recipes")
-const File = require('../model/File')
-const { filesId } = require("../model/recipes")
-
-/* TEste */
-const fileManager = require('../controllers/fileController')
-/* TEste */
+const Chef = require("../../model/chef")
+const Recipes = require("../../model/recipes")
+const File = require('../../model/File')
+const fileManager = require('../fileController')
 
 
 module.exports = {
@@ -62,7 +58,7 @@ module.exports = {
         results = await Recipes.chefsSelectOptions()
         const chefOptions = results.rows
 
-        const filesId = await fileManager.getFileId(recipe.id)
+        const filesId = await fileManager.getRecipeFileId(recipe.id)
         const files = await fileManager.getImage(filesId,req)
 
         return res.render('admin/edit', { recipe, chefOptions, files})

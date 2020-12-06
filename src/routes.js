@@ -1,6 +1,7 @@
 const express =  require('express')
 const routes = express.Router()
-const admin = require('./app/controllers/admin')
+const recipesAdmin = require('./app/controllers/admin/recipesController')
+const chefsAdmin = require('./app/controllers/admin/chefsController')
 const recipes = require('./app/controllers/recipes')
 const multer = require('./app/middlewares/multer')
 
@@ -17,22 +18,22 @@ routes.get('/chefs', recipes.chefs)
 /*==== ADMIN =====*/
 
 /* RECIPES */
-routes.get('/admin/recipes', admin.index)
-routes.get("/admin/recipes/create", admin.create)
-routes.get("/admin/recipes/:index", admin.show)
-routes.get("/admin/recipes/:index/edit", admin.edit)
-routes.post("/admin/recipes",  multer.array("photos",5), admin.post) // Cadastrar nova receita
-routes.put("/admin/recipes",  multer.array("photos",5), admin.put); // Editar uma receita
-routes.delete("/admin/recipes", admin.delete); // Deletar uma receita 
+routes.get('/admin/recipes', recipesAdmin.index)
+routes.get("/admin/recipes/create", recipesAdmin.create)
+routes.get("/admin/recipes/:index", recipesAdmin.show)
+routes.get("/admin/recipes/:index/edit", recipesAdmin.edit)
+routes.post("/admin/recipes",  multer.array("photos",5), recipesAdmin.post) // Cadastrar nova receita
+routes.put("/admin/recipes",  multer.array("photos",5), recipesAdmin.put); // Editar uma receita
+routes.delete("/admin/recipes", recipesAdmin.delete); // Deletar uma receita 
 
 /* CHEFS */
-routes.get('/admin/chefs', admin.chefs)
-routes.get("/admin/chefs/create", admin.createChef)
-routes.get('/admin/chefs/:index', admin.details)
-routes.post("/admin/chefs", multer.array("photos",1), admin.postChefs) 
-routes.get('/admin/chefs/:index/edit', admin.editChefs)
-routes.put("/admin/chefs", multer.array("photos",1), admin.putChefs); 
-routes.delete("/admin/chefs", admin.deleteChefs); 
+routes.get('/admin/chefs', chefsAdmin.chefs)
+routes.get("/admin/chefs/create", chefsAdmin.create)
+routes.get('/admin/chefs/:index', chefsAdmin.details) 
+routes.post("/admin/chefs", multer.array("photos",1), chefsAdmin.post) 
+routes.get('/admin/chefs/:index/edit', chefsAdmin.edit)
+routes.put("/admin/chefs", multer.array("photos",1), chefsAdmin.put); 
+routes.delete("/admin/chefs", chefsAdmin.delete); 
 
 
 /* PÁGINA DE ERRO */
