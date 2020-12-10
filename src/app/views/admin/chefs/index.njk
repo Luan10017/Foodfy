@@ -6,11 +6,7 @@
         {%for chef in chefs%}
             <div class="chef" id={{chef.id}}>
                <div class="chef_content">
-                    {% if files %}
-                        <img src="{{files[0].src}}" alt="Foto de {{files.name}}">
-                    {% else %}
-                        <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
-                    {% endif %}
+                    <img src="{{files[loop.index0].src}}" alt="Foto de {{files[loop.index0].name}}">
                     <h1>{{chef.name}}</h1>
                     <a class="visualization_button">Visualizar</a>
                </div>
