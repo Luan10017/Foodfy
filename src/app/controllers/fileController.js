@@ -30,6 +30,14 @@ module.exports = {
         let results = await Chef.filesId(id) 
         return filesId = results.rows.map(id => id.file_id)
     },
+    async getFileAllChefsIds (id) {
+        const idsPromise = id.map(id => Chef.filesId(id))
+        const idsResults = await Promise.all(idsPromise)
+        
+        const ids = idsResults.map(id => id.rows[0].file_id)
+      
+        return ids
+    },
     async getChefImage (filesId, req) {
         const filesPromise = filesId.map(fileId => Chef.files(fileId))
         const fileResults = await Promise.all(filesPromise)
