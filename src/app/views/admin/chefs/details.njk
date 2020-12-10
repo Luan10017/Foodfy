@@ -10,7 +10,7 @@
         </div>
         <div class="chef_container">
             {% if chef.avatar_url == null %}
-                <img src="{{files[0].src}}" alt="Foto de {{files.name}}">
+                <img src="{{filesChef[0].src}}" alt="Foto de {{filesChef.name}}">
             {% else %}
                 <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
             {% endif %}
