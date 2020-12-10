@@ -8,14 +8,14 @@ module.exports = {
     async index(req, res) {
         let results = await Recipes.all()
         const recipes = results.rows
-
-        //const recipesId = await recipes.map(recipe => recipe.id)
-        const recipesId = [12,13]
+        
+        const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
+        const recipesId = await Promise.all(recipesIdPromise)        
+        
         const filesId = await fileManager.getFileAllIds(recipesId)
         const files = await fileManager.getImage(filesId,req)
-        
-        return res.render('admin/index', { recipes, files })
 
+        return res.render('admin/index', { recipes, files })
     },
     async create(req, res) {
         results = await Recipes.chefsSelectOptions()
@@ -92,46 +92,33 @@ module.exports = {
     async put(req, res) {
         const keys = Object.keys(req.body)
         for (key of keys) {
-            if (req.body[key] == "" && key !="removed_files" && req.body[key]!= req.body.chef && req.body[key]!= req.body.information)
+            if (req.body[key] == "" && key != "removed_files" && req.body[key]!= req.body.chef && req.body[key]!= req.body.information)
                 return res.send('Please, fill all fields.')
         }
-          
-        //Para apagar files vai ser preciso apagar link no recipe_files e depois na tabela file
 
 
         if (req.files.length !=0) {
-            const newFilesPromise = req.files.map(file =>
-                File.create(req.body))
-            await Promise.all(newFilesPromise)
-        }
-
-        /* 
-         if (req.files.length == 0)
-            return res.send('Please, send at least one image.')
-
-        let results = await Recipes.create(req.body)
-        const recipeId = results.rows[0].id
-
-        const filesPromise = req.files.map(file => File.create({...file}))
-        const fileResults = await Promise.all(filesPromise)
+            const filesPromise = req.files.map(file => File.create({...file}))
+            const fileResults = await Promise.all(filesPromise)
         
-        const recipeFilesPromises = fileResults.map(file => {
+            const recipeFilesPromises = fileResults.map(file => {
             const fileId = file.rows[0].id
 
-            File.createRecipeFiles(fileId, recipeId)
-        })
+            File.createRecipeFiles(fileId, req.body.id)
+            })
 
-        await Promise.all(recipeFilesPromises)
-
-        return res.redirect(`/admin/recipes/${recipeId}`)
-        
-        */
+            await Promise.all(recipeFilesPromises)
+        }
 
         if (req.body.removed_files) {
-            const removedFiles = req.body.removed_files.split(",")
-            const lastIndex = removedFiles.length - 1
+            const removedFiles = req.body.removed_files.split(",") 
+            const lastIndex = removedFiles.length -1
             removedFiles.splice(lastIndex, 1)
 
+            const removedFilesRecipePromise = removedFiles.map(id => File.deleteRecipeFile(id))
+            await Promise.all(removedFilesRecipePromise)
+
+            
             const removedFilesPromise = removedFiles.map(id => File.delete(id))
 
             await Promise.all(removedFilesPromise)
