@@ -9,8 +9,22 @@ module.exports = {
         let results = await Chef.chefs()
         const chefs = results.rows
 
-        
-        return res.render('admin/chefs/index', {chefs})
+        const chefsIdPromise = chefs.map(chef => chef = chef.id)
+        const chefsId = await Promise.all(chefsIdPromise)    
+
+
+        const filesIDPromise = chefsId.map(id => fileManager.getChefFileId(id)) 
+        const filesId = await Promise.all(filesIDPromise)
+        console.log(filesId)
+        //const filesId = [42,44,9]
+
+        console.log(filesId)
+
+        const files = await fileManager.getChefImage(filesId,req)
+
+        console.log(files)
+
+        return res.render('admin/chefs/index', {chefs, files})
     },
     async details(req, res) {
         let results = await Chef.find(req.params.index)
@@ -65,11 +79,25 @@ module.exports = {
 
         return res.render('admin/chefs/chefs_edit', { chef, files })
     },
-    put(req, res) {
+    async put(req, res) {
         const keys = Object.keys(req.body)
         for (key of keys) {
-            if (req.body[key] == "")
+            if (req.body[key] == "" && key != "removed_files")
                 return res.send('Please, fill all fields.')
+        }
+
+
+        if (req.files.length !=0) {
+            const filesPromise = req.files.map(file => File.create({...file}))
+            const fileResults = await Promise.all(filesPromise)
+        
+            const chefFilesPromises = fileResults.map(file => {
+            const fileId = file.rows[0].id
+
+            File.createChefFiles(fileId, req.body.id)
+            })
+
+            await Promise.all(chefFilesPromises)
         }
 
         Chef.update(req.body, function() {
