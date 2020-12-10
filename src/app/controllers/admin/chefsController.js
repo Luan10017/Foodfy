@@ -12,17 +12,13 @@ module.exports = {
         const chefsIdPromise = chefs.map(chef => chef = chef.id)
         const chefsId = await Promise.all(chefsIdPromise)    
 
-
-        const filesIDPromise = chefsId.map(id => fileManager.getChefFileId(id)) 
+        //Isso aqui tá funcionando, mas manda cada id dentro de um [] array [[],[],[]]
+        /* const filesIDPromise = chefsId.map(id => fileManager.getChefFileId(id)) 
         const filesId = await Promise.all(filesIDPromise)
-        console.log(filesId)
-        //const filesId = [42,44,9]
-
-        console.log(filesId)
-
+        console.log(filesId) */
+       
+        const filesId = await fileManager.getFileAllChefsIds(chefsId)
         const files = await fileManager.getChefImage(filesId,req)
-
-        console.log(files)
 
         return res.render('admin/chefs/index', {chefs, files})
     },
@@ -38,10 +34,16 @@ module.exports = {
         if (!recipes) return res.send("Recipe not found!")
 
 
-        const filesId = await fileManager.getChefFileId(chef.id)
-        const files = await fileManager.getChefImage(filesId,req)
+        let filesId = await fileManager.getChefFileId(chef.id)
+        const filesChef = await fileManager.getChefImage(filesId,req)
 
-        return res.render('admin/chefs/details', {chef, recipes, files})
+        const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
+        const recipesId = await Promise.all(recipesIdPromise)        
+        
+        filesId = await fileManager.getFileAllIds(recipesId)
+        const files = await fileManager.getImage(filesId,req)
+
+        return res.render('admin/chefs/details', {chef, recipes, files, filesChef})
     },
     create(req, res) {
         return res.render('admin/chefs/chefs_create')
