@@ -70,6 +70,14 @@ module.exports = {
         }catch(err){
             console.error(err)
         }
-        
+    },
+    async deleteRecipeFile(id) {
+        try {
+            return db.query(`
+            DELETE FROM recipe_files WHERE file_id = $1
+        `, [id])
+        }catch(err){
+            console.error(err)
+        }
     }
 } 
