@@ -79,5 +79,14 @@ module.exports = {
         }catch(err){
             console.error(err)
         }
+    },
+    async deleteChefFile(id) {
+        try {
+            return db.query(`
+            DELETE FROM chef_files WHERE file_id = $1
+        `, [id])
+        }catch(err){
+            console.error(err)
+        }
     }
 } 
