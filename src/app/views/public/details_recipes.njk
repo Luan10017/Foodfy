@@ -3,9 +3,9 @@
 {%block content%}
     <div class="container">
         <section class="details_intro">
-            <img  src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
+            <img  src="{{files[0].src}}" alt="Foto de {{files[0].name}}">
             <h1>{{recipe.title}}</h1>
-            <p>por {{chef.name}}</p>
+            <p>por {{recipe.chef_name}}</p>
         </section>
 
     <!-- SECTION informações -->
