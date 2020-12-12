@@ -102,6 +102,14 @@ module.exports = {
             await Promise.all(chefFilesPromises)
         }
 
+        if (req.body.removed_files) {
+            let removedFile = req.body.removed_files
+            removedFile = removedFile.replace(",","")
+            
+            await File.deleteChefFile(removedFile)
+            await File.delete(removedFile)
+        }
+
         Chef.update(req.body, function() {
             return res.redirect(`/admin/chefs/${req.body.id}`)
         })
