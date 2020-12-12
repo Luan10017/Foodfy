@@ -2,8 +2,32 @@
 
 {%block content%}
     <div class="container">
-        <section class="details_intro">
-            <img  src="{{files[0].src}}" alt="Foto de {{files[0].name}}">
+        <section class="details_intro show">
+            <div class="gallery">
+                <div class="highlight">
+                    {% if files.length == 0 %}
+                            <img src="{{recipe.image}}" alt="Foto de {{recipe.title}}">
+                    {% else %}
+                        <img 
+                            src="{{files[0].src}}" 
+                            alt="{{files[0].name}}"
+                            onclick="Lightbox.open()"
+                            >
+                    {% endif %}
+                </div>
+                <div class="gallery-preview">
+                    {% for image in files %}
+                        <img 
+                            src="{{image.src}}" 
+                            alt="{{image.name}}"
+                            {% if loop.index0 == 0 %}
+                            class="active"
+                            {% endif %}
+                            onclick="ImageGallery.setImage(event)"
+                        >
+                    {% endfor %}
+                </div>
+            </div>
             <h1>{{recipe.title}}</h1>
             <p>por {{recipe.chef_name}}</p>
         </section>
