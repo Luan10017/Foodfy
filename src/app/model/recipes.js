@@ -68,7 +68,10 @@ module.exports = {
         })
     },
     find(id) {
-        return db.query (`SELECT * FROM recipes WHERE id = $1`, [id])
+        return db.query (`SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes
+            LEFT JOIN chefs ON (chefs.id = recipes.chef_id) 
+            WHERE recipes.id = $1`, [id])
     },
     delete(id, callback) {
         db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
@@ -77,17 +80,18 @@ module.exports = {
             return callback()
         })
     },
-    findBy(filter, callback) {
-        db.query(`
+    findBy(filter) {
+        const query = `
         SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes
         LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
         WHERE recipes.title ILIKE '%${filter}%'
-        `, function(err, results) {
-            if(err) throw `Database Error! ${err}`
-
-            callback(results.rows)
-        })
+        `
+        try {
+            return db.query(query)
+        } catch (err) {
+            throw new Error(err)
+        }
     },
     findRecipeByChef(id) {
         const query =`
@@ -103,16 +107,7 @@ module.exports = {
         } catch (err) {
             throw new Error(err)
         }
-    },/* findRecipeByChef(id, callback) {
-        db.query (`
-        SELECT recipes.*, chefs.name AS chef_name 
-        FROM recipes
-        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-        WHERE chefs.id = $1`, [id], function(err, results) {
-            if(err) throw `Database Error! ${err}`
-            callback(results.rows) 
-        })
-    }, */
+    },
     filesId(id) {
         return db.query(`SELECT * FROM recipe_files WHERE recipe_id = $1`, [id])
     },
