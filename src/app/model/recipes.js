@@ -8,6 +8,7 @@ module.exports = {
         SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes
         LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+        ORDER BY created_at DESC
         `)
     },
     chefsSelectOptions() {
@@ -86,6 +87,7 @@ module.exports = {
         FROM recipes
         LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
         WHERE recipes.title ILIKE '%${filter}%'
+        ORDER BY updated_at DESC
         `
         try {
             return db.query(query)
