@@ -46,7 +46,7 @@ module.exports = {
         return res.render('admin/chefs/details', {chef, recipes, files, filesChef})
     },
     create(req, res) {
-        return res.render('admin/chefs/chefs_create')
+        return res.render('admin/chefs/create')
     },
     async post(req, res) {
         /* Validação de dados do formulario */
@@ -79,7 +79,7 @@ module.exports = {
         const filesId = await fileManager.getChefFileId(chef.id)
         const files = await fileManager.getChefImage(filesId,req)
 
-        return res.render('admin/chefs/chefs_edit', { chef, files })
+        return res.render('admin/chefs/edit', { chef, files })
     },
     async put(req, res) {
         const keys = Object.keys(req.body)

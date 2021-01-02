@@ -15,13 +15,13 @@ module.exports = {
         const filesId = await fileManager.getFileAllIds(recipesId)
         const files = await fileManager.getImage(filesId,req)
 
-        return res.render('admin/index', { recipes, files })
+        return res.render('admin/recipes/index', { recipes, files })
     },
     async create(req, res) {
         results = await Recipes.chefsSelectOptions()
         const chefOptions = results.rows
 
-        return res.render('admin/create', {chefOptions})
+        return res.render('admin/recipes/create', {chefOptions})
     },
     async show(req, res) {
         let results = await Recipes.find(req.params.index)
@@ -47,7 +47,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         }))
     
-        return res.render('admin/show', { recipe, chef, files }) 
+        return res.render('admin/recipes/show', { recipe, chef, files }) 
     },
     async edit(req, res) {
         let results = await Recipes.find(req.params.index)
@@ -61,7 +61,7 @@ module.exports = {
         const filesId = await fileManager.getRecipeFileId(recipe.id)
         const files = await fileManager.getImage(filesId,req)
 
-        return res.render('admin/edit', { recipe, chefOptions, files})
+        return res.render('admin/recipes/edit', { recipe, chefOptions, files})
     }, 
     async post(req, res) {
         const keys = Object.keys(req.body)
