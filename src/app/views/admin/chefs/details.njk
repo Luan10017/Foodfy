@@ -1,4 +1,4 @@
-{% extends "layouts/admin.njk" %}
+{% extends "admin/layout.njk" %}
 
 {%block contentAdmin%}
     <main>
@@ -19,7 +19,7 @@
         </div>
         <h1 class="sub_title">Receitas</h1>
 
-        {% include 'admin/cards.njk' %}    
+        {% include 'admin/recipes/cards.njk' %}    
     </main>
 {%endblock%}
 
