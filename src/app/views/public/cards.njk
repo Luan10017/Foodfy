@@ -1,0 +1,9 @@
+<section class="cards">
+    {%for recipe in recipes%}
+        <div class="card" id="{{recipe.id}}" onclick="pageRedirector.cards(event,{{recipe.id}})">
+            <img src="{{files[loop.index0].src}}" alt="Foto {{files[loop.index0].name}}">
+            <h4>{{recipe.title}}</h4>
+            <p class="card__author">por {{recipe.chef_name}}</p>
+        </div>
+    {% endfor %}
+</section>

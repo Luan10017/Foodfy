@@ -1,0 +1,16 @@
+{% extends "public/layout.njk" %}
+
+{%block content%}
+    <div class="container">
+        <section class="intro">
+            <img src="/chef.png" alt="foto do Chef">
+            <div class="intro__content">
+                <h1>As melhores receitas</h1>
+                <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+            </div>
+        </section>
+        <h1>Mais acessadas</h1>
+        <!-- SECTION CARDS -->
+        {%include "public/cards.njk"%}
+    </div>
+{%endblock%}
