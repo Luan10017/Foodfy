@@ -1,4 +1,4 @@
-{% extends "public/layout.njk" %}
+{% extends "site/layout.njk" %}
 
 {%block content%}
     <div class="container">
@@ -6,6 +6,6 @@
             <h1 class="filter">Buscando por "{{filter}}"</h1>
         {% endif %}
     <!-- SECTION CARDS -->
-    {%include "public/cards.njk"%}
+    {%include "site/cards.njk"%}
     </div>
 {%endblock%}
