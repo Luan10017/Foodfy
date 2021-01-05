@@ -22,11 +22,11 @@ module.exports = {
         const filesId = await fileManager.getFileAllIds(recipesId)
         const files = await fileManager.getImage(filesId,req)
         
-        return res.render('public/home', { recipes, files })
+        return res.render('site/home', { recipes, files })
     },
     
     about (req, res) {
-        return res.render('public/about')
+        return res.render('site/about')
     },
     
     async recipes (req, res) {
@@ -47,7 +47,7 @@ module.exports = {
         const filesId = await fileManager.getFileAllIds(recipesId)
         const files = await fileManager.getImage(filesId,req)
 
-        return res.render('public/recipes', { recipes, files, filter })
+        return res.render('site/recipes', { recipes, files, filter })
     },
     
     async chefs (req, res) {
@@ -60,7 +60,7 @@ module.exports = {
         const filesId = await fileManager.getFileAllChefsIds(chefsId)
         const files = await fileManager.getChefImage(filesId,req)
 
-        return res.render('public/chefs', {chefs, files})
+        return res.render('site/chefs', {chefs, files})
     },
     
     async details (req, res) {
@@ -74,6 +74,6 @@ module.exports = {
         const filesId = await fileManager.getRecipeFileId(recipe.id)
         const files = await fileManager.getImage(filesId,req)
 
-        return res.render('public/details_recipes', { recipe, files })
+        return res.render('site/details_recipes', { recipe, files })
     }
 }
