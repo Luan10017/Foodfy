@@ -4,6 +4,7 @@ const recipes = require('../app/controllers/recipes')
 
 const recipesAdmin = require('./admin/recipes')
 const chefsAdmin = require('./admin/chefs')
+const userAdmin = require('./admin/users')
 
 /* ==== PRINCIPAL ==== */
 
@@ -15,6 +16,9 @@ routes.get('/chefs', recipes.chefs)
 
 
 /*==== ADMIN =====*/
+
+/* ADMIN */
+routes.use('/admin',userAdmin)
 
 /* RECIPES */
 routes.use('/admin/recipes',recipesAdmin)
