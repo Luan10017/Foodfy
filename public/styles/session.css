@@ -1,0 +1,8 @@
+div.container.session {
+    max-width: 500px;
+}
+
+div.container.session header a {
+    display: flex;
+    align-items: center;
+}
