@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Foodfy</title>
+    
+
+    {%include "admin/parts/styles.njk"%}
+</head>
+
+<body>
+    {%include "admin/parts/messages.njk"%}
+
+    <div class="container session">
+        <header>
+                <a href="/admin/recipes">
+                    <img src="/logo.png" alt="Imagem da logomarca">
+                </a>
+        </header>
+        {% block contentSessionAdmin %}{% endblock %} 
+    </div>
+    <script src="/scripts.js"></script>
+</body>
+
+</html>

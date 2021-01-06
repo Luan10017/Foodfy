@@ -1,0 +1,41 @@
+{% extends "admin/session/layout.njk" %}
+
+{%block contentSessionAdmin%}
+    
+    <form method="post" action="/users/login">
+            
+            <div class="header">
+                <h3>Iniciar sessão</h3>
+            </div>
+            <div class="fields">
+                <div class="item">
+                    <div>Email</div>
+                    <div class="input">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Digite seu email"
+                            value="{{user.email}}"
+                            onblur="Validate.apply(this, 'isEmail')"
+                        >
+                    </div>
+                </div>
+                <div class="item">
+                    <div>Senha</div>
+                    <div class="input">
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="Digite sua senha"
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <button class="button" type="submit">Entrar</button>
+
+            <div class="footer">
+                <a href="/users/forgot-password">Perdeu a senha?</a>
+            </div>
+        </form>
+{%endblock%}
