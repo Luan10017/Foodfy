@@ -1,8 +1,40 @@
 div.container.session {
     max-width: 500px;
+    min-height: 1000px;
 }
 
-div.container.session header a {
+div.container.session header {
+    margin: 35px 40% 146px;
+    padding: 0;
+}
+
+div.container.session form div.header h3 {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+div.container.session form div.input {
+    margin: 10px 0 35px;
+}
+
+div.container.session form div.footer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+div.container.session form div.footer {
+    position: relative;
+}
+
+
+div.container.session form div.footer button {
+    width: 134px;
+}
+
+div.container.session form div.footer .button.reset {
+    margin-bottom: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
