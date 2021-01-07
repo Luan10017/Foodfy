@@ -1,0 +1,36 @@
+div.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 64px;
+}
+
+div.user-header form.logout button {
+    width: 139px;
+}
+
+div.fields.users  {
+    display: grid;
+    grid-template-columns: 450px 450px;
+    gap: 40px;
+}
+
+div.fields.users div.input {
+    margin-top: 10px;
+}
+
+div.fields.users .item-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+div.fields.users .item-checkbox input{
+    width: auto;
+    height: auto;
+    margin-top: 0;
+}
+
+div.user-header form.logout button.cancel {
+    background: #8A8A8A;
+    margin-left: 16px;
+}
