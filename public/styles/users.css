@@ -39,3 +39,31 @@ div.user-header form.logout button.delete {
     background: #DC4747;
     margin-right: 16px;
 }
+
+/* LISTAGEM DE USUÁIOS */
+section.user-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 52px 199px;
+}
+
+section.user-list div.user p {
+    font-size: 14px;
+    color: #777777;
+    margin: 4px 0 16px;
+}
+
+section.user-list div.user .actions a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #6558C3;
+}
+
+section.user-list div.user .actions button[type="submit"] {
+    color: #F55A5A;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Helvetica;
+    background: none;
+    margin-left: 16px;
+}
