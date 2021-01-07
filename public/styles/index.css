@@ -296,7 +296,8 @@ header.header_admin nav {
   
 }
 
-header nav div.links.admin a{
+header nav div.links.admin a,
+header nav form.logout button {
   color: #999999;
   margin-right: 30px;
   font-weight: bold;
@@ -305,6 +306,14 @@ header nav div.links.admin a{
 
 header nav .links.admin a.active {
   color: #FFFFFF;
+}
+
+header nav form.logout button {
+  margin-right: 50px;
+  background: none;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
 }
 
 /* ideias globais */
@@ -382,6 +391,7 @@ div.item input {
   color: #111111;
   font-size: 16px;
   margin-bottom: 10px;
+  outline: none;
 }
 
 div.item select {
