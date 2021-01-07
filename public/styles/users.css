@@ -34,3 +34,8 @@ div.user-header form.logout button.cancel {
     background: #8A8A8A;
     margin-left: 16px;
 }
+
+div.user-header form.logout button.delete {
+    background: #DC4747;
+    margin-right: 16px;
+}
