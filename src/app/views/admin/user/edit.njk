@@ -1,0 +1,24 @@
+{% extends "admin/layout.njk" %}
+
+{%block contentAdmin%}
+    <div class="user-header">
+        <h1 class="show-title">Gerenciar receitas</h1>
+        <form class="logout" action="/users/logout" method="POST">
+                <button class="button delete">Deletar</button>
+                <button class="button">Salvar</button>
+        </form>
+    </div>
+    <div class="fields users">
+                {% include 'admin/user/fields.njk' %}
+                <div class="item-checkbox">
+                    <div class="input-checkbox">
+                        <input 
+                            type="checkbox" 
+                            name="admin" 
+                        >
+                    </div>
+                    <div>Administrador</div>
+                </div>
+        </div>
+    
+{%endblock%}
