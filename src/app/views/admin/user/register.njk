@@ -1,0 +1,24 @@
+{% extends "admin/layout.njk" %}
+
+{%block contentAdmin%}
+    <form class="logout" action="/admin/users/register" method="POST">
+        <div class="user-header">
+            <h1 class="show-title">Criar usuário</h1>
+                    <button class="button" type="submit">Salvar</button>
+                    <button class="button cancel">Cancelar</button>
+        </div>
+        <div class="fields users">
+                    {% include 'admin/user/fields.njk' %}
+                    <div class="item-checkbox">
+                        <div class="input-checkbox">
+                            <input 
+                                type="checkbox" 
+                                name="admin" 
+                            >
+                        </div>
+                        <div>Administrador</div>
+                    </div>
+            </div>
+    </form>
+    
+{%endblock%}
