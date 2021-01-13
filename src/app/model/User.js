@@ -3,6 +3,9 @@ const { hash } = require('bcryptjs')
 const fs = require('fs')
 
 module.exports = {
+    getAllUsers() {
+        return db.query(`SELECT * FROM users`)
+    },
     async findOne(filters) {
        let query = "SELECT * FROM users"
 
@@ -54,8 +57,8 @@ module.exports = {
             console.error(err)
         }
         
-    }
-    /* async update(id, fields) {
+    },
+    async update(id, fields) {
         let query = "UPDATE users SET"
 
         Object.keys(fields).map((key, index, array) => {
@@ -75,7 +78,7 @@ module.exports = {
 
         await db.query(query)
         return
-    }, */
+    }
    /*  async delete(id) {
         //pegar todos os produtos
         let results = await db.query("SELECT * FROM products WHERE user_id = $1", [id])
