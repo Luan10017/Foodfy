@@ -3,8 +3,11 @@ const mailer = require('../../../lib/mailer')
 const crypto = require('crypto')
 
 module.exports = {
-    list(req, res) {
-        return res.render("admin/user/users-list")
+    async list(req, res) {
+        const results = await User.getAllUsers()
+        const users = results.rows
+        
+        return res.render("admin/user/users-list", {users})
     },
     registerForm(req, res) {
         return res.render("admin/user/register")
