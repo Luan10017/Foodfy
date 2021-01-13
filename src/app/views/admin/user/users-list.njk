@@ -8,40 +8,16 @@
         </form>
     </div>
     <section class="user-list">
-        <div class="user">
-            <h3>Luan</h3>
-            <p>luan10017@hotmail.com</p>
-            <div class="actions">
-                <a href="">Editar</a>
-                <button type="submit">Remover</button>
+        {% for user in users %}
+            <div class="user">
+                <h3>{{user.name}}</h3>
+                <p>{{user.email}}</p>
+                <div class="actions">
+                    <a href="">Editar</a>
+                    <button type="submit">Remover</button>
+                </div>
             </div>
-        </div>
-        <div class="user">
-            <h3>Triplo biro</h3>
-            <p>luan10017@hotmail.com</p>
-            <div class="actions">
-                <a href="">Editar</a>
-                <button type="submit">Remover</button>
-            </div>
-        </div>
-        <div class="user">
-            <h3>Luan</h3>
-            <p>luan10017@hotmail.com</p>
-            <div class="actions">
-                <a href="">Editar</a>
-                <button type="submit">Remover</button>
-            </div>
-        </div>
-        <div class="user">
-            <h3>Luan</h3>
-            <p>luan10017@hotmail.com</p>
-            <div class="actions">
-                <a href="">Editar</a>
-                <button type="submit">Remover</button>
-            </div>
-        </div>
-        {# {% for user in users %}
-        {% endfor %} #}
+        {% endfor %}
     </section>
     
 {%endblock%}
