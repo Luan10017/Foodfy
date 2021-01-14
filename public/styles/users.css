@@ -5,7 +5,7 @@ div.user-header {
     margin-bottom: 64px;
 }
 
-div.user-header form.logout button {
+form.logout div.user-header button {
     width: 139px;
 }
 
@@ -30,12 +30,12 @@ div.fields.users .item-checkbox input{
     margin-top: 0;
 }
 
-div.user-header form.logout button.cancel {
+form.logout div.user-header button.cancel {
     background: #8A8A8A;
     margin-left: 16px;
 }
 
-div.user-header form.logout button.delete {
+form.logout div.user-header button.delete {
     background: #DC4747;
     margin-right: 16px;
 }
