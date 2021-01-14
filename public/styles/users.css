@@ -53,6 +53,12 @@ section.user-list div.user p {
     margin: 4px 0 16px;
 }
 
+section.user-list div.user .actions {
+    display: flex;
+    align-items: center;
+    height: 17px;
+}
+
 section.user-list div.user .actions a {
     font-size: 14px;
     font-weight: bold;
