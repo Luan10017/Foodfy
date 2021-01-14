@@ -51,5 +51,10 @@ module.exports = {
             })
         }
         
+    },
+    async delete(req, res) {
+        await User.delete(req.body.id)
+
+        return res.redirect('/admin/users')
     }
 }
