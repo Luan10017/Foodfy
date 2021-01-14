@@ -4,8 +4,10 @@
     <form class="logout" action="/admin/users/register" method="POST">
         <div class="user-header">
             <h1 class="show-title">Criar usuário</h1>
+                <nav>
                     <button class="button" type="submit">Salvar</button>
                     <button class="button cancel">Cancelar</button>
+                </nav>
         </div>
         <div class="fields users">
                     {% include 'admin/user/fields.njk' %}
