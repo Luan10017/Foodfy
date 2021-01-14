@@ -9,6 +9,14 @@ form.logout div.user-header button {
     width: 139px;
 }
 
+div.user-header a.button {
+    height: 37px;
+    width: 139px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 div.fields.users  {
     display: grid;
     grid-template-columns: 450px 450px;
