@@ -32,6 +32,6 @@ routes.post('/users/register', UserValidator.post, UserController.post) //Cadast
 routes.get('/users/edit', UserController.edit) //Mostrar a lista de usuários cadastradoslist
 
 //routes.put('/admin/users', UserController.put) // Editar um usuário
-//routes.delete('/admin/users', UserController.delete) // Deletar um usuário
+routes.delete('/users', UserController.delete) // Deletar um usuário
 
 module.exports = routes

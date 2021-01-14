@@ -78,22 +78,22 @@ module.exports = {
 
         await db.query(query)
         return
-    }
-   /*  async delete(id) {
+    },
+    async delete(id) {
         //pegar todos os produtos
-        let results = await db.query("SELECT * FROM products WHERE user_id = $1", [id])
-        const products = results.rows
+        /* let results = await db.query("SELECT * FROM products WHERE user_id = $1", [id])
+        const products = results.rows */
         // pegar todas as imagens dos produtos 
-        const allFilesPromise = products.map(product => 
+        /* const allFilesPromise = products.map(product => 
             Product.files(product.id))
 
-        let promiseResults = await Promise.all(allFilesPromise)
+        let promiseResults = await Promise.all(allFilesPromise) */
        
         // rodar a remoção do usuário
         await db.query('DELETE FROM users WHERE id = $1', [id])
        
         //remover as imagens da pasta public
-        promiseResults.map(results => {
+        /* promiseResults.map(results => {
             results.rows.map(file => { 
                 try {
                     fs.unlinkSync(file.path)
@@ -101,7 +101,7 @@ module.exports = {
                     console.error(err)
                 }
             })
-        })
+        }) */
         
-    } */
+    }
  }
