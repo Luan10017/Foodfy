@@ -8,6 +8,7 @@ const UserController = require('../../app/controllers/admin/UserController')
 const UserValidator = require('../../app/validators/user')
 const SessionValidator = require('../../app/validators/session')
 
+const { isAdmin } = require('../../app/middlewares/session')
 
 
 // login/logout
@@ -32,6 +33,6 @@ routes.post('/users/register', UserValidator.post, UserController.post) //Cadast
 routes.get('/users/edit', UserController.edit) //Mostrar a lista de usuários cadastradoslist
 
 //routes.put('/admin/users', UserController.put) // Editar um usuário
-routes.delete('/users', UserController.delete) // Deletar um usuário
+routes.delete('/users', isAdmin, UserController.delete) // Deletar um usuário
 
 module.exports = routes
