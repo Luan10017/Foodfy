@@ -8,12 +8,7 @@ function onlyUsers(req, res, next) {
 }
 
 async function isAdmin (req, res, next) {
-    const id = req.session.userId
-    const user = await User.findOne({
-        where: {id}
-    })
-    
-    if (!user.is_admin)
+    if (!req.session.userAdmin)
         return res.render("admin/user/users-list", {
             error: "Você precisa ser administrador para realizar essa ação."
         })
