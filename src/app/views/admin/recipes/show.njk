@@ -5,7 +5,9 @@
     <div class="sub_title_info">
         <h1>Receita:
             {{recipe.title}}</h1>
-        <button class="button button-admin-recipe">Editar receita</button>
+            {% if session.userAdmin %}
+                <button class="button button-admin-recipe">Editar receita</button>
+            {% endif %}
     </div>
 
     <section class="details_intro show">
