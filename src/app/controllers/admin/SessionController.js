@@ -13,7 +13,7 @@ module.exports = {
         req.session.userId = req.user.id
         req.session.userAdmin = req.user.is_admin
 
-        return res.redirect("/admin/users")
+        return res.redirect("/admin/profile")
     },
     logout(req, res) {
         req.session.destroy()
