@@ -14,6 +14,8 @@ routes.get('/recipes', recipes.recipes)
 routes.get('/details_recipes/:index', recipes.details)
 routes.get('/chefs', recipes.chefs)
 
+const { onlyUsers } = require('../app/middlewares/session')
+
 
 /*==== ADMIN =====*/
 
@@ -21,10 +23,10 @@ routes.get('/chefs', recipes.chefs)
 routes.use('/admin',userAdmin)
 
 /* RECIPES */
-routes.use('/admin/recipes',recipesAdmin)
+routes.use('/admin/recipes', onlyUsers, recipesAdmin)
 
 /* CHEFS */
-routes.use('/admin/chefs',chefsAdmin)
+routes.use('/admin/chefs', onlyUsers, chefsAdmin)
 
 /* PÁGINA DE ERRO */
 routes.use(function (req, res) {
