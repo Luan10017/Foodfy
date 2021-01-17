@@ -7,7 +7,10 @@ const session = require('./config/session')
 const server = express()
 
 server.use(session)
-
+server.use((req, res, next) => {
+    res.locals.session = req.session
+    next()
+})
 
 /* Configuração de acesso a pastas plúblicas */
 server.use(express.urlencoded({ extended: true }))
