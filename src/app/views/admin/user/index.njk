@@ -1,24 +1,24 @@
 {% extends "admin/layout.njk" %}
 
 {%block contentAdmin%}
-    <div class="user-header">
-        <h1 class="show-title">Bem vindo Luan</h1>
-        <form class="logout" action="/users/logout" method="POST">
-                <button class="button">Salvar</button>
-        </form>
-    </div>
-    <div class="fields users">
-                {% include 'admin/user/fields.njk' %}
-                <div class="item">
-                    <div>Senha</div>
-                    <div class="input">
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Digite sua senha"
-                        >
-                    </div>
-                </div>
+    <form class="logout" action="/admin/profile?_method=PUT" method="POST">
+        <div class="user-header">
+            <h1 class="show-title">Bem vindo {{user.name}}</h1>
+                    <button class="button" type="submit">Salvar</button>
         </div>
+        <div class="fields users">
+            {% include 'admin/user/fields.njk' %}
+            <div class="item">
+                <div>Senha</div>
+                <div class="input">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Digite sua senha"
+                    >
+                </div>
+            </div>
+        </div>
+    </form>
     
 {%endblock%}
