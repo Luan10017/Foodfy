@@ -24,15 +24,15 @@ routes.post('/users/password-reset', SessionValidator.reset, SessionController.r
 
 // Rotas de perfil de um usuário logado
 routes.get('/profile', onlyUsers, ProfileController.index) // Mostrar o formulário com dados do usuário logado
-routes.put('/profile', UserValidator.update, ProfileController.update)// Editar o usuário logado
+routes.put('/profile', onlyUsers, UserValidator.update, ProfileController.update)// Editar o usuário logado
 
 // Rotas que o administrador irá acessar para gerenciar usuários
 routes.get('/users', isAdmin, UserController.list) //Mostrar a lista de usuários cadastrados
 routes.get('/users/register', isAdmin, UserController.registerForm) //Mostrar a lista de usuários cadastrados
 routes.post('/users/register', isAdmin, UserValidator.post, UserController.post) //Cadastrar um usuário
-routes.get('/users/edit', isAdmin, UserController.edit) //Mostrar a lista de usuários cadastradoslist
+routes.get('/users/:index/edit', isAdmin, UserController.edit) //Mostrar a lista de usuários cadastradoslist
 
-//routes.put('/admin/users', UserController.put) // Editar um usuário
+routes.put('/users', UserController.update) // Editar um usuário
 routes.delete('/users', isAdmin, UserController.delete) // Deletar um usuário
 
 module.exports = routes
