@@ -10,11 +10,6 @@ module.exports = {
     },
     registerForm(req, res) {
         return res.render("admin/user/register")
-    },
-    edit(req, res) {
-
-
-        return res.render("admin/user/edit")
     },  
     async post(req, res) {
         try{
@@ -50,6 +45,46 @@ module.exports = {
             })
         }
         
+    },
+    async edit(req, res) {
+        try{
+            const id = req.params.index
+
+            const user = await User.findOne({
+                where: {id}
+            })
+            return res.render("admin/user/edit", { user })
+
+        }catch(err) {
+            console.error(err)
+            return res.render("admin/user/edit", {
+                error: "Erro inesperado, tente novamente"
+            })
+        }
+    },
+    async update(req, res) {
+        try{
+            let { name, email, is_admin, id } = req.body
+            if (is_admin == undefined)
+                is_admin = false
+            
+            await User.update(id, {
+                name,
+                email,
+                is_admin
+            })
+
+            return res.render("admin/user/edit", {
+                user: req.body,
+                success: 'Conta atualizada com sucesso!'
+            })
+        }catch(err) {
+            console.error(err)
+            return res.render('admin/user/edit', {
+                user: req.body,
+                error: 'Algum erro aconteceu!'
+            })
+        }
     },
     async delete(req, res) {
         await User.delete(req.body.id)
