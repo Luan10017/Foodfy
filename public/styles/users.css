@@ -5,6 +5,20 @@ div.user-header {
     margin-bottom: 64px;
 }
 
+
+.edit-user {
+    position: relative;
+}
+
+form.delete button.delete {
+    position: absolute;
+    right: 155px;
+    top: 0;
+    background: #F55A5A;
+    width: 139px;
+}
+
+
 form.logout div.user-header button {
     width: 139px;
 }
@@ -41,11 +55,6 @@ div.fields.users .item-checkbox input{
 form.logout div.user-header button.cancel {
     background: #8A8A8A;
     margin-left: 16px;
-}
-
-form.logout div.user-header button.delete {
-    background: #DC4747;
-    margin-right: 16px;
 }
 
 /* LISTAGEM DE USUÁIOS */
