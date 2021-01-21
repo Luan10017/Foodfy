@@ -7,9 +7,9 @@ function onlyUsers(req, res, next) {
     next()
 }
 
-async function isAdmin (req, res, next) {
+function isAdmin (req, res, next) {
     if (!req.session.userAdmin)
-        return res.render("admin/user/users-list", {
+        return res.render("admin/session/login", {
             error: "Você precisa ser administrador para realizar essa ação."
         })
     next()
