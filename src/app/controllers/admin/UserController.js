@@ -64,14 +64,12 @@ module.exports = {
     },
     async update(req, res) {
         try{
-            let { name, email, is_admin, id } = req.body
-            if (is_admin == undefined)
-                is_admin = false
+            const { name, email, is_admin, id } = req.body
             
             await User.update(id, {
                 name,
                 email,
-                is_admin
+                is_admin: is_admin || false
             })
 
             return res.render("admin/user/edit", {
