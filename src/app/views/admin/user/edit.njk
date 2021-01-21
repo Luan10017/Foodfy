@@ -4,7 +4,7 @@
 <div class="edit-user">
     <form class="delete" action="/admin/users?_method=DELETE" method="post">
         <input type="hidden" name="id" value={{user.id}}>
-        <button class="button delete" type="submit">Deletar</button>
+        <button class="button delete" type="submit" onclick="deleteConfirmation.user(event)">Deletar</button>
     </form>
     <form class="logout" action="/admin/users?_method=PUT" method="POST">
         <div class="user-header">
