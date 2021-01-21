@@ -175,3 +175,13 @@ const ImageGallery = {
         ImageGallery.highlight.src = target.src
     }
 }
+
+
+const deleteConfirmation = {
+    user(event) {
+        const confirmation = confirm("Deseja Deletar esse Usuário?")
+        if (!confirmation) {
+            event.preventDefault()
+        } 
+    }
+}
