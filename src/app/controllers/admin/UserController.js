@@ -85,6 +85,12 @@ module.exports = {
         }
     },
     async delete(req, res) {
+        if(req.session.userAdmin == true && req.session.userId == req.body.id) {
+            return res.render("admin/session/login", {
+                error: "Você não pode deletar sua própria conta."
+            })
+        }
+        
         await User.delete(req.body.id)
 
         return res.redirect('/admin/users')
