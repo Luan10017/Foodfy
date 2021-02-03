@@ -6,10 +6,15 @@ const fileManager = require('../fileController')
 
 module.exports = {
     async index(req, res) {
-        const user_id = req.session.userId
-        const results = await Recipes.findRecipesByUser(user_id)
-        const recipes = results.rows
+        const { userId, userAdmin } = req.session
+       
+        const results = await Recipes.all()
+        let recipes = results.rows
         
+        if (!userAdmin) {
+            recipes = recipes.filter(recipe => recipe.user_id == userId ? recipe.user_id: null)
+        }
+
         const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
         const recipesId = await Promise.all(recipesIdPromise)        
         
