@@ -79,6 +79,8 @@ module.exports = {
         if (req.files.length == 0)
             return res.send('Please, send at least one image.')
 
+        req.body.user_id = req.session.userId //Colocando id do user logano no req.body
+    
         let results = await Recipes.create(req.body)
         const recipeId = results.rows[0].id
 

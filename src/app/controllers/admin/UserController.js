@@ -108,11 +108,13 @@ module.exports = {
             await Promise.all(removedRecipe_filesPromise)
 
             
-            const removedFilesPromise = filesId.map(id => File.delete(id))
+            const removedFilesPromise = filesId.map(id =>{
+                id.map( id => File.delete(id))
+            } )
             await Promise.all(removedFilesPromise)
-    
+
             recipes.forEach(recipe => {
-                Recipes.delete(recipe.id)
+                Recipes.delete(recipe.id, function(){})
             }); 
     
             await User.delete(req.body.id)

@@ -5,7 +5,7 @@
     <div class="sub_title_info">
         <h1>Receita:
             {{recipe.title}}</h1>
-            {% if session.userId == recipe.user_id %}
+            {% if session.userId == recipe.user_id or session.userAdmin == true %}
                 <button class="button button-admin-recipe">Editar receita</button>
             {% endif %}
     </div>
