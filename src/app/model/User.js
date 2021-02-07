@@ -79,11 +79,14 @@ module.exports = {
         await db.query(query)
         return
     },
+    async getRecipesByUser (id) {
+        //pegar todas as receitas
+        const results = await db.query("SELECT id FROM recipes WHERE user_id = $1", [id])
+        return results.rows
+    },
     async delete(id) {
-        //pegar todos os produtos
-        /* let results = await db.query("SELECT * FROM products WHERE user_id = $1", [id])
-        const products = results.rows */
-        // pegar todas as imagens dos produtos 
+        
+        // pegar todas as imagens das receitas
         /* const allFilesPromise = products.map(product => 
             Product.files(product.id))
 

@@ -2,6 +2,10 @@ const User = require("../../model/User")
 const mailer = require('../../../lib/mailer')
 const crypto = require('crypto')
 
+const Recipes = require("../../model/recipes")
+const File = require('../../model/File')
+const fileManager = require('../fileController')
+
 module.exports = {
     async list(req, res) {
         const results = await User.getAllUsers()
@@ -85,14 +89,38 @@ module.exports = {
         }
     },
     async delete(req, res) {
-        if(req.session.userAdmin == true && req.session.userId == req.body.id) {
-            return res.render("admin/session/login", {
-                error: "Você não pode deletar sua própria conta."
+        try {
+            if(req.session.userAdmin == true && req.session.userId == req.body.id) {
+                return res.render("admin/session/login", {
+                    error: "Você não pode deletar sua própria conta."
+                })
+            }
+            
+            const recipes = await User.getRecipesByUser(req.body.id)
+            //Exclusão de receitas / cópia do controler recipes
+            const promiseId = recipes.map(recipe => fileManager.getRecipeFileId(recipe.id))
+            const filesId =  await Promise.all(promiseId)
+    
+            console.log(filesId[0][0])
+    
+            const removedRecipe_filesPromise = filesId.map(id => {
+                id.map( id => File.deleteRecipeFile(id))
             })
-        }
-        
-        await User.delete(req.body.id)
+            await Promise.all(removedRecipe_filesPromise)
 
-        return res.redirect('/admin/users')
+            
+            const removedFilesPromise = filesId.map(id => File.delete(id))
+            await Promise.all(removedFilesPromise)
+    
+            recipes.forEach(recipe => {
+                Recipes.delete(recipe.id)
+            }); 
+    
+            await User.delete(req.body.id)
+    
+            return res.redirect('/admin/users')
+        } catch (error) {
+            console.error(error)
+        }
     }
 }
