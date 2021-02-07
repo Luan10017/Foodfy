@@ -101,19 +101,19 @@ module.exports = {
             const promiseId = recipes.map(recipe => fileManager.getRecipeFileId(recipe.id))
             const filesId =  await Promise.all(promiseId)
     
-            console.log(filesId[0][0])
-    
             const removedRecipe_filesPromise = filesId.map(id => {
                 id.map( id => File.deleteRecipeFile(id))
             })
             await Promise.all(removedRecipe_filesPromise)
 
             
-            const removedFilesPromise = filesId.map(id => File.delete(id))
+            const removedFilesPromise = filesId.map(id =>{
+                id.map( id => File.delete(id))
+            } )
             await Promise.all(removedFilesPromise)
-    
+
             recipes.forEach(recipe => {
-                Recipes.delete(recipe.id)
+                Recipes.delete(recipe.id, function(){})
             }); 
     
             await User.delete(req.body.id)
