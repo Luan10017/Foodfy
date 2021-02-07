@@ -100,9 +100,8 @@ module.exports = {
             //Exclusão de receitas / cópia do controler recipes
             const promiseId = recipes.map(recipe => fileManager.getRecipeFileId(recipe.id))
             const filesId =  await Promise.all(promiseId)
-    
-            console.log(filesId[0][0])
-    
+            
+            
             const removedRecipe_filesPromise = filesId.map(id => {
                 id.map( id => File.deleteRecipeFile(id))
             })
