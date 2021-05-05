@@ -8,14 +8,15 @@ module.exports = {
         const { filter } = req.query   
         let recipes,
             results
-
+        console.log(filter)
         if (filter) {
             results = await Recipes.findBy(filter)
             recipes = results.rows
         } else {
-            results = await Recipes.all()
-            recipes = results.rows
+            recipes = await Recipes.findAll()
+            //recipes = results.rows
         }
+        //console.log(recipes)
         const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
         const recipesId = await Promise.all(recipesIdPromise)        
         
@@ -64,8 +65,7 @@ module.exports = {
     },
     
     async details (req, res) {
-        let results = await Recipes.find(req.params.index)
-        const recipe = results.rows[0]
+        const recipe = await Recipes.find(req.params.index)
       
         if (!recipe) {
             return res.render('not-found')

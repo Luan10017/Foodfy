@@ -1,8 +1,11 @@
 const db = require("../../config/db")
 const { date } = require('../../lib/utils')
 
+const Base = require('./Base')
+Base.init({ table: 'recipes' })
 
 module.exports = {
+    ...Base,
     all() {
         return db.query(`
         SELECT recipes.*, chefs.name AS chef_name 
@@ -70,12 +73,12 @@ module.exports = {
             callback()
         })
     },
-    find(id) {
+    /* find(id) {
         return db.query (`SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes
             LEFT JOIN chefs ON (chefs.id = recipes.chef_id) 
             WHERE recipes.id = $1`, [id])
-    },
+    }, */
     delete(id, callback) {
         db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error! ${err}`

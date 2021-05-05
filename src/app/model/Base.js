@@ -6,14 +6,15 @@ function find(filters, table) {
     if(filters) {
         Object.keys(filters).map(key => {
             //WHERE | OR | AND
-            query += `${key}`
+            query += ` ${key}`
     
             Object.keys(filters[key]).map(field => {
-                 query += `${field} = '${filters[key][field]}'`
+                 query += ` ${field} = '${filters[key][field]}'`
             })
         })
     }
-
+    console.log('query')
+        console.log(query)
     return db.query(query)
 }
 
@@ -37,7 +38,7 @@ const Base = {
         const results = await find(filters, this.table)
         return results.rows
     },
-    async create(fields) {  //User.create({name: 'Luan'})
+  /*   async create(fields) {  //User.create({name: 'Luan'})
         try {
             let keys = [],
             values = []
@@ -57,7 +58,7 @@ const Base = {
         } catch (error) {
             console.error(error);
         }
-    },
+    }, */
     update(id, fields) {
         try {
             let update = []
