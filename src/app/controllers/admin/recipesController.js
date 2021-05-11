@@ -31,7 +31,7 @@ module.exports = {
     },
     async show(req, res) {
         let results = await Recipes.find(req.params.index)
-        const recipe = results.rows[0]
+        const recipe = results
 
         if(!recipe) return res.send("Recipe not found!")
         
@@ -57,7 +57,7 @@ module.exports = {
     },
     async edit(req, res) {
         let results = await Recipes.find(req.params.index)
-        const recipe = results.rows[0]
+        const recipe = results
 
         if(!recipe) return res.send("Recipe not found!")
         
