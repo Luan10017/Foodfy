@@ -9,10 +9,11 @@ function find(filters, table) {
             query += ` ${key}`
     
             Object.keys(filters[key]).map(field => {
-                 query += ` ${field} = '${filters[key][field]}'`
+                 query += ` ${field} = ${filters[key][field]}`
             })
         })
     }
+
     return db.query(query)
 }
 

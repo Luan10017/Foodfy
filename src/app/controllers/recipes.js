@@ -8,15 +8,13 @@ module.exports = {
         const { filter } = req.query   
         let recipes,
             results
-        console.log(filter)
         if (filter) {
             results = await Recipes.findBy(filter)
             recipes = results.rows
         } else {
-            recipes = await Recipes.findAll()
-            //recipes = results.rows
+            recipes = await Recipes.all()
+            recipes = await Promise.all(recipes.rows)  
         }
-        //console.log(recipes)
         const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
         const recipesId = await Promise.all(recipesIdPromise)        
         
