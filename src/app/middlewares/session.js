@@ -1,5 +1,3 @@
-const User = require("../model/User")
-
 function onlyUsers(req, res, next) {
     if (!req.session.userId)
         return res.redirect('/admin/login')
@@ -15,15 +13,7 @@ function isAdmin (req, res, next) {
     next()
 }
 
-/* function isLoggedRedirectToUsers(req, res, next) {
-    if (req.session.userId)
-        return res.redirect('/users')
-    
-    next()
-} */
-
 module.exports = {
     onlyUsers,
     isAdmin
-   //isLoggedRedirectToUsers
 }
