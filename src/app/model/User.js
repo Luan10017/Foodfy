@@ -2,7 +2,11 @@ const db = require('../../config/db')
 const { hash } = require('bcryptjs')
 const fs = require('fs')
 
+const Base = require('./Base')
+Base.init({ table: 'users' })
+
 module.exports = {
+    ...Base,
     getAllUsers() {
         return db.query(`SELECT * FROM users`)
     },
@@ -58,7 +62,7 @@ module.exports = {
         }
         
     },
-    async update(id, fields) {
+   /*  async update(id, fields) {
         let query = "UPDATE users SET"
 
         Object.keys(fields).map((key, index, array) => {
@@ -78,7 +82,7 @@ module.exports = {
 
         await db.query(query)
         return
-    },
+    }, */
     async getRecipesByUser (id) {
         //pegar todas as receitas
         const results = await db.query("SELECT id FROM recipes WHERE user_id = $1", [id])
