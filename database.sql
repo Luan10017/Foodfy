@@ -38,3 +38,26 @@ PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 /* Adicionando user_id as recipes junto com relacionamento */
 ALTER TABLE "recipes" ADD COLUMN "user_id" int; 
 ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "recipes"
+DROP CONSTRAINT recipes_user_id_fkey,
+ADD CONSTRAINT recipes_user_id_fkey
+FOREIGN KEY ("user_id")
+REFERENCES "users" ("id")
+ON DELETE CASCADE; 
+
+
+ALTER TABLE "recipe_files"
+DROP CONSTRAINT recipe_files_recipe_id_fkey,
+ADD CONSTRAINT recipe_files_recipe_id_fkey
+FOREIGN KEY ("recipe_id")
+REFERENCES "recipes" ("id")
+ON DELETE CASCADE; 
+
+
+ALTER TABLE "recipe_files"
+DROP CONSTRAINT recipe_files_file_id_fkey,
+ADD CONSTRAINT recipe_files_file_id_fkey
+FOREIGN KEY ("file_id")
+REFERENCES "files" ("id")
+ON DELETE CASCADE; 
