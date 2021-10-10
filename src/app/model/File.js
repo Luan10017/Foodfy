@@ -2,6 +2,10 @@ const db = require('../../config/db')
 const fs = require('fs')
 
 module.exports = {
+    async findFileById(id) {
+        const result = await db.query(`SELECT * FROM files WHERE id = ${id}`)
+        return result.rows[0]
+    },
     create({filename, path}) {
         const query = `
             INSERT INTO files (
