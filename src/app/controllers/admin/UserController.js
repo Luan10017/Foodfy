@@ -1,10 +1,12 @@
 const User = require("../../model/User")
 const mailer = require('../../../lib/mailer')
 const crypto = require('crypto')
+const { hash } = require('bcryptjs')
 
 const Recipes = require("../../model/recipes")
 const File = require('../../model/File')
 const fileManager = require('../fileController')
+const { fs } = require("fs")
 
 module.exports = {
     async list(req, res) {
@@ -18,9 +20,22 @@ module.exports = {
     async post(req, res) {
         try{
             const randomPassword = Math.floor(Math.random() * 10000) + ""
-            const token = crypto.randomBytes(20).toString("hex")
+            const password = await hash(randomPassword, 8 )
+            const reset_token = crypto.randomBytes(20).toString("hex")
 
-            const userId = await User.create(req.body, randomPassword, token)
+            let now = new Date()
+            now = now.setHours(now.getHours() + 1)
+
+            let { name, email, is_admin } = req.body
+            is_admin = is_admin || false
+
+            const userId = await User.create({
+                name,
+                email,
+                password,
+                reset_token,
+                is_admin
+            })
             req.session.userId = userId
 
 
@@ -31,13 +46,12 @@ module.exports = {
                 html: `<h2>Parabéns sua conta foodfy foi criada com sucesso.</h2>
                 <p>Sua senha temporaria é ${randomPassword}</p>
                 <p>
-                    <a href="http://localhost:3000/admin/users/password-reset?token=${token}" target="blank">
+                    <a href="http://localhost:3000/admin/users/password-reset?token=${reset_token}" target="blank">
                         CRIAR NOVA SENHA
                     </a>
                 </p>
                 `
             })
-            //success não funciona com redirect?
             return res.render('admin/user/users-list', {
                 success: "Cadastro realizado com sucesso!"
             })
@@ -90,7 +104,9 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            if(req.session.userAdmin == true && req.session.userId == req.body.id) {
+            const isOwner = req.session.userAdmin == true && req.session.userId == req.body.id
+
+            if(isOwner) {
                 return res.render("admin/session/login", {
                     error: "Você não pode deletar sua própria conta."
                 })
@@ -100,24 +116,52 @@ module.exports = {
             //Exclusão de receitas / cópia do controler recipes
             const promiseId = recipes.map(recipe => fileManager.getRecipeFileId(recipe.id))
             const filesId =  await Promise.all(promiseId)
+
+            let ids = filesId.reduce(
+                ( acumulator, currentValue ) => acumulator.concat(currentValue),
+                []
+            )
+
+            let files = ids.map(id => File.findFileById(id))
+            files = await Promise.all(files)
+
+            files.forEach(({path}) => {
+                try {
+                    fs.unlinkSync(path)
+                } catch (error) {
+                    console.error(error)
+                }
+            })
+            //remover as imagens da pasta public
+            /* files.map(file => {
+                file.rows.map(({path}) => { 
+                    try {
+                        fs.unlinkSync(path)
+                    }catch(err) {
+                        console.error(err)
+                    }
+                })
+            }) */
             
-            
-            const removedRecipe_filesPromise = filesId.map(id => {
+            /* Essa parte é inútil - o delete cascade resolveria */
+           /*  const removedRecipe_filesPromise = filesId.map(id => {
                 id.map( id => File.deleteRecipeFile(id))
             })
             await Promise.all(removedRecipe_filesPromise)
-
             
             const removedFilesPromise = filesId.map(id =>{
                 id.map( id => File.delete(id))
             } )
-            await Promise.all(removedFilesPromise)
+            await Promise.all(removedFilesPromise) */
+            /* ================= */
 
-            recipes.forEach(recipe => {
+
+            // Com constrate também se faz inútil 
+            /* recipes.forEach(recipe => {
                 Recipes.delete(recipe.id, function(){})
-            }); 
+            });  */
     
-            await User.delete(req.body.id)
+            // await User.delete(req.body.id)
     
             return res.redirect('/admin/users')
         } catch (error) {
