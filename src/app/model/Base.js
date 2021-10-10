@@ -37,27 +37,27 @@ const Base = {
         const results = await find(filters, this.table)
         return results.rows
     },
-  /*   async create(fields) {  //User.create({name: 'Luan'})
+    async create(fields) { 
         try {
             let keys = [],
-            values = []
+                values = []
 
             Object.keys(fields).map( key => {
                 keys.push(key)
                 values.push(`'${fields[key]}'`)
-
-                const query = `INSERT INTO ${this.table} (${keys.join(',')})
-                    VALUES (${values.join(',')})
-                    RETURNING id
-                `
-
-                const results = await db.query(query)
-                return results.rows[0].id
             })
+            
+            const query = `INSERT INTO ${this.table} (${keys.join(',')})
+                VALUES (${values.join(',')})
+                RETURNING id
+            `
+
+            const results = await db.query(query)
+            return results.rows[0].id
         } catch (error) {
             console.error(error);
         }
-    }, */
+    },
     update(id, fields) {
         try {
             let update = []
