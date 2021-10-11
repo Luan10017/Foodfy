@@ -6,7 +6,8 @@ const { hash } = require('bcryptjs')
 const Recipes = require("../../model/recipes")
 const File = require('../../model/File')
 const fileManager = require('../fileController')
-const { fs } = require("fs")
+// const { fs } = require("fs")
+const {unlinkSync} = require('fs')
 
 module.exports = {
     async list(req, res) {
@@ -125,43 +126,17 @@ module.exports = {
             let files = ids.map(id => File.findFileById(id))
             files = await Promise.all(files)
 
+           
             files.forEach(({path}) => {
                 try {
-                    fs.unlinkSync(path)
+                    unlinkSync(path)
                 } catch (error) {
                     console.error(error)
                 }
             })
-            //remover as imagens da pasta public
-            /* files.map(file => {
-                file.rows.map(({path}) => { 
-                    try {
-                        fs.unlinkSync(path)
-                    }catch(err) {
-                        console.error(err)
-                    }
-                })
-            }) */
             
-            /* Essa parte é inútil - o delete cascade resolveria */
-           /*  const removedRecipe_filesPromise = filesId.map(id => {
-                id.map( id => File.deleteRecipeFile(id))
-            })
-            await Promise.all(removedRecipe_filesPromise)
-            
-            const removedFilesPromise = filesId.map(id =>{
-                id.map( id => File.delete(id))
-            } )
-            await Promise.all(removedFilesPromise) */
-            /* ================= */
-
-
-            // Com constrate também se faz inútil 
-            /* recipes.forEach(recipe => {
-                Recipes.delete(recipe.id, function(){})
-            });  */
     
-            // await User.delete(req.body.id)
+            await User.delete(req.body.id)
     
             return res.redirect('/admin/users')
         } catch (error) {
