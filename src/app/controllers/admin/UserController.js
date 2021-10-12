@@ -122,7 +122,7 @@ module.exports = {
             )
             
             //Pegas os files da tabela files
-            let files = ids.map(id => File.findFileById(id))
+            let files = ids.map(id => File.findOne({  where: {id} }))
             files = await Promise.all(files)
 
            
