@@ -13,8 +13,7 @@ const {unlinkSync} = require('fs')
 
 module.exports = {
     async list(req, res) {
-        const results = await User.getAllUsers()
-        const users = results.rows
+        const users = await User.findAll()
         return res.render("admin/user/users-list", {users})
     },
     registerForm(req, res) {
