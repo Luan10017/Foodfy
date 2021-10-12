@@ -1,9 +1,11 @@
 const User = require("../../model/User")
 const mailer = require('../../../lib/mailer')
 const crypto = require('crypto')
+const {unlinkSync} = require('fs')
 const { hash } = require('bcryptjs')
 
-const Recipes = require("../../model/recipes")
+const mailer = require('../../../lib/mailer')
+const User = require("../../model/User")
 const File = require('../../model/File')
 const fileManager = require('../fileController')
 // const { fs } = require("fs")
@@ -114,15 +116,17 @@ module.exports = {
             }
             
             const recipes = await User.getRecipesByUser(req.body.id)
-            //Exclusão de receitas / cópia do controler recipes
+            //Pega os ids dos files das receitas do usuário na tabela recipe_files
             const promiseId = recipes.map(recipe => fileManager.getRecipeFileId(recipe.id))
             const filesId =  await Promise.all(promiseId)
 
+            //Transforma array de arrays em um único array  [[],[][],[]] => [...]
             let ids = filesId.reduce(
                 ( acumulator, currentValue ) => acumulator.concat(currentValue),
                 []
             )
-
+            
+            //Pegas os files da tabela files
             let files = ids.map(id => File.findFileById(id))
             files = await Promise.all(files)
 
