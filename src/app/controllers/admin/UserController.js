@@ -35,6 +35,7 @@ module.exports = {
                 is_admin
             })
             req.session.userId = userId
+            req.session.userAdmin = is_admin
 
 
             await mailer.sendMail({
