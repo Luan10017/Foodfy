@@ -51,7 +51,7 @@ module.exports = {
                 </p>
                 `
             })
-            return res.render('admin/user/users-list', {
+            return res.render('admin/user/register', {
                 success: "Cadastro realizado com sucesso!"
             })
 
