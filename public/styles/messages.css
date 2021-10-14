@@ -12,12 +12,12 @@
    position: absolute;
    width: 344px;
    height: 135px;
-   /* border: 1px solid #DDDDDD; */
    border-radius: 4px;
    color: #FFFFFF;
    align-items: center;
    top: 12px;
    right: 18px;
+   z-index: 10;
    opacity: 1;
    animation: hidemessage 400ms 5s ease-out forwards;
 }
