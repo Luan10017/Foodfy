@@ -2,6 +2,7 @@ const Chef = require("../../model/chef")
 const Recipes = require("../../model/recipes")
 const File = require('../../model/File')
 const fileManager = require('../fileController')
+const { date } = require('../../../lib/utils')
 
 
 module.exports = {
@@ -12,11 +13,6 @@ module.exports = {
         const chefsIdPromise = chefs.map(chef => chef = chef.id)
         const chefsId = await Promise.all(chefsIdPromise)    
 
-        //Isso aqui tá funcionando, mas manda cada id dentro de um [] array [[],[],[]]
-        /* const filesIDPromise = chefsId.map(id => fileManager.getChefFileId(id)) 
-        const filesId = await Promise.all(filesIDPromise)
-        console.log(filesId) */
-       
         const filesId = await fileManager.getFileAllChefsIds(chefsId)
         const files = await fileManager.getChefImage(filesId,req)
 
@@ -55,8 +51,12 @@ module.exports = {
             if (req.body[key].name == "")
                 return res.send('Please, fill all fields.')
         }
-        let results = await Chef.create(req.body)
-        const chefId = results.rows[0].id
+
+        const { name } = req.body
+        const chefId = await Chef.create({
+            name,
+            created_at: date(Date.now()).iso
+        })
 
         const filePromise = req.files.map(file => File.create({...file}))
         const fileResults = await Promise.all(filePromise)
