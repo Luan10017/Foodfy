@@ -1,8 +1,10 @@
 const db = require("../../config/db")
 const { date } = require('../../lib/utils')
+const Base = require('./Base')
 
-
+Base.init({table: 'chefs'})
 module.exports = {
+    ...Base,
     chefs() {
         return db.query(`
         SELECT chefs.*, count(recipes) AS total_recipes
@@ -35,27 +37,6 @@ module.exports = {
                 if(err) throw `Database Error! ${err}`
                 callback(results.rows[0])
         })
-    }, 
-    create(data) {
-        const query = `
-        INSERT INTO chefs (
-            name,
-            avatar_url,
-            created_at
-        ) VALUES ($1, $2, $3)
-        RETURNING id
-        `
-        const values = [
-            data.name,
-            data.avatar_url,
-            date(Date.now()).iso
-        ]
-        
-        try {
-            return db.query(query, values)
-        } catch (err) {
-            throw new Error(err)
-        }
     },
     update(data, callback) {
         const query = `
