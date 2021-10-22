@@ -35,7 +35,7 @@ module.exports = {
             `
             const values = [
                 data.title,
-                data.chef,
+                data.chef_id,
                 data.ingredients,
                 data.preparation,
                 data.information,
