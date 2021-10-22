@@ -1,3 +1,22 @@
+CREATE TABLE "recipes" (
+  "id" SERIAL PRIMARY KEY,
+  "chef_id" int,
+  "title" text,
+  "ingredients" text[],
+  "preparation" text[],
+  "information" text,
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now()),
+  "user_id" int
+);
+
+CREATE TABLE "chefs" (
+  "id" SERIAL PRIMARY KEY,
+  "name" text,
+  "created_at" timestamp,
+  "file_id" int
+);
+
 CREATE TABLE "files" (
   "id" SERIAL PRIMARY KEY,
   "name" text,
@@ -10,19 +29,27 @@ CREATE TABLE "recipe_files" (
   "file_id" int
 );
 
-ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
-
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "name" text NOT NULL,
   "email" text UNIQUE NOT NULL,
   "password" text NOT NULL,
-  "reset_token" TEXT,
-  "reset_token_expires" TEXT,
-  "is_admin" BOOLEAN DEFAULT false,
+  "reset_token" text,
+  "reset_token_expires" text,
+  "is_admin" boolean DEFAULT false,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
 );
+
+ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("id");
+
+ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
+
+ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
+
+ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id") ON DELETE CASCADE;
 
 --connect pg simple table
 CREATE TABLE "session" (
@@ -35,10 +62,8 @@ ALTER TABLE "session"
 ADD CONSTRAINT "session_pkey" 
 PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 
-/* Adicionando user_id as recipes junto com relacionamento */
-ALTER TABLE "recipes" ADD COLUMN "user_id" int; 
-ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
+/* Constrants */
 ALTER TABLE "recipes"
 DROP CONSTRAINT recipes_user_id_fkey,
 ADD CONSTRAINT recipes_user_id_fkey
