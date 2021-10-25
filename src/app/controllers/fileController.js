@@ -20,10 +20,7 @@ module.exports = {
 
         let files = fileResults.map(data => data.rows[0])
 
-        files = files.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
-        }))
+        files = srcTransformer(files,req)
         return files
     },
     async getChefFileId (id) {
@@ -38,16 +35,27 @@ module.exports = {
       
         return ids
     },
-    async getChefImage (filesId, req) {
+    async getChefsImage (filesId, req) {
         const filesPromise = filesId.map(fileId => Chef.files(fileId))
         const fileResults = await Promise.all(filesPromise)
 
         let files = fileResults.map(data => data.rows[0])
 
-        files = files.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
-        }))
+        files = srcTransformer(files,req)
         return files
     },
+    async getChefImage (fileId, req) {
+        let file = await Chef.files(fileId)
+        file = file.rows[0]
+
+        file = srcTransformer([file],req)
+        return file
+    }
+}
+
+function srcTransformer (files, req) {
+    return files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+    }))
 }

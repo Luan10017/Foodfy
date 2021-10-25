@@ -8,13 +8,12 @@ module.exports = {
         const { filter } = req.query   
         let recipes,
             results
-
         if (filter) {
             results = await Recipes.findBy(filter)
             recipes = results.rows
         } else {
-            results = await Recipes.all()
-            recipes = results.rows
+            recipes = await Recipes.all()
+            recipes = await Promise.all(recipes.rows)  
         }
         const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
         const recipesId = await Promise.all(recipesIdPromise)        
@@ -54,18 +53,15 @@ module.exports = {
         let results = await Chef.chefs()
         const chefs = results.rows
 
-        const chefsIdPromise = chefs.map(chef => chef = chef.id)
-        const chefsId = await Promise.all(chefsIdPromise)    
+        const chefsId = chefs.map(chef => chef.file_id)
 
-        const filesId = await fileManager.getFileAllChefsIds(chefsId)
-        const files = await fileManager.getChefImage(filesId,req)
+        const files = await fileManager.getChefsImage(chefsId,req)
 
         return res.render('site/chefs', {chefs, files})
     },
     
     async details (req, res) {
-        let results = await Recipes.find(req.params.index)
-        const recipe = results.rows[0]
+        const recipe = await Recipes.find(req.params.index)
       
         if (!recipe) {
             return res.render('not-found')

@@ -1,7 +1,15 @@
-const db = require('../../config/db')
 const fs = require('fs')
+const db = require('../../config/db')
+
+const Base = require('./Base')
+Base.init({ table: 'files' })
 
 module.exports = {
+    ...Base,
+    /* async findFileById(id) {
+        const result = await db.query(`SELECT * FROM files WHERE id = ${id}`)
+        return result.rows[0]
+    }, */
     create({filename, path}) {
         const query = `
             INSERT INTO files (
