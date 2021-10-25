@@ -7,14 +7,12 @@ const { date } = require('../../../lib/utils')
 
 module.exports = {
     async chefs(req, res) {
-        let results = await Chef.chefs()
+        const results = await Chef.chefs()
         const chefs = results.rows
 
-        const chefsIdPromise = chefs.map(chef => chef = chef.id)
-        const chefsId = await Promise.all(chefsIdPromise)    
+        const chefsId = chefs.map(chef => chef.file_id)
 
-        const filesId = await fileManager.getFileAllChefsIds(chefsId)
-        const files = await fileManager.getChefImage(filesId,req)
+        const files = await fileManager.getChefsImage(chefsId,req)
 
         return res.render('admin/chefs/index', {chefs, files})
     },
@@ -30,13 +28,11 @@ module.exports = {
         if (!recipes) return res.send("Recipe not found!")
 
 
-        let filesId = await fileManager.getChefFileId(chef.id)
-        const filesChef = await fileManager.getChefImage(filesId,req)
+        const filesChef = await fileManager.getChefImage(chef.file_id,req)
 
-        const recipesIdPromise = recipes.map(recipe => recipe = recipe.id)
-        const recipesId = await Promise.all(recipesIdPromise)        
+        const recipesId = recipes.map(recipe => recipe = recipe.id)
         
-        filesId = await fileManager.getFileAllIds(recipesId)
+        const filesId = await fileManager.getFileAllIds(recipesId)
         const files = await fileManager.getImage(filesId,req)
 
         return res.render('admin/chefs/details', {chef, recipes, files, filesChef})
@@ -45,30 +41,30 @@ module.exports = {
         return res.render('admin/chefs/create')
     },
     async post(req, res) {
-        /* Validação de dados do formulario */
-        const keys = Object.keys(req.body)
-        for (key of keys) {
-            if (req.body[key].name == "")
-                return res.send('Please, fill all fields.')
-        }
-
-        const { name } = req.body
-        const chefId = await Chef.create({
-            name,
-            created_at: date(Date.now()).iso
-        })
-
-        const filePromise = req.files.map(file => File.create({...file}))
-        const fileResults = await Promise.all(filePromise)
-
-        const chefFilesPromises = fileResults.map(file => {
-            const fileId = file.rows[0].id
-            File.createChefFiles(fileId, chefId)
-        })
-
-        await Promise.all(chefFilesPromises)
+        try {
+            /* Validação de dados do formulario */
+            const keys = Object.keys(req.body)
+            for (key of keys) {
+                if (req.body[key].name == "")
+                    return res.send('Please, fill all fields.')
+            }
         
-        return res.redirect(`/admin/chefs/${chefId}`)
+            /* problema para carregar parametros */
+            const file = req.files[0]
+            const result = await File.create({...file})
+            const file_id = result.rows[0].id
+
+            const { name } = req.body
+            const chefId = await Chef.create({
+                name,
+                created_at: date(Date.now()).iso,
+                file_id
+            })
+
+            return res.redirect(`/admin/chefs/${chefId}`)
+        } catch (error) {
+            console.log(error)
+        }
     },
     async edit(req, res) {
         let results = await Chef.find(req.params.index)
@@ -76,43 +72,41 @@ module.exports = {
         
         if (!chef) return res.send("Chef not found!")
 
-        const filesId = await fileManager.getChefFileId(chef.id)
-        const files = await fileManager.getChefImage(filesId,req)
+        const files = await fileManager.getChefImage(chef.file_id,req)
 
         return res.render('admin/chefs/edit', { chef, files })
     },
     async put(req, res) {
-        const keys = Object.keys(req.body)
-        for (key of keys) {
-            if (req.body[key] == "" && key != "removed_files")
-                return res.send('Please, fill all fields.')
+        try {
+            const keys = Object.keys(req.body)
+            for (key of keys) {
+                if (req.body[key] == "" && key != "removed_files")
+                    return res.send('Please, fill all fields.')
+            }
+
+            let file_id
+            if ( req.files.length != 0 ) {
+                const file = req.files[0]
+                file_id = await File.create({...file})
+                file_id = file_id.rows[0].id
+            }
+
+            const {id, name } = req.body
+            await Chef.update(id, {name, file_id})
+           
+
+            if ( req.body.removed_files ) {
+                let removedFile = req.body.removed_files
+                removedFile = removedFile.replace(",","")
+                
+                await File.delete(removedFile)
+            }
+
+            return res.redirect(`/admin/chefs/${id}`)
+        } catch (error) {
+            console.log(error)
         }
-
-
-        if (req.files.length !=0) {
-            const filesPromise = req.files.map(file => File.create({...file}))
-            const fileResults = await Promise.all(filesPromise)
         
-            const chefFilesPromises = fileResults.map(file => {
-            const fileId = file.rows[0].id
-
-            File.createChefFiles(fileId, req.body.id)
-            })
-
-            await Promise.all(chefFilesPromises)
-        }
-
-        if (req.body.removed_files) {
-            let removedFile = req.body.removed_files
-            removedFile = removedFile.replace(",","")
-            
-            await File.deleteChefFile(removedFile)
-            await File.delete(removedFile)
-        }
-
-        Chef.update(req.body, function() {
-            return res.redirect(`/admin/chefs/${req.body.id}`)
-        })
     },
     delete(req, res) {
         Chef.delete(req.body.id, function() {
