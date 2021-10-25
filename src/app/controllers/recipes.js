@@ -53,11 +53,9 @@ module.exports = {
         let results = await Chef.chefs()
         const chefs = results.rows
 
-        const chefsIdPromise = chefs.map(chef => chef = chef.id)
-        const chefsId = await Promise.all(chefsIdPromise)    
+        const chefsId = chefs.map(chef => chef.file_id)
 
-        const filesId = await fileManager.getFileAllChefsIds(chefsId)
-        const files = await fileManager.getChefImage(filesId,req)
+        const files = await fileManager.getChefsImage(chefsId,req)
 
         return res.render('site/chefs', {chefs, files})
     },
