@@ -38,27 +38,9 @@ module.exports = {
                 callback(results.rows[0])
         })
     },
-    update(data, callback) {
-        const query = `
-        UPDATE chefs SET
-            name=($1)
-        WHERE id = $2
-        `
-        const values = [
-            data.name,
-            data.id
-        ]
-
-        db.query(query, values, function(err, results) {
-            if(err) throw `Database Error! ${err}`
-
-            callback()
-        })
-    }, 
     delete(id, callback) {
         db.query(`DELETE FROM chefs WHERE id = $1`, [id],function(err, results) {
             if(err) throw `Database Error! ${err}`
-
             return callback()
         })
     },
