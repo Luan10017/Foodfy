@@ -61,7 +61,8 @@ module.exports = {
     },
     
     async details (req, res) {
-        const recipe = await Recipes.find(req.params.index)
+        const result = await Recipes.find(req.params.index)
+        const recipe = result.rows[0]
       
         if (!recipe) {
             return res.render('not-found')

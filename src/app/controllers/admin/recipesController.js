@@ -24,16 +24,13 @@ module.exports = {
         return res.render('admin/recipes/index', { recipes, files })
     },
     async show(req, res) {
-        let results = await Recipes.find(req.params.index)
-        const recipe = results
+        let result = await Recipes.find(req.params.index)
+        const recipe = result.rows[0]
 
         if(!recipe) return res.send("Recipe not found!")
         
-        results = await Chef.find(recipe.chef_id)
-        const chef = results.rows[0]
-
         //get fileId
-        results = await Recipes.filesId(recipe.id) //Retorna tudo e vou acessando rows[0], rows[1] ...
+        results = await Recipes.filesId(recipe.id) 
         const filesId = results.rows.map(id => id.file_id)
 
         //get images
@@ -47,7 +44,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         }))
     
-        return res.render('admin/recipes/show', { recipe, chef, files }) 
+        return res.render('admin/recipes/show', { recipe, files }) 
     },
     async create(req, res) {
         results = await Recipes.chefsSelectOptions()
@@ -88,7 +85,7 @@ module.exports = {
     },
     async edit(req, res) {
         let results = await Recipes.find(req.params.index)
-        const recipe = results
+        const recipe = results.rows[0]
 
         if(!recipe) return res.send("Recipe not found!")
         

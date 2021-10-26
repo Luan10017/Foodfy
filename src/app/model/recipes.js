@@ -61,7 +61,7 @@ module.exports = {
         `
         const values = [
             data.title,
-            data.chef,
+            data.chef_id,
             data.ingredients,
             data.preparation,
             data.information,
@@ -74,12 +74,12 @@ module.exports = {
             callback()
         })
     },
-    /* find(id) {
+    find(id) {
         return db.query (`SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes
             LEFT JOIN chefs ON (chefs.id = recipes.chef_id) 
             WHERE recipes.id = $1`, [id])
-    }, */
+    },
     delete(id, callback) {
         db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error! ${err}`
